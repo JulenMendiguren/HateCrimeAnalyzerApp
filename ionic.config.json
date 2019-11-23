@@ -1,5 +1,7 @@
 {
   "name": "HateCrimeApp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
