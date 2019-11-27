@@ -6,4 +6,41 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+
+
+
+
+  <!-- TEMPLATE DE UN LIKERT -->
+  <ng-template #likert>
+    <ion-card>
+      <ion-card-title>Answer this question</ion-card-title>
+      <ion-card-content>
+        Me siento sexualmente identificado con un helicóptero de ataque.
+      </ion-card-content>
+      <ion-radio-group>
+        <ion-item>
+          <ion-label>Strongly Disagree</ion-label>
+          <ion-radio></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Disagree</ion-label>
+          <ion-radio></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Neutral</ion-label>
+          <ion-radio></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Agree</ion-label>
+          <ion-radio></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Strongly Agree</ion-label>
+          <ion-radio></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-card>
+  </ng-template>
+
+</ion-content>
