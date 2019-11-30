@@ -8,10 +8,12 @@
 
 <ion-content>
 
+  <ng-container *ngTemplateOutlet="likert"></ng-container>
+  <ng-container *ngTemplateOutlet="textbox"></ng-container>
+  <ng-container *ngTemplateOutlet="number"></ng-container>
 
 
-
-  <!-- TEMPLATE DE UN LIKERT -->
+  <!-- TEMPLATE DE UN LIKERT ESTÁTICO -->
   <ng-template #likert>
     <ion-card>
       <ion-card-title>Answer this question</ion-card-title>
@@ -42,5 +44,23 @@
       </ion-radio-group>
     </ion-card>
   </ng-template>
+
+
+  <ng-template #textbox>
+    <ion-label position="stacked">Esto es un ejemplo de pregunta abierta de tipo Textbox grande</ion-label>
+    <ion-item>
+      <ion-input placeholder="Enter Input"></ion-input>
+    </ion-item>
+  </ng-template>
+
+  <ng-template #number>
+    <ion-label position="stacked">Esto es un ejemplo de pregunta abierta de tipo number 6 digitos</ion-label>
+    <ion-item>
+      <ion-input type="number" placeholder="Enter Input"></ion-input>
+    </ion-item>
+  </ng-template>
+
+
+
 
 </ion-content>

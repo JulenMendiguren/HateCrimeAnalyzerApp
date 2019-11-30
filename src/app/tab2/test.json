@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "Q_ID": "0000001",
+            "text": "Esto es un ejemplo de pregunta abierta de tipo Textbox grande",
+            "category": "user",
+            "type": "textbox",
+            "options": {
+                "required": "true",
+                "isSubquestion": "false",
+                "size": "big"
+            }
+        },
+        {
+            "Q_ID": "0000002",
+            "text": "Esto es un ejemplo de pregunta abierta de tipo Textbox pequeña y required false",
+            "category": "user",
+            "type": "textbox",
+            "options": {
+                "required": "false",
+                "isSubquestion": "false",
+                "size": "small"
+            }
+        },
+        {
+            "Q_ID": "0000003",
+            "text": "Esto es un ejemplo de pregunta abierta de tipo number 6 digitos",
+            "category": "user",
+            "type": "textbox",
+            "options": {
+                "required": "false",
+                "isSubquestion": "false",
+                "digits": 6,
+                "minValue": 0,
+                "maxValue": 999999,
+                "slider": "false"
+            }
+        },
+        {
+            "Q_ID": "0000004",
+            "text": "Esto es un ejemplo de pregunta abierta de tipo number 2 digitos",
+            "category": "user",
+            "type": "textbox",
+            "options": {
+                "required": "false",
+                "isSubquestion": "false",
+                "digits": 6,
+                "minValue": 20,
+                "maxValue": 30,
+                "slider": "true"
+            }
+        }
+    ]
+}

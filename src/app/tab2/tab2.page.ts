@@ -6,7 +6,23 @@ import { Component } from '@angular/core';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
+  test: any
+  constructor() { }
 
-  constructor() {}
+  ionViewDidEnter() {
+    this.load();
+  }
 
+  load() {
+    console.log("asdasdasd")
+
+    fetch('./test.json').then(file => {
+      return file.json()
+    }).then(json => {
+      this.test = json;
+      console.log(this.test)
+    }
+    )
+
+  }
 }
