@@ -6,7 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-  test: any
+  public fullJson: any
+  public questions: []
+  public jsonLoaded: boolean = false;
   constructor() { }
 
   ionViewDidEnter() {
@@ -14,13 +16,12 @@ export class Tab2Page {
   }
 
   load() {
-    console.log("asdasdasd")
-
-    fetch('./test.json').then(file => {
+    fetch('/assets/test.json').then(file => {
       return file.json()
     }).then(json => {
-      this.test = json;
-      console.log(this.test)
+      this.fullJson = json;
+      this.questions = this.fullJson.questions;
+      this.jsonLoaded = true;
     }
     )
 

@@ -8,58 +8,93 @@
 
 <ion-content>
 
-  <ng-container *ngTemplateOutlet="likert"></ng-container>
-  <ng-container *ngTemplateOutlet="textbox"></ng-container>
-  <ng-container *ngTemplateOutlet="number"></ng-container>
+  <ng-container *ngIf="jsonLoaded">
+    <ng-container *ngFor="let question of questions">
+      <ng-container [ngSwitch]="question.type">
+
+        <div *ngSwitchCase="'textbox'">
+          <ng-container *ngIf="question.options.size == 'small'">
+            <ion-label>{{question.text}}</ion-label>
+            <ion-item>
+              <ion-input placeholder="Enter input" maxlength="30"></ion-input>
+            </ion-item>
+          </ng-container>
+          <ng-container *ngIf="question.options.size == 'big'">
+            <ion-label>{{question.text}}</ion-label>
+            <ion-item>
+              <ion-textarea placeholder="Enter Input" maxlength="500"></ion-textarea>
+            </ion-item>
+          </ng-container>
+        </div>
+
+        <div *ngSwitchCase="'number'">
+          <ng-container *ngIf="question.options.slider == 'true'">
+            <ion-label>{{question.text}}</ion-label>
+            <ion-item>
+              <ion-range min="{{question.options.minValue}}" max="{{question.options.maxValue}}" pin="true">
+                <ion-label slot="start">{{question.options.minValue}}</ion-label>
+                <ion-label slot="end">{{question.options.maxValue}}</ion-label>
+              </ion-range>
+            </ion-item>
+          </ng-container>
+          <ng-container *ngIf="question.options.slider == 'false'">
+            <ion-label>{{question.text}}</ion-label>
+            <ion-item>
+              <ion-input type="number" min="{{question.options.minValue}}" max="{{question.options.maxValue}}"
+                maxlength="{{question.options.digits}}" minlength="{{question.options.digits}}">
+              </ion-input>
+            </ion-item>
+          </ng-container>
+        </div>
+
+        <div *ngSwitchCase="'likert'">
+          <ion-card>
+            <ion-card-title>Answer this question</ion-card-title>
+            <ion-card-content>
+              {{question.text}}
+            </ion-card-content>
+            <ion-radio-group>
+              <ion-item>
+                <ion-label>Strongly Disagree</ion-label>
+                <ion-radio></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>Disagree</ion-label>
+                <ion-radio></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>Neutral</ion-label>
+                <ion-radio></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>Agree</ion-label>
+                <ion-radio></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>Strongly Agree</ion-label>
+                <ion-radio></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-card>
+        </div>
+
+        <div *ngSwitchCase="'datetime'">
+          <ion-label>{{question.text}}</ion-label>
+          <ion-item>
+            <ion-label>Date</ion-label>
+            <ion-datetime></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label>Time</ion-label>
+            <ion-datetime displayFormat="HH:mm"></ion-datetime>
+          </ion-item>
+        </div>
 
 
-  <!-- TEMPLATE DE UN LIKERT ESTÁTICO -->
-  <ng-template #likert>
-    <ion-card>
-      <ion-card-title>Answer this question</ion-card-title>
-      <ion-card-content>
-        Me siento sexualmente identificado con un helicóptero de ataque.
-      </ion-card-content>
-      <ion-radio-group>
-        <ion-item>
-          <ion-label>Strongly Disagree</ion-label>
-          <ion-radio></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Disagree</ion-label>
-          <ion-radio></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Neutral</ion-label>
-          <ion-radio></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Agree</ion-label>
-          <ion-radio></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Strongly Agree</ion-label>
-          <ion-radio></ion-radio>
-        </ion-item>
-      </ion-radio-group>
-    </ion-card>
-  </ng-template>
-
-
-  <ng-template #textbox>
-    <ion-label position="stacked">Esto es un ejemplo de pregunta abierta de tipo Textbox grande</ion-label>
-    <ion-item>
-      <ion-input placeholder="Enter Input"></ion-input>
-    </ion-item>
-  </ng-template>
-
-  <ng-template #number>
-    <ion-label position="stacked">Esto es un ejemplo de pregunta abierta de tipo number 6 digitos</ion-label>
-    <ion-item>
-      <ion-input type="number" placeholder="Enter Input"></ion-input>
-    </ion-item>
-  </ng-template>
-
+        <div *ngSwitchDefault>ELSE: {{question.text}}</div>
+      </ng-container>
+    </ng-container>
+  </ng-container>
 
 
 

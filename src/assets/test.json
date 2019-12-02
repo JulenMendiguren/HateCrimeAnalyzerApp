@@ -26,7 +26,7 @@
             "Q_ID": "0000003",
             "text": "Esto es un ejemplo de pregunta abierta de tipo number 6 digitos",
             "category": "user",
-            "type": "textbox",
+            "type": "number",
             "options": {
                 "required": "false",
                 "isSubquestion": "false",
@@ -40,7 +40,7 @@
             "Q_ID": "0000004",
             "text": "Esto es un ejemplo de pregunta abierta de tipo number 2 digitos",
             "category": "user",
-            "type": "textbox",
+            "type": "number",
             "options": {
                 "required": "false",
                 "isSubquestion": "false",
@@ -48,6 +48,26 @@
                 "minValue": 20,
                 "maxValue": 30,
                 "slider": "true"
+            }
+        },
+        {
+            "Q_ID": "0000005",
+            "text": "Esto es un ejemplo de pregunta cerrada de tipo likert",
+            "category": "user",
+            "type": "likert",
+            "options": {
+                "required": "false",
+                "isSubquestion": "false"
+            }
+        },
+        {
+            "Q_ID": "0000006",
+            "text": "Esto es un ejemplo de pregunta cerrada de tipo datetime",
+            "category": "user",
+            "type": "datetime",
+            "options": {
+                "required": "false",
+                "isSubquestion": "false"
             }
         }
     ]
