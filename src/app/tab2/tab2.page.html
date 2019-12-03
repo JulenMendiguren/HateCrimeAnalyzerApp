@@ -49,30 +49,30 @@
 
         <div *ngSwitchCase="'likert'">
           <ion-card>
-            <ion-card-title>Answer this question</ion-card-title>
+            <!-- <ion-card-title>Answer this question</ion-card-title> -->
             <ion-card-content>
               {{question.text}}
             </ion-card-content>
             <ion-radio-group>
               <ion-item>
                 <ion-label>Strongly Disagree</ion-label>
-                <ion-radio></ion-radio>
+                <ion-radio value="sd"></ion-radio>
               </ion-item>
               <ion-item>
                 <ion-label>Disagree</ion-label>
-                <ion-radio></ion-radio>
+                <ion-radio value="d"></ion-radio>
               </ion-item>
               <ion-item>
                 <ion-label>Neutral</ion-label>
-                <ion-radio></ion-radio>
+                <ion-radio value="n"></ion-radio>
               </ion-item>
               <ion-item>
                 <ion-label>Agree</ion-label>
-                <ion-radio></ion-radio>
+                <ion-radio value="a"></ion-radio>
               </ion-item>
               <ion-item>
                 <ion-label>Strongly Agree</ion-label>
-                <ion-radio></ion-radio>
+                <ion-radio value="sa"></ion-radio>
               </ion-item>
             </ion-radio-group>
           </ion-card>
@@ -82,11 +82,58 @@
           <ion-label>{{question.text}}</ion-label>
           <ion-item>
             <ion-label>Date</ion-label>
-            <ion-datetime></ion-datetime>
+            <ion-datetime displayFormat="DD:MM:YYYY"></ion-datetime>
           </ion-item>
           <ion-item>
             <ion-label>Time</ion-label>
             <ion-datetime displayFormat="HH:mm"></ion-datetime>
+          </ion-item>
+        </div>
+
+        <div *ngSwitchCase="'yesno'">
+          <ion-card>
+            <!-- <ion-card-title>Answer this question</ion-card-title> -->
+            <ion-card-content>
+              {{question.text}}
+            </ion-card-content>
+            <ion-radio-group>
+              <ion-item>
+                <ion-label>Yes</ion-label>
+                <ion-radio value="yes"></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>No</ion-label>
+                <ion-radio value="no"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-card>
+        </div>
+
+        <div *ngSwitchCase="'radio'">
+          <ion-card>
+            <!-- <ion-card-title>Answer this question</ion-card-title> -->
+            <ion-card-content>
+              {{question.text}}
+            </ion-card-content>
+            <ion-radio-group>
+              <ng-container *ngFor="let answer of question.possibleAnswers">
+                <ion-item>
+                  <ion-label>{{answer}}</ion-label>
+                  <ion-radio value="{{answer}}"></ion-radio>
+                </ion-item>
+              </ng-container>
+            </ion-radio-group>
+          </ion-card>
+        </div>
+
+        <div *ngSwitchCase="'multiselect'">
+          <ion-item>
+            <ion-label>{{question.text}}</ion-label>
+            <ion-select multiple="true">
+              <ng-container *ngFor="let answer of question.possibleAnswers">
+                <ion-select-option value="{{answer}}">{{answer}}</ion-select-option>
+              </ng-container>
+            </ion-select>
           </ion-item>
         </div>
 

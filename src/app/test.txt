@@ -1,14 +1,14 @@
 Tipo de preguntas:
  1. Abierta
-     1.1 Textbox (opción: Grande=máx 500 caracteres, peque máx 30 caracteres)
-     1.2 Number (opción: num digitos, valor mín/máx, slider)
-     1.3 Date/hour
-     1.3 Geolocation
+     1.1 Textbox (opción: Grande=máx 500 caracteres, peque máx 30 caracteres) NOMBRE: textbox
+     1.2 Number (opción: num digitos, valor mín/máx, slider) NOMBRE: number
+     1.3 Date/hour NOMBRE: datehour
+     1.3 Geolocation TODO!!!!!!!!!!
  2. Cerrada
-     1.1 Si o no
-     1.2 A elegir entre unas pocas opciones (opción: Respuesta múltiple?)
-     1.3 A elegir entre muchas opciones (Por ej. lista desplegable municipios Bizkaia)
-     1.4 Likert scale
+     1.1 Si o no NOMBRE: yesno
+     1.2 A elegir una entre varias opciones NOMBRE: radio
+     1.3 A elegir varias entre varias opciones (Por ej. lista desplegable municipios Bizkaia) NOMBRE: multiselect
+     1.4 Likert scale NOMBRE: likert
  Opciones para todas:
      -required?
      -Depende de otra pregunta

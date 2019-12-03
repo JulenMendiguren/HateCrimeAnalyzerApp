@@ -69,6 +69,72 @@
                 "required": "false",
                 "isSubquestion": "false"
             }
+        },
+        {
+            "Q_ID": "0000007",
+            "text": "Esto es un ejemplo de pregunta cerrada de tipo yesno",
+            "category": "user",
+            "type": "yesno",
+            "options": {
+                "required": "false",
+                "isSubquestion": "false"
+            }
+        },
+        {
+            "Q_ID": "0000008",
+            "text": "Esto es un ejemplo de pregunta cerrada de tipo radio",
+            "category": "user",
+            "possibleAnswers": [
+                "Azul",
+                "Rosa",
+                "Verde",
+                "Negro",
+                "Morado",
+                "Rojo",
+                "Blanco",
+                "Naranja",
+                "asd",
+                "sgd",
+                "sdgf",
+                "gsdfdf",
+                "SDFGS",
+                "SDGSDFG",
+                "CFGJ",
+                "CJFGH"
+            ],
+            "type": "radio",
+            "options": {
+                "required": "false",
+                "isSubquestion": "false"
+            }
+        },
+        {
+            "Q_ID": "0000009",
+            "text": "Esto es un ejemplo de pregunta cerrada de tipo multiselect",
+            "category": "user",
+            "possibleAnswers": [
+                "Azul",
+                "Rosa",
+                "Verde",
+                "Negro",
+                "Morado",
+                "Rojo",
+                "Blanco",
+                "Naranja",
+                "asd",
+                "sgd",
+                "sdgf",
+                "gsdfdf",
+                "SDFGS",
+                "SDGSDFG",
+                "CFGJ",
+                "CJFGH"
+            ],
+            "type": "multiselect",
+            "options": {
+                "required": "false",
+                "isSubquestion": "false"
+            }
         }
     ]
 }
