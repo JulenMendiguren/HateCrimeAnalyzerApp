@@ -1,0 +1,13 @@
+<ng-container *ngIf="question.options.size == 'small'; else big">
+    <ion-label>{{ question.text }}</ion-label>
+    <ion-item>
+        <ion-input placeholder="Enter input" maxlength="30"></ion-input>
+    </ion-item>
+</ng-container>
+
+<ng-template #big>
+    <ion-label>{{ question.text }}</ion-label>
+    <ion-item>
+        <ion-textarea placeholder="Enter Input" maxlength="500"></ion-textarea>
+    </ion-item>
+</ng-template>

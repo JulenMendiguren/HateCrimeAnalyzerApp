@@ -1,149 +1,53 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab Two
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>
+            Tab Two
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ng-container *ngIf="jsonLoaded">
+        <ng-container *ngFor="let question of questions">
+            <ng-container [ngSwitch]="question.type">
+                <app-template-textbox
+                    *ngSwitchCase="'textbox'"
+                    [question]="question"
+                ></app-template-textbox>
 
+                <app-template-number
+                    *ngSwitchCase="'number'"
+                    [question]="question"
+                >
+                </app-template-number>
 
-  <ng-container *ngIf="jsonLoadedd">
-    <ng-container *ngFor="let question of questions">
-      <ng-container [ngSwitch]="question.type">
+                <app-template-likert
+                    *ngSwitchCase="'likert'"
+                    [question]="question"
+                ></app-template-likert>
 
-        <div *ngSwitchCase="'textbox'">
-          <ng-container *ngIf="question.options.size == 'small'">
-            <ion-label>{{question.text}}</ion-label>
-            <ion-item>
-              <ion-input placeholder="Enter input" maxlength="30"></ion-input>
-            </ion-item>
-          </ng-container>
-          <ng-container *ngIf="question.options.size == 'big'">
-            <ion-label>{{question.text}}</ion-label>
-            <ion-item>
-              <ion-textarea placeholder="Enter Input" maxlength="500"></ion-textarea>
-            </ion-item>
-          </ng-container>
-        </div>
+                <app-template-datetime
+                    *ngSwitchCase="'datetime'"
+                    [question]="question"
+                ></app-template-datetime>
 
-        <div *ngSwitchCase="'number'">
-          <ng-container *ngIf="question.options.slider == 'true'">
-            <ion-label>{{question.text}}</ion-label>
-            <ion-item>
-              <ion-range min="{{question.options.minValue}}" max="{{question.options.maxValue}}" pin="true">
-                <ion-label slot="start">{{question.options.minValue}}</ion-label>
-                <ion-label slot="end">{{question.options.maxValue}}</ion-label>
-              </ion-range>
-            </ion-item>
-          </ng-container>
-          <ng-container *ngIf="question.options.slider == 'false'">
-            <ion-label>{{question.text}}</ion-label>
-            <ion-item>
-              <ion-input type="number" min="{{question.options.minValue}}" max="{{question.options.maxValue}}"
-                maxlength="{{question.options.digits}}" minlength="{{question.options.digits}}">
-              </ion-input>
-            </ion-item>
-          </ng-container>
-        </div>
+                <app-template-yesno
+                    *ngSwitchCase="'yesno'"
+                    [question]="question"
+                ></app-template-yesno>
 
-        <div *ngSwitchCase="'likert'">
-          <ion-card>
-            <!-- <ion-card-title>Answer this question</ion-card-title> -->
-            <ion-card-content>
-              {{question.text}}
-            </ion-card-content>
-            <ion-radio-group>
-              <ion-item>
-                <ion-label>Strongly Disagree</ion-label>
-                <ion-radio value="sd"></ion-radio>
-              </ion-item>
-              <ion-item>
-                <ion-label>Disagree</ion-label>
-                <ion-radio value="d"></ion-radio>
-              </ion-item>
-              <ion-item>
-                <ion-label>Neutral</ion-label>
-                <ion-radio value="n"></ion-radio>
-              </ion-item>
-              <ion-item>
-                <ion-label>Agree</ion-label>
-                <ion-radio value="a"></ion-radio>
-              </ion-item>
-              <ion-item>
-                <ion-label>Strongly Agree</ion-label>
-                <ion-radio value="sa"></ion-radio>
-              </ion-item>
-            </ion-radio-group>
-          </ion-card>
-        </div>
+                <app-template-radio
+                    *ngSwitchCase="'radio'"
+                    [question]="question"
+                ></app-template-radio>
 
-        <div *ngSwitchCase="'datetime'">
-          <ion-label>{{question.text}}</ion-label>
-          <ion-item>
-            <ion-label>Date</ion-label>
-            <ion-datetime displayFormat="DD:MM:YYYY"></ion-datetime>
-          </ion-item>
-          <ion-item>
-            <ion-label>Time</ion-label>
-            <ion-datetime displayFormat="HH:mm"></ion-datetime>
-          </ion-item>
-        </div>
+                <app-template-multiselect
+                    *ngSwitchCase="'multiselect'"
+                    [question]="question"
+                ></app-template-multiselect>
 
-        <div *ngSwitchCase="'yesno'">
-          <ion-card>
-            <!-- <ion-card-title>Answer this question</ion-card-title> -->
-            <ion-card-content>
-              {{question.text}}
-            </ion-card-content>
-            <ion-radio-group>
-              <ion-item>
-                <ion-label>Yes</ion-label>
-                <ion-radio value="yes"></ion-radio>
-              </ion-item>
-              <ion-item>
-                <ion-label>No</ion-label>
-                <ion-radio value="no"></ion-radio>
-              </ion-item>
-            </ion-radio-group>
-          </ion-card>
-        </div>
-
-        <div *ngSwitchCase="'radio'">
-          <ion-card>
-            <!-- <ion-card-title>Answer this question</ion-card-title> -->
-            <ion-card-content>
-              {{question.text}}
-            </ion-card-content>
-            <ion-radio-group>
-              <ng-container *ngFor="let answer of question.possibleAnswers">
-                <ion-item>
-                  <ion-label>{{answer}}</ion-label>
-                  <ion-radio value="{{answer}}"></ion-radio>
-                </ion-item>
-              </ng-container>
-            </ion-radio-group>
-          </ion-card>
-        </div>
-
-        <div *ngSwitchCase="'multiselect'">
-          <ion-item>
-            <ion-label>{{question.text}}</ion-label>
-            <ion-select multiple="true">
-              <ng-container *ngFor="let answer of question.possibleAnswers">
-                <ion-select-option value="{{answer}}">{{answer}}</ion-select-option>
-              </ng-container>
-            </ion-select>
-          </ion-item>
-        </div>
-
-
-        <div *ngSwitchDefault>ELSE: {{question.text}}</div>
-      </ng-container>
+                <div *ngSwitchDefault>ELSE: {{question.text}}</div>
+            </ng-container>
+        </ng-container>
     </ng-container>
-  </ng-container>
-
-
-
 </ion-content>
