@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Question } from "../question.model";
+import { FormGroup, Validators } from "@angular/forms";
 
 @Component({
     selector: "app-template-number",
@@ -8,6 +9,7 @@ import { Question } from "../question.model";
 })
 export class TemplateNumberComponent implements OnInit {
     @Input() question: Question;
+    @Input() parentForm: FormGroup;
     constructor() {}
 
     ngOnInit() {}

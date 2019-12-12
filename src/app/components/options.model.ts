@@ -1,9 +1,10 @@
 export interface Options {
-    required: string;
+    required: boolean;
     isSubquestion: string;
     size?: string;
-    digits?: number;
     minValue?: number;
     maxValue?: number;
+    minLength?: number;
+    maxLength?: number;
     slider?: string;
 }

@@ -13,11 +13,13 @@
                 <app-template-textbox
                     *ngSwitchCase="'textbox'"
                     [question]="question"
+                    [parentForm]="parentForm"
                 ></app-template-textbox>
 
                 <app-template-number
                     *ngSwitchCase="'number'"
                     [question]="question"
+                    [parentForm]="parentForm"
                 >
                 </app-template-number>
 

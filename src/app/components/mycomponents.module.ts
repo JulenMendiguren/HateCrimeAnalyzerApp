@@ -1,4 +1,5 @@
 import { NgModule } from "@angular/core";
+import { ReactiveFormsModule } from "@angular/forms";
 import { GoogleMapsComponent } from "./google-maps/google-maps.component";
 import { TemplateTextboxComponent } from "./template-textbox/template-textbox.component";
 import { CommonModule } from "@angular/common";
@@ -11,7 +12,7 @@ import { TemplateYesnoComponent } from "./template-yesno/template-yesno.componen
 import { TemplateMultiselectComponent } from "./template-multiselect/template-multiselect.component";
 
 @NgModule({
-    imports: [CommonModule, IonicModule],
+    imports: [CommonModule, IonicModule, ReactiveFormsModule],
     declarations: [
         GoogleMapsComponent,
         TemplateTextboxComponent,
