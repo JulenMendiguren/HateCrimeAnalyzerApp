@@ -1,16 +1,18 @@
-<ion-card>
-    <!-- <ion-card-title>Answer this question</ion-card-title> -->
-    <ion-card-content>
-        {{ question.text }}
-    </ion-card-content>
-    <ion-radio-group>
-        <ion-item>
-            <ion-label>Yes</ion-label>
-            <ion-radio value="yes"></ion-radio>
-        </ion-item>
-        <ion-item>
-            <ion-label>No</ion-label>
-            <ion-radio value="no"></ion-radio>
-        </ion-item>
-    </ion-radio-group>
-</ion-card>
+<div [formGroup]="parentForm">
+    <ion-card>
+        <!-- <ion-card-title>Answer this question</ion-card-title> -->
+        <ion-card-content>
+            {{ question.text }}
+        </ion-card-content>
+        <ion-radio-group formControlName="{{ question.Q_ID }}">
+            <ion-item>
+                <ion-label>Yes</ion-label>
+                <ion-radio value="yes"></ion-radio>
+            </ion-item>
+            <ion-item>
+                <ion-label>No</ion-label>
+                <ion-radio value="no"></ion-radio>
+            </ion-item>
+        </ion-radio-group>
+    </ion-card>
+</div>

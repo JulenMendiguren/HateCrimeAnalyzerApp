@@ -1,10 +1,12 @@
-<ion-item>
-    <ion-label>{{ question.text }}</ion-label>
-    <ion-select multiple="true">
-        <ng-container *ngFor="let answer of question.possibleAnswers">
-            <ion-select-option value="{{ answer }}">{{
-                answer
-            }}</ion-select-option>
-        </ng-container>
-    </ion-select>
-</ion-item>
+<div [formGroup]="parentForm">
+    <ion-item>
+        <ion-label>{{ question.text }}</ion-label>
+        <ion-select multiple="true" formControlName="{{ question.Q_ID }}">
+            <ng-container *ngFor="let answer of question.possibleAnswers">
+                <ion-select-option value="{{ answer }}">{{
+                    answer
+                }}</ion-select-option>
+            </ng-container>
+        </ion-select>
+    </ion-item>
+</div>

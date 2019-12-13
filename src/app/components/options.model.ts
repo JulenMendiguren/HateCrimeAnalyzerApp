@@ -6,5 +6,5 @@ export interface Options {
     maxValue?: number;
     minLength?: number;
     maxLength?: number;
-    slider?: string;
+    slider?: boolean;
 }

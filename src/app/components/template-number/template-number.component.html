@@ -1,5 +1,5 @@
 <div [formGroup]="parentForm">
-    <ng-container *ngIf="question.options.slider == 'true'">
+    <ng-container *ngIf="question.options.slider">
         <ion-label>{{ question.text }}</ion-label>
         <ion-item>
             <ion-range
@@ -9,6 +9,7 @@
                 value="{{
                     (question.options.minValue + question.options.maxValue) / 2
                 }}"
+                formControlName="{{ question.Q_ID }}"
             >
                 <ion-label slot="start">{{
                     question.options.minValue
@@ -19,10 +20,11 @@
             </ion-range>
         </ion-item>
     </ng-container>
-    <ng-container *ngIf="question.options.slider == 'false'">
+    <ng-container *ngIf="!question.options.slider">
         <ion-label>{{ question.text }}</ion-label>
         <ion-item>
-            <ion-input type="number"> </ion-input>
+            <ion-input type="number" formControlName="{{ question.Q_ID }}">
+            </ion-input>
         </ion-item>
     </ng-container>
 </div>

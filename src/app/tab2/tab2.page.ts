@@ -43,38 +43,51 @@ export class Tab2Page {
         var formGroupSpec = {};
         this.questions.forEach(question => {
             let questionValidators = [];
+            let defaultValue = null;
 
-            if (question.options.required) {
+            if (question.options.required == true) {
                 questionValidators.push(Validators.required);
             }
             if (question.type == "number") {
-                questionValidators.push(Validators.pattern("[0-9]"));
+                if (question.options.slider) {
+                    defaultValue =
+                        (question.options.minValue +
+                            question.options.maxValue) /
+                        2;
+                } else {
+                    questionValidators.push(Validators.pattern("[0-9]+"));
+                }
             }
             // Length
-            if (question.options.minLength) {
+            if (!!question.options.minLength) {
                 questionValidators.push(
                     Validators.minLength(question.options.minLength)
                 );
             }
-            if (question.options.maxLength) {
+            if (!!question.options.maxLength) {
                 questionValidators.push(
                     Validators.maxLength(question.options.maxLength)
                 );
             }
 
             // Value
-            if (question.options.minValue) {
+            if (!!question.options.minValue) {
                 questionValidators.push(
                     Validators.min(question.options.minValue)
                 );
             }
-            if (question.options.maxValue) {
+            if (!!question.options.maxValue) {
                 questionValidators.push(
                     Validators.max(question.options.maxValue)
                 );
             }
-
-            const fc = new FormControl("", questionValidators);
+            console.log(
+                "Question: " +
+                    question.Q_ID +
+                    " Has the validators: " +
+                    questionValidators.length
+            );
+            const fc = new FormControl(defaultValue, questionValidators);
             formGroupSpec[question.Q_ID] = fc;
         });
 
@@ -85,5 +98,16 @@ export class Tab2Page {
         this.parentForm.statusChanges.subscribe(newStatus =>
             console.log(newStatus)
         );
+    }
+
+    public findInvalidControls() {
+        const invalid = [];
+        const controls = this.parentForm.controls;
+        for (const name in controls) {
+            if (controls[name].invalid) {
+                invalid.push(name);
+            }
+        }
+        console.log(invalid);
     }
 }

@@ -1,14 +1,16 @@
-<ion-card>
-    <!-- <ion-card-title>Answer this question</ion-card-title> -->
-    <ion-card-content>
-        {{ question.text }}
-    </ion-card-content>
-    <ion-radio-group>
-        <ng-container *ngFor="let answer of question.possibleAnswers">
-            <ion-item>
-                <ion-label>{{ answer }}</ion-label>
-                <ion-radio value="{{ answer }}"></ion-radio>
-            </ion-item>
-        </ng-container>
-    </ion-radio-group>
-</ion-card>
+<div [formGroup]="parentForm">
+    <ion-card>
+        <!-- <ion-card-title>Answer this question</ion-card-title> -->
+        <ion-card-content>
+            {{ question.text }}
+        </ion-card-content>
+        <ion-radio-group formControlName="{{ question.Q_ID }}">
+            <ng-container *ngFor="let answer of question.possibleAnswers">
+                <ion-item>
+                    <ion-label>{{ answer }}</ion-label>
+                    <ion-radio value="{{ answer }}"></ion-radio>
+                </ion-item>
+            </ng-container>
+        </ion-radio-group>
+    </ion-card>
+</div>

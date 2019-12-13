@@ -1,28 +1,30 @@
-<ion-card>
-    <!-- <ion-card-title>Answer this question</ion-card-title> -->
-    <ion-card-content>
-        {{ question.text }}
-    </ion-card-content>
-    <ion-radio-group>
-        <ion-item>
-            <ion-label>Strongly Disagree</ion-label>
-            <ion-radio value="sd"></ion-radio>
-        </ion-item>
-        <ion-item>
-            <ion-label>Disagree</ion-label>
-            <ion-radio value="d"></ion-radio>
-        </ion-item>
-        <ion-item>
-            <ion-label>Neutral</ion-label>
-            <ion-radio value="n"></ion-radio>
-        </ion-item>
-        <ion-item>
-            <ion-label>Agree</ion-label>
-            <ion-radio value="a"></ion-radio>
-        </ion-item>
-        <ion-item>
-            <ion-label>Strongly Agree</ion-label>
-            <ion-radio value="sa"></ion-radio>
-        </ion-item>
-    </ion-radio-group>
-</ion-card>
+<div [formGroup]="parentForm">
+    <ion-card>
+        <!-- <ion-card-title>Answer this question</ion-card-title> -->
+        <ion-card-content>
+            {{ question.text }}
+        </ion-card-content>
+        <ion-radio-group formControlName="{{ question.Q_ID }}">
+            <ion-item>
+                <ion-label>Strongly Disagree</ion-label>
+                <ion-radio value="sd"></ion-radio>
+            </ion-item>
+            <ion-item>
+                <ion-label>Disagree</ion-label>
+                <ion-radio value="d"></ion-radio>
+            </ion-item>
+            <ion-item>
+                <ion-label>Neutral</ion-label>
+                <ion-radio value="n"></ion-radio>
+            </ion-item>
+            <ion-item>
+                <ion-label>Agree</ion-label>
+                <ion-radio value="a"></ion-radio>
+            </ion-item>
+            <ion-item>
+                <ion-label>Strongly Agree</ion-label>
+                <ion-radio value="sa"></ion-radio>
+            </ion-item>
+        </ion-radio-group>
+    </ion-card>
+</div>

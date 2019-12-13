@@ -1,9 +1,10 @@
-<ion-label>{{ question.text }}</ion-label>
-<ion-item>
-    <ion-label>Date</ion-label>
-    <ion-datetime displayFormat="DD:MM:YYYY"></ion-datetime>
-</ion-item>
-<ion-item>
-    <ion-label>Time</ion-label>
-    <ion-datetime displayFormat="HH:mm"></ion-datetime>
-</ion-item>
+<div [formGroup]="parentForm">
+    <ion-label>{{ question.text }}</ion-label>
+    <ion-item>
+        <ion-label>Date and time</ion-label>
+        <ion-datetime
+            displayFormat="D MMM YYYY H:mm"
+            formControlName="{{ question.Q_ID }}"
+        ></ion-datetime>
+    </ion-item>
+</div>

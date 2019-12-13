@@ -7,6 +7,8 @@ import { FormGroup, Validators } from "@angular/forms";
     templateUrl: "./template-number.component.html",
     styleUrls: ["./template-number.component.scss"]
 })
+
+// TODO: Con el slider, no se puede dejar la pregunta sin responder...
 export class TemplateNumberComponent implements OnInit {
     @Input() question: Question;
     @Input() parentForm: FormGroup;

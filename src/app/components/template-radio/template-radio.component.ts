@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Question } from "../question.model";
+import { FormGroup } from "@angular/forms";
 
 @Component({
     selector: "app-template-radio",
@@ -8,6 +9,8 @@ import { Question } from "../question.model";
 })
 export class TemplateRadioComponent implements OnInit {
     @Input() question: Question;
+    @Input() parentForm: FormGroup;
+
     constructor() {}
 
     ngOnInit() {}

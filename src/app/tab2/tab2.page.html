@@ -26,30 +26,38 @@
                 <app-template-likert
                     *ngSwitchCase="'likert'"
                     [question]="question"
+                    [parentForm]="parentForm"
                 ></app-template-likert>
 
                 <app-template-datetime
                     *ngSwitchCase="'datetime'"
                     [question]="question"
+                    [parentForm]="parentForm"
                 ></app-template-datetime>
 
                 <app-template-yesno
                     *ngSwitchCase="'yesno'"
                     [question]="question"
+                    [parentForm]="parentForm"
                 ></app-template-yesno>
 
                 <app-template-radio
                     *ngSwitchCase="'radio'"
                     [question]="question"
+                    [parentForm]="parentForm"
                 ></app-template-radio>
 
                 <app-template-multiselect
                     *ngSwitchCase="'multiselect'"
                     [question]="question"
+                    [parentForm]="parentForm"
                 ></app-template-multiselect>
 
                 <div *ngSwitchDefault>ELSE: {{question.text}}</div>
             </ng-container>
         </ng-container>
+        <ion-button (click)="findInvalidControls()">
+            Invalid questions</ion-button
+        >
     </ng-container>
 </ion-content>
