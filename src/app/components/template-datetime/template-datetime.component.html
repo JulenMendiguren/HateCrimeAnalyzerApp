@@ -1,5 +1,10 @@
 <div [formGroup]="parentForm">
-    <ion-label>{{ question.text }}</ion-label>
+    <ion-label
+        >{{ question.text }}
+        <span class="error-message">{{
+            question.options.required ? "*" : ""
+        }}</span></ion-label
+    >
     <ion-item>
         <ion-label>Date and time</ion-label>
         <ion-datetime
@@ -7,4 +12,13 @@
             formControlName="{{ question.Q_ID }}"
         ></ion-datetime>
     </ion-item>
+
+    <div *ngFor="let error of errorMessages[question.Q_ID]">
+        <ng-container *ngIf="showingErrors(error.type)">
+            <div class="error-message">
+                <ion-icon name="alert" size="small"></ion-icon
+                >{{ error.message }}
+            </div>
+        </ng-container>
+    </div>
 </div>

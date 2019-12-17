@@ -15,8 +15,9 @@ import {
 })
 export class Tab2Page {
     public questions: Question[] = [];
-    public jsonLoaded: boolean = false;
+    public jsonLoaded = false;
     public parentForm: FormGroup;
+    public errorMessages = {};
 
     constructor(private fb: FormBuilder) {}
 
@@ -43,10 +44,15 @@ export class Tab2Page {
         var formGroupSpec = {};
         this.questions.forEach(question => {
             let questionValidators = [];
+            let questionErrors = [];
             let defaultValue = null;
 
             if (question.options.required == true) {
                 questionValidators.push(Validators.required);
+                questionErrors.push({
+                    type: "required",
+                    message: "This field is required"
+                });
             }
             if (question.type == "number") {
                 if (question.options.slider) {
@@ -56,6 +62,10 @@ export class Tab2Page {
                         2;
                 } else {
                     questionValidators.push(Validators.pattern("[0-9]+"));
+                    questionErrors.push({
+                        type: "pattern",
+                        message: "Please enter a number"
+                    });
                 }
             }
             // Length
@@ -63,11 +73,19 @@ export class Tab2Page {
                 questionValidators.push(
                     Validators.minLength(question.options.minLength)
                 );
+                questionErrors.push({
+                    type: "minlength",
+                    message: `This field needs to be at least ${question.options.minLength} characters long`
+                });
             }
             if (!!question.options.maxLength) {
                 questionValidators.push(
                     Validators.maxLength(question.options.maxLength)
                 );
+                questionErrors.push({
+                    type: "maxlength",
+                    message: `This field can't be more than ${question.options.maxLength} characters long`
+                });
             }
 
             // Value
@@ -75,20 +93,24 @@ export class Tab2Page {
                 questionValidators.push(
                     Validators.min(question.options.minValue)
                 );
+                questionErrors.push({
+                    type: "min",
+                    message: `The minimum value of this field is ${question.options.minValue}.`
+                });
             }
             if (!!question.options.maxValue) {
                 questionValidators.push(
                     Validators.max(question.options.maxValue)
                 );
+                questionErrors.push({
+                    type: "max",
+                    message: `The maximum value of this field is ${question.options.maxValue}.`
+                });
             }
-            console.log(
-                "Question: " +
-                    question.Q_ID +
-                    " Has the validators: " +
-                    questionValidators.length
-            );
+
             const fc = new FormControl(defaultValue, questionValidators);
             formGroupSpec[question.Q_ID] = fc;
+            this.errorMessages[question.Q_ID] = questionErrors;
         });
 
         this.parentForm = this.fb.group(formGroupSpec);
@@ -106,6 +128,7 @@ export class Tab2Page {
         for (const name in controls) {
             if (controls[name].invalid) {
                 invalid.push(name);
+                invalid.push(controls[name].errors);
             }
         }
         console.log(invalid);

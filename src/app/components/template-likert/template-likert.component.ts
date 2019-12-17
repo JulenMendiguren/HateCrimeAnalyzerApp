@@ -10,6 +10,7 @@ import { FormGroup } from "@angular/forms";
 export class TemplateLikertComponent implements OnInit {
     @Input() question: Question;
     @Input() parentForm: FormGroup;
+
     constructor() {}
 
     ngOnInit() {}

@@ -1,12 +1,15 @@
-.test{
-    
+.test {
 }
 
-.something{
+.something {
     orientation: landscape;
     background-color: salmon;
 }
 
-.likert{
+.likert {
     --ion-grid-columns: 12;
+}
+
+.error-message {
+    color: var(--ion-color-danger);
 }

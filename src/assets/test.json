@@ -8,7 +8,9 @@
             "options": {
                 "required": true,
                 "isSubquestion": "false",
-                "size": "big"
+                "size": "big",
+                "minLength": 5,
+                "maxLength": 10
             }
         },
         {
@@ -17,7 +19,7 @@
             "category": "user",
             "type": "textbox",
             "options": {
-                "required": false,
+                "required": true,
                 "isSubquestion": "false",
                 "size": "small"
             }
@@ -28,10 +30,10 @@
             "category": "user",
             "type": "number",
             "options": {
-                "required": false,
+                "required": true,
                 "isSubquestion": "false",
-                "digits": 6,
-                "minValue": 0,
+                "maxLength": 6,
+                "minValue": 5,
                 "maxValue": 999999,
                 "slider": false
             }
@@ -42,7 +44,7 @@
             "category": "user",
             "type": "number",
             "options": {
-                "required": false,
+                "required": true,
                 "isSubquestion": "false",
                 "digits": 6,
                 "minValue": 20,
@@ -56,7 +58,7 @@
             "category": "user",
             "type": "likert",
             "options": {
-                "required": false,
+                "required": true,
                 "isSubquestion": "false"
             }
         },
@@ -66,7 +68,7 @@
             "category": "user",
             "type": "datetime",
             "options": {
-                "required": false,
+                "required": true,
                 "isSubquestion": "false"
             }
         },
@@ -76,7 +78,7 @@
             "category": "user",
             "type": "yesno",
             "options": {
-                "required": false,
+                "required": true,
                 "isSubquestion": "false"
             }
         },
@@ -104,7 +106,7 @@
             ],
             "type": "radio",
             "options": {
-                "required": false,
+                "required": true,
                 "isSubquestion": "false"
             }
         },
@@ -132,7 +134,7 @@
             ],
             "type": "multiselect",
             "options": {
-                "required": false,
+                "required": true,
                 "isSubquestion": "false"
             }
         }

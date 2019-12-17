@@ -14,12 +14,14 @@
                     *ngSwitchCase="'textbox'"
                     [question]="question"
                     [parentForm]="parentForm"
+                    [errorMessages]="errorMessages"
                 ></app-template-textbox>
 
                 <app-template-number
                     *ngSwitchCase="'number'"
                     [question]="question"
                     [parentForm]="parentForm"
+                    [errorMessages]="errorMessages"
                 >
                 </app-template-number>
 
@@ -33,6 +35,7 @@
                     *ngSwitchCase="'datetime'"
                     [question]="question"
                     [parentForm]="parentForm"
+                    [errorMessages]="errorMessages"
                 ></app-template-datetime>
 
                 <app-template-yesno
@@ -51,11 +54,13 @@
                     *ngSwitchCase="'multiselect'"
                     [question]="question"
                     [parentForm]="parentForm"
+                    [errorMessages]="errorMessages"
                 ></app-template-multiselect>
 
                 <div *ngSwitchDefault>ELSE: {{question.text}}</div>
             </ng-container>
         </ng-container>
+
         <ion-button (click)="findInvalidControls()">
             Invalid questions</ion-button
         >
