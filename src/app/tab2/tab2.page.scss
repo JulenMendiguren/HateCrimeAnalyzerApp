@@ -1,15 +1,12 @@
-.test {
-}
-
-.something {
-    orientation: landscape;
-    background-color: salmon;
-}
-
-.likert {
-    --ion-grid-columns: 12;
-}
-
 .error-message {
     color: var(--ion-color-danger);
+}
+
+.tick-showing {
+    color: var(--ion-color-primary);
+    visibility: visible;
+}
+
+.tick-hidden {
+    visibility: hidden;
 }

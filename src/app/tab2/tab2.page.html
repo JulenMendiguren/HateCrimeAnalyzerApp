@@ -57,6 +57,23 @@
                     [errorMessages]="errorMessages"
                 ></app-template-multiselect>
 
+                <ng-container *ngSwitchCase="'geolocation'">
+                    <ion-label
+                        >{{question.text}}
+                        <span class="error-message"
+                            >{{ question.options.required ? "*" : "" }}</span
+                        ></ion-label
+                    >
+                    <ion-item (click)="openMapModal(question.Q_ID)"
+                        ><ion-label>Choose the location</ion-label>
+                        <ion-icon
+                            slot="end"
+                            name="checkmark"
+                            [className]="parentForm.controls[question.Q_ID].valid ? 'tick-showing': 'tick-hidden'"
+                        ></ion-icon>
+                    </ion-item>
+                </ng-container>
+
                 <div *ngSwitchDefault>ELSE: {{question.text}}</div>
             </ng-container>
         </ng-container>

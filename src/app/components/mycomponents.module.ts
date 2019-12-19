@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
-import { GoogleMapsComponent } from "./google-maps/google-maps.component";
 import { TemplateTextboxComponent } from "./template-textbox/template-textbox.component";
 import { CommonModule } from "@angular/common";
 import { IonicModule } from "@ionic/angular";
@@ -14,7 +13,6 @@ import { TemplateMultiselectComponent } from "./template-multiselect/template-mu
 @NgModule({
     imports: [CommonModule, IonicModule, ReactiveFormsModule],
     declarations: [
-        GoogleMapsComponent,
         TemplateTextboxComponent,
         TemplateNumberComponent,
         TemplateLikertComponent,
@@ -24,7 +22,6 @@ import { TemplateMultiselectComponent } from "./template-multiselect/template-mu
         TemplateMultiselectComponent
     ],
     exports: [
-        GoogleMapsComponent,
         TemplateTextboxComponent,
         TemplateNumberComponent,
         TemplateLikertComponent,

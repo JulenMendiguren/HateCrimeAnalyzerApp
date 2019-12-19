@@ -32,7 +32,6 @@
             "options": {
                 "required": true,
                 "isSubquestion": "false",
-                "maxLength": 6,
                 "minValue": 5,
                 "maxValue": 999999,
                 "slider": false
@@ -94,15 +93,7 @@
                 "Morado",
                 "Rojo",
                 "Blanco",
-                "Naranja",
-                "asd",
-                "sgd",
-                "sdgf",
-                "gsdfdf",
-                "SDFGS",
-                "SDGSDFG",
-                "CFGJ",
-                "CJFGH"
+                "Naranja"
             ],
             "type": "radio",
             "options": {
@@ -122,17 +113,19 @@
                 "Morado",
                 "Rojo",
                 "Blanco",
-                "Naranja",
-                "asd",
-                "sgd",
-                "sdgf",
-                "gsdfdf",
-                "SDFGS",
-                "SDGSDFG",
-                "CFGJ",
-                "CJFGH"
+                "Naranja"
             ],
             "type": "multiselect",
+            "options": {
+                "required": true,
+                "isSubquestion": "false"
+            }
+        },
+        {
+            "Q_ID": "0000010",
+            "text": "Esto es un ejemplo de pregunta de geolocation",
+            "category": "user",
+            "type": "geolocation",
             "options": {
                 "required": true,
                 "isSubquestion": "false"
