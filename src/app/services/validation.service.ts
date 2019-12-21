@@ -1,14 +1,14 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import {
     FormGroup,
     FormBuilder,
     Validators,
     FormControl
-} from "@angular/forms";
-import { Question } from "../components/question.model";
+} from '@angular/forms';
+import { Question } from '../components/question.model';
 
 @Injectable({
-    providedIn: "root"
+    providedIn: 'root'
 })
 export class ValidationService {
     constructor(private fb: FormBuilder) {}
@@ -26,21 +26,21 @@ export class ValidationService {
             if (question.options.required == true) {
                 questionValidators.push(Validators.required);
                 questionErrors.push({
-                    type: "required",
-                    message: "This field is required"
+                    type: 'required',
+                    message: 'This field is required'
                 });
             }
-            if (question.type == "number") {
+            if (question.type == 'number') {
                 if (question.options.slider) {
                     defaultValue =
                         (question.options.minValue +
                             question.options.maxValue) /
                         2;
                 } else {
-                    questionValidators.push(Validators.pattern("[0-9]+"));
+                    questionValidators.push(Validators.pattern('[0-9]+'));
                     questionErrors.push({
-                        type: "pattern",
-                        message: "Please enter a number"
+                        type: 'pattern',
+                        message: 'Please enter a number'
                     });
                 }
             }
@@ -50,7 +50,7 @@ export class ValidationService {
                     Validators.minLength(question.options.minLength)
                 );
                 questionErrors.push({
-                    type: "minlength",
+                    type: 'minlength',
                     message: `This field needs to be at least ${question.options.minLength} characters long`
                 });
             }
@@ -59,7 +59,7 @@ export class ValidationService {
                     Validators.maxLength(question.options.maxLength)
                 );
                 questionErrors.push({
-                    type: "maxlength",
+                    type: 'maxlength',
                     message: `This field can't be more than ${question.options.maxLength} characters long`
                 });
             }
@@ -70,7 +70,7 @@ export class ValidationService {
                     Validators.min(question.options.minValue)
                 );
                 questionErrors.push({
-                    type: "min",
+                    type: 'min',
                     message: `The minimum value of this field is ${question.options.minValue}.`
                 });
             }
@@ -79,7 +79,7 @@ export class ValidationService {
                     Validators.max(question.options.maxValue)
                 );
                 questionErrors.push({
-                    type: "max",
+                    type: 'max',
                     message: `The maximum value of this field is ${question.options.maxValue}.`
                 });
             }

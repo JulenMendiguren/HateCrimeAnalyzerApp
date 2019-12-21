@@ -1,16 +1,16 @@
-import { Component } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { Question } from '../components/question.model';
+import { Component, OnInit } from '@angular/core';
+import { Question } from 'src/app/components/question.model';
 import { FormGroup } from '@angular/forms';
-import { ValidationService } from '../services/validation.service';
-import { GoogleMapsPage } from '../pages/google-maps/google-maps.page';
+import { ValidationService } from 'src/app/services/validation.service';
+import { ModalController, AlertController, Platform } from '@ionic/angular';
+import { GoogleMapsPage } from '../google-maps/google-maps.page';
 
 @Component({
-    selector: 'app-tab2',
-    templateUrl: 'tab2.page.html',
-    styleUrls: ['tab2.page.scss']
+    selector: 'app-report',
+    templateUrl: './report.page.html',
+    styleUrls: ['./report.page.scss']
 })
-export class Tab2Page {
+export class ReportPage implements OnInit {
     public questions: Question[] = [];
     public jsonLoaded = false;
     public parentForm: FormGroup;
@@ -18,10 +18,12 @@ export class Tab2Page {
 
     constructor(
         private validationService: ValidationService,
-        private modalController: ModalController
+        private modalController: ModalController,
+        private alertController: AlertController,
+        private platform: Platform
     ) {}
 
-    ionViewDidEnter() {
+    ngOnInit() {
         this.loadJson().then(() => this.setValidators());
     }
 
@@ -56,10 +58,7 @@ export class Tab2Page {
             }
         });
         modal.onWillDismiss().then(dataReturned => {
-            // trigger when about to close the modal
-            var dinner = dataReturned.data;
-            this.parentForm.controls[Q_ID].setValue(dinner);
-            console.log('Receive: ', dinner);
+            this.parentForm.controls[Q_ID].setValue(dataReturned.data);
         });
         return await modal.present();
     }
@@ -75,4 +74,29 @@ export class Tab2Page {
         }
         console.log(invalid);
     }
+
+    // async presentAlertConfirm() {
+    //     const alert = await this.alertController.create({
+    //         header: 'Confirm!',
+    //         message: 'Message <strong>text</strong>!!!',
+    //         buttons: [
+    //             {
+    //                 text: 'Cancel',
+    //                 role: 'cancel',
+    //                 cssClass: 'secondary',
+    //                 handler: blah => {
+    //                     console.log('Confirm Cancel: blah');
+    //                 }
+    //             },
+    //             {
+    //                 text: 'Okay',
+    //                 handler: () => {
+    //                     console.log('Confirm Okay');
+    //                 }
+    //             }
+    //         ]
+    //     });
+
+    //     await alert.present();
+    // }
 }
