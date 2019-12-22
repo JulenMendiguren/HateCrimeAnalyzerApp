@@ -59,7 +59,10 @@
                     [errorMessages]="errorMessages"
                 ></app-template-multiselect>
 
-                <ng-container *ngSwitchCase="'geolocation'">
+                <ng-container
+                    *ngSwitchCase="'geolocation'"
+                    [ngStyle]="showingSubquestion(question)"
+                >
                     <ion-label
                         >{{question.text}}
                         <span class="error-message"

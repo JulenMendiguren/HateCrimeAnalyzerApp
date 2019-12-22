@@ -1,10 +1,10 @@
-<div [formGroup]="parentForm">
+<div [formGroup]="parentForm" [ngStyle]="showingSubquestion()">
     <ion-card>
         <!-- <ion-card-title>Answer this question</ion-card-title> -->
         <ion-card-content>
             {{ question.text }}
             <span class="error-message">{{
-                question.options.required ? "*" : ""
+                question.options.required ? '*' : ''
             }}</span>
         </ion-card-content>
         <ion-radio-group formControlName="{{ question.Q_ID }}">

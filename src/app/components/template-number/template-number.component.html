@@ -1,9 +1,9 @@
-<div [formGroup]="parentForm">
+<div [formGroup]="parentForm" [ngStyle]="showingSubquestion()">
     <ng-container *ngIf="question.options.slider">
         <ion-label
             >{{ question.text }}
             <span class="error-message">{{
-                question.options.required ? "*" : ""
+                question.options.required ? '*' : ''
             }}</span></ion-label
         >
         <ion-item>
@@ -29,7 +29,7 @@
         <ion-label
             >{{ question.text }}
             <span class="error-message">{{
-                question.options.required ? "*" : ""
+                question.options.required ? '*' : ''
             }}</span></ion-label
         >
         <ion-item>

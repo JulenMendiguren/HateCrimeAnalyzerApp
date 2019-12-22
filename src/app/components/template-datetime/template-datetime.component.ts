@@ -1,11 +1,14 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { Question } from "../question.model";
-import { FormGroup } from "@angular/forms";
+import { Component, OnInit, Input } from '@angular/core';
+import { Question } from '../question.model';
+import { FormGroup } from '@angular/forms';
 
 @Component({
-    selector: "app-template-datetime",
-    templateUrl: "./template-datetime.component.html",
-    styleUrls: ["./template-datetime.component.scss"]
+    selector: 'app-template-datetime',
+    templateUrl: './template-datetime.component.html',
+    styleUrls: [
+        '../../pages/report/report.page.scss',
+        './template-datetime.component.scss'
+    ]
 })
 export class TemplateDatetimeComponent implements OnInit {
     @Input() question: Question;
@@ -23,5 +26,16 @@ export class TemplateDatetimeComponent implements OnInit {
             (this.parentForm.controls[this.question.Q_ID].dirty ||
                 this.parentForm.controls[this.question.Q_ID].touched)
         );
+    }
+
+    // If its a subquestion, it will be shown or not, depending on the parent question.
+    showingSubquestion() {
+        if (!this.question.options.subquestionOf) {
+            return;
+        }
+        return this.parentForm.controls[this.question.options.subquestionOf]
+            .valid
+            ? { display: 'block' }
+            : { display: 'none' };
     }
 }

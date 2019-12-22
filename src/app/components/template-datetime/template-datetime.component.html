@@ -1,8 +1,8 @@
-<div [formGroup]="parentForm">
+<div [formGroup]="parentForm" [ngStyle]="showingSubquestion()">
     <ion-label
         >{{ question.text }}
         <span class="error-message">{{
-            question.options.required ? "*" : ""
+            question.options.required ? '*' : ''
         }}</span></ion-label
     >
     <ion-item>

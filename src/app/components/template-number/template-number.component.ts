@@ -1,11 +1,14 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { Question } from "../question.model";
-import { FormGroup, Validators } from "@angular/forms";
+import { Component, OnInit, Input } from '@angular/core';
+import { Question } from '../question.model';
+import { FormGroup, Validators } from '@angular/forms';
 
 @Component({
-    selector: "app-template-number",
-    templateUrl: "./template-number.component.html",
-    styleUrls: ["./template-number.component.scss"]
+    selector: 'app-template-number',
+    templateUrl: './template-number.component.html',
+    styleUrls: [
+        '../../pages/report/report.page.scss',
+        './template-number.component.scss'
+    ]
 })
 
 // TODO: Con el slider, no se puede dejar la pregunta sin responder...
@@ -25,5 +28,16 @@ export class TemplateNumberComponent implements OnInit {
             (this.parentForm.controls[this.question.Q_ID].dirty ||
                 this.parentForm.controls[this.question.Q_ID].touched)
         );
+    }
+
+    // If its a subquestion, it will be shown or not, depending on the parent question.
+    showingSubquestion() {
+        if (!this.question.options.subquestionOf) {
+            return;
+        }
+        return this.parentForm.controls[this.question.options.subquestionOf]
+            .valid
+            ? { display: 'block' }
+            : { display: 'none' };
     }
 }

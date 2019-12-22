@@ -99,4 +99,14 @@ export class ReportPage implements OnInit {
 
     //     await alert.present();
     // }
+
+    // If its a subquestion, it will be shown or not, depending on the parent question.
+    showingSubquestion(q: Question) {
+        if (!q.options.subquestionOf) {
+            return;
+        }
+        return this.parentForm.controls[q.options.subquestionOf].valid
+            ? { display: 'block' }
+            : { display: 'none' };
+    }
 }

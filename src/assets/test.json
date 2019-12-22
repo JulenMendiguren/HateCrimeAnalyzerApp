@@ -7,7 +7,6 @@
             "type": "textbox",
             "options": {
                 "required": true,
-                "isSubquestion": "false",
                 "size": "big",
                 "minLength": 5,
                 "maxLength": 10
@@ -20,7 +19,6 @@
             "type": "textbox",
             "options": {
                 "required": true,
-                "isSubquestion": "false",
                 "size": "small"
             }
         },
@@ -31,7 +29,6 @@
             "type": "number",
             "options": {
                 "required": true,
-                "isSubquestion": "false",
                 "minValue": 5,
                 "maxValue": 999999,
                 "slider": false
@@ -44,7 +41,6 @@
             "type": "number",
             "options": {
                 "required": true,
-                "isSubquestion": "false",
                 "digits": 6,
                 "minValue": 20,
                 "maxValue": 30,
@@ -57,8 +53,7 @@
             "category": "user",
             "type": "likert",
             "options": {
-                "required": true,
-                "isSubquestion": "false"
+                "required": true
             }
         },
         {
@@ -67,8 +62,7 @@
             "category": "user",
             "type": "datetime",
             "options": {
-                "required": true,
-                "isSubquestion": "false"
+                "required": true
             }
         },
         {
@@ -77,8 +71,19 @@
             "category": "user",
             "type": "yesno",
             "options": {
-                "required": true,
-                "isSubquestion": "false"
+                "required": true
+            }
+        },
+        {
+            "Q_ID": "0000011",
+            "text": "Justifica tu respuesta",
+            "category": "user",
+            "type": "textbox",
+            "options": {
+                "required": false,
+                "subquestionOf": "0000007",
+                "size": "small",
+                "minLength": 5
             }
         },
         {
@@ -97,8 +102,7 @@
             ],
             "type": "radio",
             "options": {
-                "required": true,
-                "isSubquestion": "false"
+                "required": true
             }
         },
         {
@@ -117,8 +121,7 @@
             ],
             "type": "multiselect",
             "options": {
-                "required": true,
-                "isSubquestion": "false"
+                "required": true
             }
         },
         {
@@ -127,8 +130,7 @@
             "category": "user",
             "type": "geolocation",
             "options": {
-                "required": true,
-                "isSubquestion": "false"
+                "required": true
             }
         }
     ]

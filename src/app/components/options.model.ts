@@ -1,6 +1,6 @@
 export interface Options {
     required: boolean;
-    isSubquestion: string;
+    subquestionOf?: string;
     size?: string;
     minValue?: number;
     maxValue?: number;
