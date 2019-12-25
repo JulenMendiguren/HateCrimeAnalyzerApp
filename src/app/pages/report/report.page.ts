@@ -4,13 +4,14 @@ import { FormGroup } from '@angular/forms';
 import { ValidationService } from 'src/app/services/validation.service';
 import { ModalController, AlertController, Platform } from '@ionic/angular';
 import { GoogleMapsPage } from '../google-maps/google-maps.page';
+import { CanComponentDeactivate } from 'src/app/services/confirm-exit.guard';
 
 @Component({
     selector: 'app-report',
     templateUrl: './report.page.html',
     styleUrls: ['./report.page.scss']
 })
-export class ReportPage implements OnInit {
+export class ReportPage implements OnInit, CanComponentDeactivate {
     public questions: Question[] = [];
     public jsonLoaded = false;
     public parentForm: FormGroup;
@@ -75,30 +76,41 @@ export class ReportPage implements OnInit {
         console.log(invalid);
     }
 
-    // async presentAlertConfirm() {
-    //     const alert = await this.alertController.create({
-    //         header: 'Confirm!',
-    //         message: 'Message <strong>text</strong>!!!',
-    //         buttons: [
-    //             {
-    //                 text: 'Cancel',
-    //                 role: 'cancel',
-    //                 cssClass: 'secondary',
-    //                 handler: blah => {
-    //                     console.log('Confirm Cancel: blah');
-    //                 }
-    //             },
-    //             {
-    //                 text: 'Okay',
-    //                 handler: () => {
-    //                     console.log('Confirm Okay');
-    //                 }
-    //             }
-    //         ]
-    //     });
+    async canDeactivate() {
+        //TODO: Sólo con dirty
+        const confirm = await this.confirmExitAlert();
 
-    //     await alert.present();
-    // }
+        if (confirm) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private async confirmExitAlert(): Promise<boolean> {
+        let resolveFunction: (confirm: boolean) => void;
+        const promise = new Promise<boolean>(resolve => {
+            resolveFunction = resolve;
+        });
+        const alert = await this.alertController.create({
+            header: 'Confirmation',
+            message: 'Do you really want to exit?',
+            backdropDismiss: false,
+            buttons: [
+                {
+                    role: 'cancel',
+                    text: 'Cancel',
+                    handler: () => resolveFunction(false)
+                },
+                {
+                    text: 'Yes',
+                    handler: () => resolveFunction(true)
+                }
+            ]
+        });
+        await alert.present();
+        return promise;
+    }
 
     // If its a subquestion, it will be shown or not, depending on the parent question.
     showingSubquestion(q: Question) {

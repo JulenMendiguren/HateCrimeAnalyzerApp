@@ -18,6 +18,7 @@ import { GoogleMapsPage } from '../google-maps/google-maps.page';
         MyComponentsModule,
         ReportPageRoutingModule
     ],
+
     declarations: [ReportPage, GoogleMapsPage],
     entryComponents: [GoogleMapsPage]
 })
