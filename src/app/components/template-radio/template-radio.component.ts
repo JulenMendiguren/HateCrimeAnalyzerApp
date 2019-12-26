@@ -17,15 +17,4 @@ export class TemplateRadioComponent implements OnInit {
     constructor() {}
 
     ngOnInit() {}
-
-    // If its a subquestion, it will be shown or not, depending on the parent question.
-    showingSubquestion() {
-        if (!this.question.options.subquestionOf) {
-            return;
-        }
-        return this.parentForm.controls[this.question.options.subquestionOf]
-            .valid
-            ? { display: 'block' }
-            : { display: 'none' };
-    }
 }

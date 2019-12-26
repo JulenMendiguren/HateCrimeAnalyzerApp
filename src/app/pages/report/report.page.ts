@@ -117,8 +117,27 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
         if (!q.options.subquestionOf) {
             return;
         }
-        return this.parentForm.controls[q.options.subquestionOf].valid
-            ? { display: 'block' }
-            : { display: 'none' };
+        // If not valid, show it
+        if (!this.parentForm.controls[q.Q_ID].valid) {
+            return { display: 'block' };
+        }
+        const mainValid = this.parentForm.controls[q.options.subquestionOf]
+            .valid;
+
+        // If main is valid and the required answer is correct
+        if (
+            mainValid &&
+            q.options.requiredAnswer &&
+            this.parentForm.controls[q.options.subquestionOf].value ==
+                q.options.requiredAnswer
+        ) {
+            return { display: 'block' };
+        } // If main is valid and there is no required answer
+        else if (mainValid && !q.options.requiredAnswer) {
+            return { display: 'block' };
+        } // Main is invalid  or the required answer is not correct
+        else {
+            return { display: 'none' };
+        }
     }
 }

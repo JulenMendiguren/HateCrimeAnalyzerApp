@@ -13,6 +13,7 @@
         <ng-container *ngFor="let question of questions">
             <ng-container [ngSwitch]="question.type">
                 <app-template-textbox
+                    [ngStyle]="showingSubquestion(question)"
                     *ngSwitchCase="'textbox'"
                     [question]="question"
                     [parentForm]="parentForm"
@@ -20,6 +21,7 @@
                 ></app-template-textbox>
 
                 <app-template-number
+                    [ngStyle]="showingSubquestion(question)"
                     *ngSwitchCase="'number'"
                     [question]="question"
                     [parentForm]="parentForm"
@@ -28,12 +30,14 @@
                 </app-template-number>
 
                 <app-template-likert
+                    [ngStyle]="showingSubquestion(question)"
                     *ngSwitchCase="'likert'"
                     [question]="question"
                     [parentForm]="parentForm"
                 ></app-template-likert>
 
                 <app-template-datetime
+                    [ngStyle]="showingSubquestion(question)"
                     *ngSwitchCase="'datetime'"
                     [question]="question"
                     [parentForm]="parentForm"
@@ -41,18 +45,21 @@
                 ></app-template-datetime>
 
                 <app-template-yesno
+                    [ngStyle]="showingSubquestion(question)"
                     *ngSwitchCase="'yesno'"
                     [question]="question"
                     [parentForm]="parentForm"
                 ></app-template-yesno>
 
                 <app-template-radio
+                    [ngStyle]="showingSubquestion(question)"
                     *ngSwitchCase="'radio'"
                     [question]="question"
                     [parentForm]="parentForm"
                 ></app-template-radio>
 
                 <app-template-multiselect
+                    [ngStyle]="showingSubquestion(question)"
                     *ngSwitchCase="'multiselect'"
                     [question]="question"
                     [parentForm]="parentForm"

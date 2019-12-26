@@ -30,8 +30,7 @@
             "options": {
                 "required": true,
                 "minValue": 5,
-                "maxValue": 999999,
-                "slider": false
+                "maxValue": 999999
             }
         },
         {
@@ -103,6 +102,19 @@
             "type": "radio",
             "options": {
                 "required": true
+            }
+        },
+        {
+            "Q_ID": "0000012",
+            "text": "Del 1 al 10, como de Naranja es?",
+            "category": "user",
+            "type": "number",
+            "options": {
+                "subquestionOf": "0000008",
+                "requiredAnswer": "Naranja",
+                "minValue": 1,
+                "maxValue": 10,
+                "slider": true
             }
         },
         {
