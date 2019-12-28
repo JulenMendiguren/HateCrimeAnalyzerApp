@@ -9,23 +9,23 @@
         </ion-card-content>
         <ion-radio-group formControlName="{{ question.Q_ID }}">
             <ion-item>
-                <ion-label>Strongly Disagree</ion-label>
+                <ion-label>{{ 'likert.sd' | translate }}</ion-label>
                 <ion-radio value="sd"></ion-radio>
             </ion-item>
             <ion-item>
-                <ion-label>Disagree</ion-label>
+                <ion-label>{{ 'likert.d' | translate }}</ion-label>
                 <ion-radio value="d"></ion-radio>
             </ion-item>
             <ion-item>
-                <ion-label>Neutral</ion-label>
+                <ion-label>{{ 'likert.n' | translate }}</ion-label>
                 <ion-radio value="n"></ion-radio>
             </ion-item>
             <ion-item>
-                <ion-label>Agree</ion-label>
+                <ion-label>{{ 'likert.a' | translate }}</ion-label>
                 <ion-radio value="a"></ion-radio>
             </ion-item>
             <ion-item>
-                <ion-label>Strongly Agree</ion-label>
+                <ion-label>{{ 'likert.sa' | translate }}</ion-label>
                 <ion-radio value="sa"></ion-radio>
             </ion-item>
         </ion-radio-group>

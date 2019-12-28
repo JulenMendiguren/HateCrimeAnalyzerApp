@@ -1,0 +1,33 @@
+{
+    "test": "este es un mensaje de prueba",
+    "USER": {
+        "title": "Información de Usuario"
+    },
+    "error_messages": {
+        "required": "Este campo es obligatorio",
+        "pattern_number": "Introduce un número válido",
+        "minLength": "Este campo puede tener un mínimo de {{value}} caracteres",
+        "maxLength": "Este campo puede tener un máximo de {{value}} caracteres",
+        "min": "El mínimo valor de este campo es {{value}}",
+        "max": "El máximo valor de este campo es {{value}}"
+    },
+    "geolocation": {
+        "saved_position": "La posición seleccionada se ha guardado."
+    },
+    "likert": {
+        "sd": "Muy en desacuerdo",
+        "d": "En desacuerdo",
+        "n": "Neutral",
+        "a": "De acuerdo",
+        "sa": "Muy de acuerdo"
+    },
+    "datetime": {
+        "date": "Fecha",
+        "time": "Hora",
+        "datetime": "Fecha y hora"
+    },
+    "yesno": {
+        "yes": "Sí",
+        "no": "No"
+    }
+}

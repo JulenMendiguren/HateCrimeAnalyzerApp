@@ -1,0 +1,33 @@
+{
+    "test": "this is a test msg",
+    "USER": {
+        "title": "User information"
+    },
+    "error_messages": {
+        "required": "This field is required",
+        "pattern_number": "Please enter a valid number",
+        "minLength": "This field needs to be at least {{value}} characters long",
+        "maxLength": "This field can't be more than {{value}} characters long",
+        "min": "The minimum value of this field is {{value}}",
+        "max": "The maximum value of this field is {{value}}"
+    },
+    "geolocation": {
+        "saved_position": "The chosen position has been saved."
+    },
+    "likert": {
+        "sd": "Strongly Disagree",
+        "d": "Disagree",
+        "n": "Neutral",
+        "a": "Agree",
+        "sa": "Strongly Agree"
+    },
+    "datetime": {
+        "date": "Date",
+        "time": "Time",
+        "datetime": "Date and time"
+    },
+    "yesno": {
+        "yes": "Yes",
+        "no": "No"
+    }
+}

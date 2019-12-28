@@ -25,12 +25,12 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
     ) {}
 
     ngOnInit() {
-        this.loadJson().then(() => this.setValidators());
+        this.loadJson('/assets/reportQ.json').then(() => this.setValidators());
     }
 
     // Carga el json con las preguntas, en un futuro llamará al service para hacer una petición http
-    loadJson() {
-        return fetch('/assets/test.json')
+    loadJson(url: string) {
+        return fetch(url)
             .then(file => {
                 return file.json();
             })

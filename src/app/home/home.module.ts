@@ -6,12 +6,14 @@ import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
 import { ConfirmExitGuard } from '../services/confirm-exit.guard';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         IonicModule,
+        TranslateModule,
         RouterModule.forChild([
             {
                 path: '',

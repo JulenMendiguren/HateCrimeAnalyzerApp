@@ -4,8 +4,31 @@
         <ion-buttons slot="start">
             <ion-back-button defaultHref="home"></ion-back-button>
         </ion-buttons>
-        <ion-title>User</ion-title>
+        <ion-title>{{ 'USER.title' |translate}}</ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-content> </ion-content>
+<ion-content>
+    <ion-card>
+        <ion-card-header>
+            <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+            <ion-card-title>Card Title</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+            <ion-list>
+                <ng-container *ngFor="let question of userQ.questions">
+                    <ion-item>
+                        <ion-label class="ion-text-wrap">
+                            <ion-text>
+                                {{question.text}}
+                            </ion-text>
+                            <br />
+                            <ion-text> {{ getAnswer(question)}}</ion-text>
+                        </ion-label>
+                    </ion-item>
+                </ng-container>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

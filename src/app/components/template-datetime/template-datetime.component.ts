@@ -15,9 +15,23 @@ export class TemplateDatetimeComponent implements OnInit {
     @Input() parentForm: FormGroup;
     @Input() errorMessages;
 
+    datetimeFormat;
+
     constructor() {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        switch (this.question.options.datetimeFormat) {
+            case 'date':
+                this.datetimeFormat = 'D MMM YYYY';
+                break;
+            case 'time':
+                this.datetimeFormat = 'HH:mm';
+                break;
+            default:
+                this.datetimeFormat = 'D MMM YYYY HH:mm';
+                break;
+        }
+    }
 
     // Returns true if the question has an error of errorType and must be shown.
     showingErrors(errorType: string) {

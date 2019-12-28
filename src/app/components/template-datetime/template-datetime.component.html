@@ -6,9 +6,20 @@
         }}</span></ion-label
     >
     <ion-item>
-        <ion-label>Date and time</ion-label>
+        <ng-container [ngSwitch]="question.options.datetimeFormat">
+            <ion-label *ngSwitchCase="'date'">{{
+                'datetime.date' | translate
+            }}</ion-label>
+            <ion-label *ngSwitchCase="'time'">{{
+                'datetime.time' | translate
+            }}</ion-label>
+            <ion-label *ngSwitchDefault>{{
+                'datetime.datetime' | translate
+            }}</ion-label>
+        </ng-container>
+
         <ion-datetime
-            displayFormat="D MMM YYYY H:mm"
+            [displayFormat]="datetimeFormat"
             formControlName="{{ question.Q_ID }}"
         ></ion-datetime>
     </ion-item>

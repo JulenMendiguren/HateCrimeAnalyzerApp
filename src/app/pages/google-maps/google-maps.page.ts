@@ -16,6 +16,7 @@ import {
     LocationService,
     LatLng
 } from '@ionic-native/google-maps';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-google-maps',
@@ -32,7 +33,8 @@ export class GoogleMapsPage implements OnInit {
     constructor(
         private modalController: ModalController,
         private loadingController: LoadingController,
-        private toastController: ToastController
+        private toastController: ToastController,
+        private translate: TranslateService
     ) {}
 
     ngOnInit() {
@@ -137,10 +139,14 @@ export class GoogleMapsPage implements OnInit {
     }
 
     async presentToastPositionSaved() {
-        const toast = await this.toastController.create({
-            message: 'The chosen postion has been saved.',
-            duration: 3000
-        });
-        toast.present();
+        this.translate
+            .get('geolocation.saved_position')
+            .subscribe(async (msg: string) => {
+                const toast = await this.toastController.create({
+                    message: msg,
+                    duration: 3000
+                });
+                toast.present();
+            });
     }
 }

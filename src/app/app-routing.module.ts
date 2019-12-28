@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { ConfirmExitGuard } from './services/confirm-exit.guard';
+import { UserQResolverService } from './services/resolvers/user-q-resolver.service';
+import { UserAResolverService } from './services/resolvers/user-a-resolver.service';
 
 const routes: Routes = [
     {
@@ -21,6 +23,10 @@ const routes: Routes = [
     },
     {
         path: 'user',
+        resolve: {
+            userQ: UserQResolverService,
+            userA: UserAResolverService
+        },
         loadChildren: () =>
             import('./pages/user/user.module').then(m => m.UserPageModule)
     }

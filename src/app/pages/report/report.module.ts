@@ -9,6 +9,7 @@ import { ReportPageRoutingModule } from './report-routing.module';
 import { ReportPage } from './report.page';
 import { MyComponentsModule } from 'src/app/components/mycomponents.module';
 import { GoogleMapsPage } from '../google-maps/google-maps.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
     imports: [
@@ -16,6 +17,7 @@ import { GoogleMapsPage } from '../google-maps/google-maps.page';
         FormsModule,
         IonicModule,
         MyComponentsModule,
+        TranslateModule,
         ReportPageRoutingModule
     ],
 

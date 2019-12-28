@@ -6,12 +6,13 @@ import {
     FormControl
 } from '@angular/forms';
 import { Question } from '../components/question.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ValidationService {
-    constructor(private fb: FormBuilder) {}
+    constructor(private fb: FormBuilder, private translate: TranslateService) {}
 
     setValidators(questions: Question[]) {
         let formGroupData = {};
@@ -25,10 +26,14 @@ export class ValidationService {
 
             if (question.options.required == true) {
                 questionValidators.push(Validators.required);
-                questionErrors.push({
-                    type: 'required',
-                    message: 'This field is required'
-                });
+                this.translate
+                    .get('error_messages.required')
+                    .subscribe((msg: string) => {
+                        questionErrors.push({
+                            type: 'required',
+                            message: msg
+                        });
+                    });
             }
             if (question.type == 'number') {
                 if (question.options.slider) {
@@ -36,12 +41,17 @@ export class ValidationService {
                         (question.options.minValue +
                             question.options.maxValue) /
                         2;
+                    defaultValue = Math.floor(defaultValue);
                 } else {
                     questionValidators.push(Validators.pattern('[0-9]+'));
-                    questionErrors.push({
-                        type: 'pattern',
-                        message: 'Please enter a number'
-                    });
+                    this.translate
+                        .get('error_messages.pattern_number')
+                        .subscribe((msg: string) => {
+                            questionErrors.push({
+                                type: 'pattern',
+                                message: msg
+                            });
+                        });
                 }
             }
             // Length (no funciona con numbers)
@@ -49,19 +59,31 @@ export class ValidationService {
                 questionValidators.push(
                     Validators.minLength(question.options.minLength)
                 );
-                questionErrors.push({
-                    type: 'minlength',
-                    message: `This field needs to be at least ${question.options.minLength} characters long`
-                });
+                this.translate
+                    .get('error_messages.minLength', {
+                        value: question.options.minLength
+                    })
+                    .subscribe((msg: string) => {
+                        questionErrors.push({
+                            type: 'minlength',
+                            message: msg
+                        });
+                    });
             }
             if (!!question.options.maxLength) {
                 questionValidators.push(
                     Validators.maxLength(question.options.maxLength)
                 );
-                questionErrors.push({
-                    type: 'maxlength',
-                    message: `This field can't be more than ${question.options.maxLength} characters long`
-                });
+                this.translate
+                    .get('error_messages.maxLength', {
+                        value: question.options.maxLength
+                    })
+                    .subscribe((msg: string) => {
+                        questionErrors.push({
+                            type: 'maxlength',
+                            message: msg
+                        });
+                    });
             }
 
             // Value
@@ -69,19 +91,31 @@ export class ValidationService {
                 questionValidators.push(
                     Validators.min(question.options.minValue)
                 );
-                questionErrors.push({
-                    type: 'min',
-                    message: `The minimum value of this field is ${question.options.minValue}.`
-                });
+                this.translate
+                    .get('error_messages.min', {
+                        value: question.options.minValue
+                    })
+                    .subscribe((msg: string) => {
+                        questionErrors.push({
+                            type: 'min',
+                            message: msg
+                        });
+                    });
             }
             if (!!question.options.maxValue) {
                 questionValidators.push(
                     Validators.max(question.options.maxValue)
                 );
-                questionErrors.push({
-                    type: 'max',
-                    message: `The maximum value of this field is ${question.options.maxValue}.`
-                });
+                this.translate
+                    .get('error_messages.max', {
+                        value: question.options.maxValue
+                    })
+                    .subscribe((msg: string) => {
+                        questionErrors.push({
+                            type: 'max',
+                            message: msg
+                        });
+                    });
             }
 
             const fc = new FormControl(defaultValue, questionValidators);

@@ -10,6 +10,15 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { IonicStorageModule } from '@ionic/storage';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function createTranslateLoader(http: HttpClient) {
+    return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
+}
+
 @NgModule({
     declarations: [AppComponent],
     entryComponents: [],
@@ -17,7 +26,16 @@ import { ReactiveFormsModule } from '@angular/forms';
         BrowserModule,
         IonicModule.forRoot(),
         AppRoutingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        HttpClientModule,
+        IonicStorageModule.forRoot(),
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: createTranslateLoader,
+                deps: [HttpClient]
+            }
+        })
     ],
     providers: [
         StatusBar,

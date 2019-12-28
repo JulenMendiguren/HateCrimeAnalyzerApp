@@ -8,4 +8,5 @@ export interface Options {
     minLength?: number;
     maxLength?: number;
     slider?: boolean;
+    datetimeFormat?: string;
 }
