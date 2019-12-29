@@ -1,16 +1,15 @@
-<!-- Back button with a default href -->
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-back-button defaultHref="home"></ion-back-button>
+            <ion-back-button defaultHref="user"></ion-back-button>
         </ion-buttons>
-        <ion-title>{{ 'test' | translate }}</ion-title>
+        <ion-title>UserQuest</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-    <ng-container *ngIf="jsonLoaded">
-        <ng-container *ngFor="let question of questions">
+    <form [formGroup]="parentForm" (ngSubmit)="submit()">
+        <ng-container *ngFor="let question of userQ.questions">
             <ng-container [ngSwitch]="question.type">
                 <app-template-textbox
                     [ngStyle]="showingSubquestion(question)"
@@ -89,9 +88,12 @@
                 <div *ngSwitchDefault>ELSE: {{question.text}}</div>
             </ng-container>
         </ng-container>
-
-        <ion-button (click)="findInvalidControls()">
-            Invalid questions</ion-button
-        >
-    </ng-container>
+        <ion-button
+            [disabled]="!parentForm.valid"
+            type="submit"
+            expand="block"
+            shape="round"
+            >Submit <ion-icon slot="end" name="create"> </ion-icon>
+        </ion-button>
+    </form>
 </ion-content>

@@ -29,6 +29,17 @@ const routes: Routes = [
         },
         loadChildren: () =>
             import('./pages/user/user.module').then(m => m.UserPageModule)
+    },
+    {
+        path: 'user-quest/:update',
+        resolve: {
+            userQ: UserQResolverService,
+            userA: UserAResolverService
+        },
+        loadChildren: () =>
+            import('./pages/user-quest/user-quest.module').then(
+                m => m.UserQuestPageModule
+            )
     }
 ];
 

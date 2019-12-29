@@ -1,7 +1,9 @@
 {
     "test": "this is a test msg",
     "USER": {
-        "title": "User information"
+        "title": "User information",
+        "edit_information": "Edit user info",
+        "update_survey": "Update survey version"
     },
     "error_messages": {
         "required": "This field is required",

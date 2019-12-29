@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ReportPageRoutingModule } from './report-routing.module';
+import { UserQuestPageRoutingModule } from './user-quest-routing.module';
 
-import { ReportPage } from './report.page';
+import { UserQuestPage } from './user-quest.page';
 import { MyComponentsModule } from 'src/app/components/mycomponents.module';
 import { GoogleMapsPage } from '../google-maps/google-maps.page';
 import { TranslateModule } from '@ngx-translate/core';
@@ -19,8 +19,8 @@ import { TranslateModule } from '@ngx-translate/core';
         IonicModule,
         MyComponentsModule,
         TranslateModule,
-        ReportPageRoutingModule
+        UserQuestPageRoutingModule
     ],
-    declarations: [ReportPage]
+    declarations: [UserQuestPage]
 })
-export class ReportPageModule {}
+export class UserQuestPageModule {}

@@ -1,7 +1,9 @@
 {
     "test": "este es un mensaje de prueba",
     "USER": {
-        "title": "Información de Usuario"
+        "title": "Información de Usuario",
+        "edit_information": "Editar usuario",
+        "update_survey": "Actualizar versión de cuestionario"
     },
     "error_messages": {
         "required": "Este campo es obligatorio",

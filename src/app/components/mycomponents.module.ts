@@ -10,6 +10,7 @@ import { TemplateRadioComponent } from './template-radio/template-radio.componen
 import { TemplateYesnoComponent } from './template-yesno/template-yesno.component';
 import { TemplateMultiselectComponent } from './template-multiselect/template-multiselect.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { GoogleMapsPage } from '../pages/google-maps/google-maps.page';
 
 @NgModule({
     imports: [CommonModule, IonicModule, ReactiveFormsModule, TranslateModule],
@@ -20,7 +21,8 @@ import { TranslateModule } from '@ngx-translate/core';
         TemplateDatetimeComponent,
         TemplateRadioComponent,
         TemplateYesnoComponent,
-        TemplateMultiselectComponent
+        TemplateMultiselectComponent,
+        GoogleMapsPage
     ],
     exports: [
         TemplateTextboxComponent,
@@ -30,6 +32,7 @@ import { TranslateModule } from '@ngx-translate/core';
         TemplateRadioComponent,
         TemplateYesnoComponent,
         TemplateMultiselectComponent
-    ]
+    ],
+    entryComponents: [GoogleMapsPage]
 })
 export class MyComponentsModule {}

@@ -1,6 +1,6 @@
 import { Component, OnInit, ɵLOCALE_DATA } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Question } from 'src/app/components/question.model';
 import { format } from 'date-fns';
 import { TranslateService } from '@ngx-translate/core';
@@ -16,15 +16,34 @@ export class UserPage implements OnInit {
     constructor(
         private storage: Storage,
         private route: ActivatedRoute,
-        private translate: TranslateService
+        private translate: TranslateService,
+        private router: Router
     ) {}
 
     ngOnInit() {
+        console.log('USER ON INIT');
         this.userQ = this.route.snapshot.data['userQ'];
         this.userA = this.route.snapshot.data['userA'];
     }
+
+    ionViewWillEnter() {
+        this.userQ = this.route.snapshot.data['userQ'];
+        this.userA = this.route.snapshot.data['userA'];
+    }
+
+    getClass(q: Question) {
+        if (!!q.options.subquestionOf) {
+            return 'subquestion';
+        } else {
+            return 'main-question';
+        }
+    }
+
     getAnswer(q: Question) {
         let answer: string;
+        if (!this.userA.answers[q.Q_ID]) {
+            return answer;
+        }
         switch (q.type) {
             case 'datetime':
                 answer = this.getDatetimeAnswer(
@@ -109,5 +128,12 @@ export class UserPage implements OnInit {
             default:
                 return format(date, 'd-MM-yyyy HH:mm');
         }
+    }
+
+    navigateUpdate() {
+        this.router.navigateByUrl('user-quest/update');
+    }
+    navigateEdit() {
+        this.router.navigateByUrl('user-quest/');
     }
 }

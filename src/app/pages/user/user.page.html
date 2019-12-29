@@ -10,25 +10,38 @@
 
 <ion-content>
     <ion-card>
-        <ion-card-header>
+        <!-- TODO: Poner bonito... Arreglar esto -->
+        <!-- <ion-card-header>
             <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
             <ion-card-title>Card Title</ion-card-title>
-        </ion-card-header>
+        </ion-card-header> -->
 
         <ion-card-content>
             <ion-list>
                 <ng-container *ngFor="let question of userQ.questions">
-                    <ion-item>
-                        <ion-label class="ion-text-wrap">
-                            <ion-text>
-                                {{question.text}}
-                            </ion-text>
-                            <br />
-                            <ion-text> {{ getAnswer(question)}}</ion-text>
+                    <ion-item
+                        [ngClass]="getClass(question)"
+                        *ngIf="userA.answers[question.Q_ID]"
+                    >
+                        <ion-label>
+                            <ion-label class="ion-text-wrap">
+                                <ion-text style="font-weight: bold;">
+                                    {{question.text}}
+                                </ion-text>
+                            </ion-label>
+                            <ion-label class="ion-text-wrap">
+                                <ion-text> {{ getAnswer(question)}}</ion-text>
+                            </ion-label>
                         </ion-label>
                     </ion-item>
                 </ng-container>
             </ion-list>
         </ion-card-content>
     </ion-card>
+    <ion-button (click)="navigateEdit()"
+        >{{'USER.edit_information' | translate}}</ion-button
+    >
+    <ion-button (click)="navigateUpdate()"
+        >{{'USER.update_survey' | translate}}</ion-button
+    >
 </ion-content>
