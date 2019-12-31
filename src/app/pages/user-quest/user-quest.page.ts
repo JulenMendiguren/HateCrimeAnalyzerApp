@@ -95,18 +95,33 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
         const promise = new Promise<boolean>(resolve => {
             resolveFunction = resolve;
         });
+
+        let header, message, cancel, yes;
+        this.translate.get('dialog.exit.header').subscribe((val: string) => {
+            header = val;
+        });
+        this.translate.get('dialog.exit.message').subscribe((val: string) => {
+            message = val;
+        });
+        this.translate.get('dialog.exit.cancel').subscribe((val: string) => {
+            cancel = val;
+        });
+        this.translate.get('dialog.exit.yes').subscribe((val: string) => {
+            yes = val;
+        });
+
         const alert = await this.alertController.create({
-            header: 'Confirmation',
-            message: 'Do you really want to exit?',
+            header,
+            message,
             backdropDismiss: false,
             buttons: [
                 {
                     role: 'cancel',
-                    text: 'Cancel',
+                    text: cancel,
                     handler: () => resolveFunction(false)
                 },
                 {
-                    text: 'Yes',
+                    text: yes,
                     handler: () => resolveFunction(true)
                 }
             ]

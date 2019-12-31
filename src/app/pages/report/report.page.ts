@@ -5,6 +5,7 @@ import { ValidationService } from 'src/app/services/validation.service';
 import { ModalController, AlertController, Platform } from '@ionic/angular';
 import { GoogleMapsPage } from '../google-maps/google-maps.page';
 import { CanComponentDeactivate } from 'src/app/services/confirm-exit.guard';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-report',
@@ -21,6 +22,7 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
         private validationService: ValidationService,
         private modalController: ModalController,
         private alertController: AlertController,
+        private translate: TranslateService,
         private platform: Platform
     ) {}
 
@@ -92,18 +94,33 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
         const promise = new Promise<boolean>(resolve => {
             resolveFunction = resolve;
         });
+
+        let header, message, cancel, yes;
+        this.translate.get('dialog.exit.header').subscribe((val: string) => {
+            header = val;
+        });
+        this.translate.get('dialog.exit.message').subscribe((val: string) => {
+            message = val;
+        });
+        this.translate.get('dialog.exit.cancel').subscribe((val: string) => {
+            cancel = val;
+        });
+        this.translate.get('dialog.exit.yes').subscribe((val: string) => {
+            yes = val;
+        });
+
         const alert = await this.alertController.create({
-            header: 'Confirmation',
-            message: 'Do you really want to exit?',
+            header,
+            message,
             backdropDismiss: false,
             buttons: [
                 {
                     role: 'cancel',
-                    text: 'Cancel',
+                    text: cancel,
                     handler: () => resolveFunction(false)
                 },
                 {
-                    text: 'Yes',
+                    text: yes,
                     handler: () => resolveFunction(true)
                 }
             ]

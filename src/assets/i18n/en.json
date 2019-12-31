@@ -31,5 +31,13 @@
     "yesno": {
         "yes": "Yes",
         "no": "No"
+    },
+    "dialog": {
+        "exit": {
+            "header": "Confirmation",
+            "message": "Do you really want to exit?",
+            "cancel": "Cancel",
+            "yes": "Yes"
+        }
     }
 }
