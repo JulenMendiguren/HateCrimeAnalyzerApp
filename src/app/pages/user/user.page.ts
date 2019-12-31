@@ -131,9 +131,9 @@ export class UserPage implements OnInit {
     }
 
     navigateUpdate() {
-        this.router.navigateByUrl('user-quest/update');
+        this.router.navigateByUrl('user/user-quest/update');
     }
     navigateEdit() {
-        this.router.navigateByUrl('user-quest/');
+        this.router.navigateByUrl('user/user-quest/');
     }
 }

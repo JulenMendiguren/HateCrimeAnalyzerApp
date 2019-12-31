@@ -4,6 +4,8 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { LanguageService } from './services/language.service';
+import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 @Component({
     selector: 'app-root',
@@ -15,7 +17,9 @@ export class AppComponent {
         private platform: Platform,
         private splashScreen: SplashScreen,
         private statusBar: StatusBar,
-        private languageService: LanguageService
+        private languageService: LanguageService,
+        private storage: Storage,
+        private router: Router
     ) {
         this.initializeApp();
     }
@@ -25,6 +29,12 @@ export class AppComponent {
             this.statusBar.styleDefault();
             this.splashScreen.hide();
             this.languageService.setInitialAppLanguage();
+
+            this.storage.get('registered').then(val => {
+                if (!val) {
+                    this.router.navigateByUrl('welcome-slides');
+                }
+            });
         });
     }
 }

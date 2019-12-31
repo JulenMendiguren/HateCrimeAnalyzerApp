@@ -21,6 +21,8 @@ import { Storage } from '@ionic/storage';
 export class UserQuestPage implements OnInit, CanComponentDeactivate {
     userQ;
     userA;
+    firstRegister = true;
+
     public parentForm: FormGroup;
     public errorMessages = {};
     submitted: boolean = false;
@@ -43,13 +45,20 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
             this.userA = this.route.snapshot.data['userA'];
             this.fillAnswers();
         }
+        this.storage.get('registered').then(val => {
+            this.firstRegister = val ? false : true;
+        });
     }
 
     // Fills the answers for the user to edit
     fillAnswers() {
         const keys = Object.keys(this.userA.answers);
         for (const Q_ID of keys) {
-            this.parentForm.controls[Q_ID].setValue(this.userA.answers[Q_ID]);
+            if (this.parentForm.controls[Q_ID]) {
+                this.parentForm.controls[Q_ID].setValue(
+                    this.userA.answers[Q_ID]
+                );
+            }
         }
     }
 
@@ -166,6 +175,11 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
 
         this.storage.set('userQ', this.userQ);
         this.storage.set('userA', this.userA);
-        this.navCtrl.navigateBack('user');
+        if (this.firstRegister) {
+            this.storage.set('registered', true);
+            this.navCtrl.navigateBack('home');
+        } else {
+            this.navCtrl.navigateBack('user');
+        }
     }
 }

@@ -1,13 +1,16 @@
 <ion-header>
     <ion-toolbar>
-        <ion-buttons slot="start">
+        <ion-buttons
+            slot="start"
+            [ngStyle]="firstRegister ? {display: 'none'}: {display: 'block'} "
+        >
             <ion-back-button defaultHref="user"></ion-back-button>
         </ion-buttons>
         <ion-title>UserQuest</ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="ion-padding">
     <form [formGroup]="parentForm" (ngSubmit)="submit()">
         <ng-container *ngFor="let question of userQ.questions">
             <ng-container [ngSwitch]="question.type">

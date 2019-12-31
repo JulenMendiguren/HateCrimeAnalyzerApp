@@ -22,8 +22,7 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
         private validationService: ValidationService,
         private modalController: ModalController,
         private alertController: AlertController,
-        private translate: TranslateService,
-        private platform: Platform
+        private translate: TranslateService
     ) {}
 
     ngOnInit() {

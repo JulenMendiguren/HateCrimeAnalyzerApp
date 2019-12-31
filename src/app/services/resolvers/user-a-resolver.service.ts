@@ -10,7 +10,8 @@ export class UserAResolverService implements Resolve<any> {
     resolve(route: ActivatedRouteSnapshot) {
         if (route.paramMap.get('update')) {
             console.log('Update!');
-            return;
+            // TODO: fetch from server
+            return this.storage.get('userA');
         } else {
             return this.storage.get('userA');
         }

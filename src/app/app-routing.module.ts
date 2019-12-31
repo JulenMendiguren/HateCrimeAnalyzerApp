@@ -23,24 +23,36 @@ const routes: Routes = [
     },
     {
         path: 'user',
-        resolve: {
-            userQ: UserQResolverService,
-            userA: UserAResolverService
-        },
-        loadChildren: () =>
-            import('./pages/user/user.module').then(m => m.UserPageModule)
+
+        children: [
+            {
+                path: 'user-quest/:update',
+                resolve: {
+                    userQ: UserQResolverService,
+                    userA: UserAResolverService
+                },
+                loadChildren: () =>
+                    import('./pages/user-quest/user-quest.module').then(
+                        m => m.UserQuestPageModule
+                    )
+            },
+            {
+                path: '',
+                resolve: {
+                    userQ: UserQResolverService,
+                    userA: UserAResolverService
+                },
+                loadChildren: () =>
+                    import('./pages/user/user.module').then(
+                        m => m.UserPageModule
+                    )
+            }
+        ]
     },
-    {
-        path: 'user-quest/:update',
-        resolve: {
-            userQ: UserQResolverService,
-            userA: UserAResolverService
-        },
-        loadChildren: () =>
-            import('./pages/user-quest/user-quest.module').then(
-                m => m.UserQuestPageModule
-            )
-    }
+  {
+    path: 'welcome-slides',
+    loadChildren: () => import('./pages/welcome-slides/welcome-slides.module').then( m => m.WelcomeSlidesPageModule)
+  }
 ];
 
 @NgModule({
