@@ -52,14 +52,11 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
 
     // Fills the answers for the user to edit
     fillAnswers() {
-        const keys = Object.keys(this.userA.answers);
-        for (const Q_ID of keys) {
-            if (this.parentForm.controls[Q_ID]) {
-                this.parentForm.controls[Q_ID].setValue(
-                    this.userA.answers[Q_ID]
-                );
+        this.userA.answers.forEach(obj => {
+            if (this.parentForm.controls[obj._id]) {
+                this.parentForm.controls[obj._id].setValue(obj.answer);
             }
-        }
+        });
     }
 
     // Hay que inicializar el FormGroup antes de poder usarlo para un form
@@ -171,7 +168,14 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
         this.submitted = true;
 
         this.userA['questionnaire_ID'] = this.userQ.versionID;
-        this.userA['answers'] = this.parentForm.value;
+
+        let answers = [];
+
+        const keys = Object.keys(this.parentForm.value);
+        for (const _id of keys) {
+            answers.push({ _id, answer: this.parentForm.value[_id] });
+        }
+        this.userA['answers'] = answers;
 
         this.storage.set('userQ', this.userQ);
         this.storage.set('userA', this.userA);

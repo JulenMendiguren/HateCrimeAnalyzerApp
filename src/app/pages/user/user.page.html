@@ -21,7 +21,7 @@
                 <ng-container *ngFor="let question of userQ.questions">
                     <ion-item
                         [ngClass]="getClass(question)"
-                        *ngIf="userA.answers[question.Q_ID]"
+                        *ngIf="hasAnswer(question.Q_ID)"
                     >
                         <ion-label>
                             <ion-label class="ion-text-wrap">

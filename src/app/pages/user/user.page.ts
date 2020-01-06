@@ -40,34 +40,42 @@ export class UserPage implements OnInit {
     }
 
     getAnswer(q: Question) {
-        let answer: string;
-        if (!this.userA.answers[q.Q_ID]) {
-            return answer;
+        let answerString: string;
+
+        const found = this.userA.answers.find(element => element._id == q.Q_ID);
+
+        if (!found) {
+            return answerString;
         }
         switch (q.type) {
             case 'datetime':
-                answer = this.getDatetimeAnswer(
-                    q.Q_ID,
+                answerString = this.getDatetimeAnswer(
+                    found,
                     q.options.datetimeFormat
                 );
                 break;
 
             case 'likert':
-                answer = this.getLikertAnswer(q.Q_ID);
+                answerString = this.getLikertAnswer(found);
                 break;
             case 'yesno':
-                answer = this.getYesnoAnswer(q.Q_ID);
+                answerString = this.getYesnoAnswer(found);
                 break;
             default:
-                answer = this.userA.answers[q.Q_ID];
+                answerString = found.answer;
                 break;
         }
-        return answer;
+        return answerString;
     }
 
-    getYesnoAnswer(Q_ID: string): string {
+    hasAnswer(Q_ID: string) {
+        const found = this.userA.answers.find(element => element._id == Q_ID);
+        return found && found.answer ? true : false;
+    }
+
+    getYesnoAnswer(ansObj): string {
         let answerString = '';
-        switch (this.userA.answers[Q_ID]) {
+        switch (ansObj.answer) {
             case 'yes':
                 this.translate.get('yesno.yes').subscribe((val: string) => {
                     answerString = val;
@@ -84,9 +92,9 @@ export class UserPage implements OnInit {
         return answerString;
     }
 
-    getLikertAnswer(Q_ID: string): string {
+    getLikertAnswer(ansObj): string {
         let answerString = '';
-        switch (this.userA.answers[Q_ID]) {
+        switch (ansObj.answer) {
             case 'sd':
                 this.translate.get('likert.sd').subscribe((val: string) => {
                     answerString = val;
@@ -118,8 +126,8 @@ export class UserPage implements OnInit {
         return answerString;
     }
 
-    getDatetimeAnswer(Q_ID: string, datetimeFormat: string): string {
-        const date: Date = new Date(this.userA.answers[Q_ID]);
+    getDatetimeAnswer(ansObj, datetimeFormat: string): string {
+        const date: Date = new Date(ansObj.answer);
         switch (datetimeFormat) {
             case 'date':
                 return format(date, 'd-MM-yyyy');
