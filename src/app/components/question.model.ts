@@ -1,7 +1,7 @@
-import { Options } from "./options.model";
+import { Options } from './options.model';
 
 export interface Question {
-    Q_ID: string;
+    _id: string;
     text: string;
     category: string;
     type: string;

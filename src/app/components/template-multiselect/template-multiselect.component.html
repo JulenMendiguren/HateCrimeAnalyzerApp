@@ -7,7 +7,7 @@
     >
     <ion-item>
         <ion-label> Select options</ion-label>
-        <ion-select multiple="true" formControlName="{{ question.Q_ID }}">
+        <ion-select multiple="true" formControlName="{{ question._id }}">
             <ng-container *ngFor="let answer of question.possibleAnswers">
                 <ion-select-option value="{{ answer }}">{{
                     answer
@@ -16,7 +16,7 @@
         </ion-select>
     </ion-item>
 
-    <div *ngFor="let error of errorMessages[question.Q_ID]">
+    <div *ngFor="let error of errorMessages[question._id]">
         <ng-container *ngIf="showingErrors(error.type)">
             <div class="error-message">
                 <ion-icon name="alert" size="small"></ion-icon

@@ -7,7 +7,7 @@
             }}</span></ion-label
         >
         <ion-item>
-            <ion-input formControlName="{{ question.Q_ID }}"></ion-input>
+            <ion-input formControlName="{{ question._id }}"></ion-input>
         </ion-item>
     </ng-container>
 
@@ -19,11 +19,11 @@
             }}</span></ion-label
         >
         <ion-item>
-            <ion-textarea formControlName="{{ question.Q_ID }}"></ion-textarea>
+            <ion-textarea formControlName="{{ question._id }}"></ion-textarea>
         </ion-item>
     </ng-template>
 
-    <div *ngFor="let error of errorMessages[question.Q_ID]">
+    <div *ngFor="let error of errorMessages[question._id]">
         <ng-container *ngIf="showingErrors(error.type)">
             <div class="error-message">
                 <ion-icon name="alert" size="small"></ion-icon

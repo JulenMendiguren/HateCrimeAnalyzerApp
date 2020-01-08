@@ -20,11 +20,11 @@
 
         <ion-datetime
             [displayFormat]="datetimeFormat"
-            formControlName="{{ question.Q_ID }}"
+            formControlName="{{ question._id }}"
         ></ion-datetime>
     </ion-item>
 
-    <div *ngFor="let error of errorMessages[question.Q_ID]">
+    <div *ngFor="let error of errorMessages[question._id]">
         <ng-container *ngIf="showingErrors(error.type)">
             <div class="error-message">
                 <ion-icon name="alert" size="small"></ion-icon

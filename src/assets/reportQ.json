@@ -1,8 +1,8 @@
 {
-    "versionID": "patataID",
+    "_id": "patataID",
     "questions": [
         {
-            "Q_ID": "0000001",
+            "_id": "0000001",
             "text": "Esto es un ejemplo de pregunta abierta de tipo Textbox grande",
             "category": "user",
             "type": "textbox",
@@ -14,7 +14,7 @@
             }
         },
         {
-            "Q_ID": "0000002",
+            "_id": "0000002",
             "text": "Esto es un ejemplo de pregunta abierta de tipo Textbox pequeña y required false",
             "category": "user",
             "type": "textbox",
@@ -24,7 +24,7 @@
             }
         },
         {
-            "Q_ID": "0000003",
+            "_id": "0000003",
             "text": "Esto es un ejemplo de pregunta abierta de tipo number",
             "category": "user",
             "type": "number",
@@ -35,7 +35,7 @@
             }
         },
         {
-            "Q_ID": "0000004",
+            "_id": "0000004",
             "text": "Esto es un ejemplo de pregunta abierta de tipo number entre 20 y 30",
             "category": "user",
             "type": "number",
@@ -47,7 +47,7 @@
             }
         },
         {
-            "Q_ID": "0000005",
+            "_id": "0000005",
             "text": "Esto es un ejemplo de pregunta cerrada de tipo likert",
             "category": "user",
             "type": "likert",
@@ -56,7 +56,7 @@
             }
         },
         {
-            "Q_ID": "0000006",
+            "_id": "0000006",
             "text": "Esto es un ejemplo de pregunta cerrada de tipo datetime",
             "category": "user",
             "type": "datetime",
@@ -66,7 +66,7 @@
             }
         },
         {
-            "Q_ID": "0000007",
+            "_id": "0000007",
             "text": "Esto es un ejemplo de pregunta cerrada de tipo yesno",
             "category": "user",
             "type": "yesno",
@@ -75,7 +75,7 @@
             }
         },
         {
-            "Q_ID": "0000011",
+            "_id": "0000011",
             "text": "Justifica tu respuesta",
             "category": "user",
             "type": "textbox",
@@ -87,7 +87,7 @@
             }
         },
         {
-            "Q_ID": "0000008",
+            "_id": "0000008",
             "text": "Esto es un ejemplo de pregunta cerrada de tipo radio",
             "category": "user",
             "possibleAnswers": [
@@ -106,7 +106,7 @@
             }
         },
         {
-            "Q_ID": "0000012",
+            "_id": "0000012",
             "text": "Del 1 al 10, como de Naranja es?",
             "category": "user",
             "type": "number",
@@ -119,7 +119,7 @@
             }
         },
         {
-            "Q_ID": "0000009",
+            "_id": "0000009",
             "text": "Esto es un ejemplo de pregunta cerrada de tipo multiselect",
             "category": "user",
             "possibleAnswers": [
@@ -138,7 +138,7 @@
             }
         },
         {
-            "Q_ID": "0000010",
+            "_id": "0000010",
             "text": "Esto es un ejemplo de pregunta de geolocation",
             "category": "user",
             "type": "geolocation",

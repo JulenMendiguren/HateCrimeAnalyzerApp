@@ -119,8 +119,8 @@ export class ValidationService {
             }
 
             const fc = new FormControl(defaultValue, questionValidators);
-            formGroupData[question.Q_ID] = fc;
-            errorMessages[question.Q_ID] = questionErrors;
+            formGroupData[question._id] = fc;
+            errorMessages[question._id] = questionErrors;
         });
 
         parentForm = this.fb.group(formGroupData);

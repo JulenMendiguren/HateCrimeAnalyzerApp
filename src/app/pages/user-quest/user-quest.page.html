@@ -78,12 +78,12 @@
                             >{{ question.options.required ? "*" : "" }}</span
                         ></ion-label
                     >
-                    <ion-item (click)="openMapModal(question.Q_ID)"
+                    <ion-item (click)="openMapModal(question._id)"
                         ><ion-label>Choose the location</ion-label>
                         <ion-icon
                             slot="end"
                             name="checkmark"
-                            [className]="parentForm.controls[question.Q_ID].valid ? 'tick-showing': 'tick-hidden'"
+                            [className]="parentForm.controls[question._id].valid ? 'tick-showing': 'tick-hidden'"
                         ></ion-icon>
                     </ion-item>
                 </ng-container>

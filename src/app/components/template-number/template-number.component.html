@@ -14,7 +14,7 @@
                 value="{{
                     (question.options.minValue + question.options.maxValue) / 2
                 }}"
-                formControlName="{{ question.Q_ID }}"
+                formControlName="{{ question._id }}"
             >
                 <ion-label slot="start">{{
                     question.options.minValue
@@ -33,12 +33,12 @@
             }}</span></ion-label
         >
         <ion-item>
-            <ion-input type="number" formControlName="{{ question.Q_ID }}">
+            <ion-input type="number" formControlName="{{ question._id }}">
             </ion-input>
         </ion-item>
     </ng-container>
 
-    <div *ngFor="let error of errorMessages[question.Q_ID]">
+    <div *ngFor="let error of errorMessages[question._id]">
         <ng-container *ngIf="showingErrors(error.type)">
             <div class="error-message">
                 <ion-icon name="alert" size="small"></ion-icon

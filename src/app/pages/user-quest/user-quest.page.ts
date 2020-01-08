@@ -141,7 +141,7 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
             return;
         }
         // If not valid, show it
-        if (!this.parentForm.controls[q.Q_ID].valid) {
+        if (!this.parentForm.controls[q._id].valid) {
             return { display: 'block' };
         }
         const mainValid = this.parentForm.controls[q.options.subquestionOf]
@@ -172,9 +172,16 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
         let answers = [];
 
         const keys = Object.keys(this.parentForm.value);
+
         for (const _id of keys) {
-            answers.push({ _id, answer: this.parentForm.value[_id] });
+            answers.push({
+                _id,
+                answer: this.parentForm.value[_id],
+                questionType: this.userQ.questions.find(q => q._id == _id).type
+            });
         }
+
+        this.userA['questionnaire'] = this.userQ;
         this.userA['answers'] = answers;
 
         this.storage.set('userQ', this.userQ);

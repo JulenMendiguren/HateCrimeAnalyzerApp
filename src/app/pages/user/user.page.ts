@@ -42,7 +42,7 @@ export class UserPage implements OnInit {
     getAnswer(q: Question) {
         let answerString: string;
 
-        const found = this.userA.answers.find(element => element._id == q.Q_ID);
+        const found = this.userA.answers.find(element => element._id == q._id);
 
         if (!found) {
             return answerString;

@@ -22,9 +22,9 @@ export class TemplateTextboxComponent implements OnInit {
     // Returns true if the question has an error of errorType and must be shown.
     showingErrors(errorType: string) {
         return (
-            this.parentForm.controls[this.question.Q_ID].hasError(errorType) &&
-            (this.parentForm.controls[this.question.Q_ID].dirty ||
-                this.parentForm.controls[this.question.Q_ID].touched)
+            this.parentForm.controls[this.question._id].hasError(errorType) &&
+            (this.parentForm.controls[this.question._id].dirty ||
+                this.parentForm.controls[this.question._id].touched)
         );
     }
 }

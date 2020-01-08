@@ -7,7 +7,7 @@
                 question.options.required ? '*' : ''
             }}</span>
         </ion-card-content>
-        <ion-radio-group formControlName="{{ question.Q_ID }}">
+        <ion-radio-group formControlName="{{ question._id }}">
             <ng-container *ngFor="let answer of question.possibleAnswers">
                 <ion-item>
                     <ion-label>{{ answer }}</ion-label>
