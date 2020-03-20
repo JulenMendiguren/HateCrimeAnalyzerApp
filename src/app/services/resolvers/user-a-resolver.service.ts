@@ -7,13 +7,7 @@ import { Storage } from '@ionic/storage';
 export class UserAResolverService implements Resolve<any> {
     constructor(private storage: Storage) {}
 
-    resolve(route: ActivatedRouteSnapshot) {
-        if (route.paramMap.get('update')) {
-            console.log('Update!');
-            // TODO: fetch from server
-            return this.storage.get('userA');
-        } else {
-            return this.storage.get('userA');
-        }
+    resolve() {
+        return this.storage.get('userA');
     }
 }

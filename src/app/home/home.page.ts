@@ -10,7 +10,7 @@ export class HomePage implements OnInit {
     constructor(private storage: Storage) {}
 
     ngOnInit() {
-        this.setTestUserQ();
+        //this.setTestUserQ();
     }
     setTestUserQ() {
         this.loadJson('/assets/userQ.json')

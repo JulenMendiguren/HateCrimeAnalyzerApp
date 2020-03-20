@@ -1,5 +1,5 @@
 {
-    "_id": "answersID",
+    "questionnaire_ID": "answersID",
     "answers": [
         { "_id": "0000101", "answer": "Julen", "questionType": "textbox" },
         {

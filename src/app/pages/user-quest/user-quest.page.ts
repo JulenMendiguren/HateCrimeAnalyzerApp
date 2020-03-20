@@ -39,11 +39,18 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
     ) {}
 
     ngOnInit() {
-        this.userQ = this.route.snapshot.data['userQ'];
+        this.userQ = Array.isArray(this.route.snapshot.data['userQ'])
+            ? this.route.snapshot.data['userQ'][0]
+            : this.route.snapshot.data['userQ'];
+
         this.setValidators();
+
+        // Load answers (if avaliable)
         if (this.route.snapshot.data['userA']) {
             this.userA = this.route.snapshot.data['userA'];
             this.fillAnswers();
+        } else {
+            this.userA = {};
         }
         this.storage.get('registered').then(val => {
             this.firstRegister = val ? false : true;
@@ -167,7 +174,8 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
     public submit() {
         this.submitted = true;
 
-        this.userA['questionnaire_ID'] = this.userQ.versionID;
+        console.log(this.userQ);
+        this.userA['questionnaire_ID'] = this.userQ._id;
 
         let answers = [];
 
@@ -176,7 +184,10 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
         for (const _id of keys) {
             answers.push({
                 _id,
-                answer: this.parentForm.value[_id],
+                answer:
+                    this.parentForm.value[_id] instanceof String
+                        ? this.parentForm.value[_id].trim()
+                        : this.parentForm.value[_id],
                 questionType: this.userQ.questions.find(q => q._id == _id).type
             });
         }

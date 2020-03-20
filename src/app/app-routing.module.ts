@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { ConfirmExitGuard } from './services/confirm-exit.guard';
 import { UserQResolverService } from './services/resolvers/user-q-resolver.service';
 import { UserAResolverService } from './services/resolvers/user-a-resolver.service';
+import { ReportResolverService } from './services/resolvers/report-resolver.service';
 
 const routes: Routes = [
     {
@@ -18,6 +19,10 @@ const routes: Routes = [
     },
     {
         path: 'report',
+        resolve: {
+            reportQ: ReportResolverService,
+            userA: UserAResolverService
+        },
         loadChildren: () =>
             import('./pages/report/report.module').then(m => m.ReportPageModule)
     },
@@ -49,10 +54,13 @@ const routes: Routes = [
             }
         ]
     },
-  {
-    path: 'welcome-slides',
-    loadChildren: () => import('./pages/welcome-slides/welcome-slides.module').then( m => m.WelcomeSlidesPageModule)
-  }
+    {
+        path: 'welcome-slides',
+        loadChildren: () =>
+            import('./pages/welcome-slides/welcome-slides.module').then(
+                m => m.WelcomeSlidesPageModule
+            )
+    }
 ];
 
 @NgModule({

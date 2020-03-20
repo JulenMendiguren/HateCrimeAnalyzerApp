@@ -6,6 +6,8 @@ import { ModalController, AlertController, Platform } from '@ionic/angular';
 import { GoogleMapsPage } from '../google-maps/google-maps.page';
 import { CanComponentDeactivate } from 'src/app/services/confirm-exit.guard';
 import { TranslateService } from '@ngx-translate/core';
+import { ApiService } from 'src/app/services/api.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-report',
@@ -14,20 +16,34 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class ReportPage implements OnInit, CanComponentDeactivate {
     public questions: Question[] = [];
+    public reportQ;
+    public userA;
     public jsonLoaded = false;
     public parentForm: FormGroup;
     public errorMessages = {};
 
     constructor(
         private validationService: ValidationService,
+        private route: ActivatedRoute,
         private modalController: ModalController,
         private alertController: AlertController,
-        private translate: TranslateService
+        private translate: TranslateService,
+        private api: ApiService
     ) {}
 
     ngOnInit() {
-        this.loadJson('/assets/reportQ.json').then(() => this.setValidators());
+        this.reportQ = this.route.snapshot.data['reportQ'][0];
+        this.questions = this.reportQ.questions;
+
+        this.userA = this.route.snapshot.data['userA'];
+
+        this.setValidators();
     }
+    // ngOnInit() {
+    //     this.reportQ = this.route.snapshot.data['reportQ'];
+    //     console.log('testhttp:', this.reportQ);
+    //     this.loadJson('/assets/reportQ.json').then(() => this.setValidators());
+    // }
 
     // Carga el json con las preguntas, en un futuro llamará al service para hacer una petición http
     loadJson(url: string) {
@@ -155,5 +171,36 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
         else {
             return { display: 'none' };
         }
+    }
+
+    public submit() {
+        console.log('-----> SUBMITTED');
+
+        let reportJSON = {};
+
+        let answers = [];
+
+        const keys = Object.keys(this.parentForm.value);
+
+        for (const _id of keys) {
+            answers.push({
+                _id,
+                answer:
+                    this.parentForm.value[_id] instanceof String
+                        ? this.parentForm.value[_id].trim()
+                        : this.parentForm.value[_id],
+                questionType: this.reportQ.questions.find(q => q._id == _id)
+                    .type
+            });
+        }
+
+        reportJSON['questionnaire'] = this.reportQ;
+        reportJSON['answers'] = answers;
+        reportJSON['userQuestionnaire'] = this.userA.questionnaire;
+        reportJSON['userAnswers'] = this.userA.answers;
+
+        console.log('FULL JSON ', reportJSON);
+
+        this.api.postReport(reportJSON);
     }
 }

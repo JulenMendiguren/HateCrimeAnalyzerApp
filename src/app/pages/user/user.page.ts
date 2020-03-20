@@ -21,7 +21,6 @@ export class UserPage implements OnInit {
     ) {}
 
     ngOnInit() {
-        console.log('USER ON INIT');
         this.userQ = this.route.snapshot.data['userQ'];
         this.userA = this.route.snapshot.data['userA'];
     }

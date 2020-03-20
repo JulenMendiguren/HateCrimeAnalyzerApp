@@ -9,7 +9,7 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-    <ng-container *ngIf="jsonLoaded">
+    <form [formGroup]="parentForm" (ngSubmit)="submit()">
         <ng-container *ngFor="let question of questions">
             <ng-container [ngSwitch]="question.type">
                 <app-template-textbox
@@ -89,9 +89,13 @@
                 <div *ngSwitchDefault>ELSE: {{question.text}}</div>
             </ng-container>
         </ng-container>
-
-        <ion-button (click)="findInvalidControls()">
-            Invalid questions</ion-button
-        >
-    </ng-container>
+        <ion-button
+            [disabled]="!parentForm.valid"
+            type="submit"
+            expand="block"
+            shape="round"
+            >Submit <ion-icon slot="end" name="create"> </ion-icon>
+        </ion-button>
+    </form>
+    <ion-button (click)="findInvalidControls()"> Invalid questions</ion-button>
 </ion-content>
