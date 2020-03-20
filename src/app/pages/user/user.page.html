@@ -41,7 +41,7 @@
     <ion-button (click)="navigateEdit()"
         >{{'USER.edit_information' | translate}}</ion-button
     >
-    <ion-button (click)="navigateUpdate()"
+    <ion-button *ngIf="updateAvaliable" (click)="navigateUpdate()"
         >{{'USER.update_survey' | translate}}</ion-button
     >
 </ion-content>

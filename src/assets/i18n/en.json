@@ -1,9 +1,12 @@
 {
     "test": "this is a test msg",
+    "REPORT": {
+        "toast_report_sent": "Your report has been sent"
+    },
     "USER": {
         "title": "User information",
         "edit_information": "Edit user info",
-        "update_survey": "Update survey version"
+        "update_survey": "Update questionnaire version"
     },
     "error_messages": {
         "required": "This field is required",

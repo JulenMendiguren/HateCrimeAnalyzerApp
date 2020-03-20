@@ -12,6 +12,7 @@ import { GoogleMapsPage } from '../google-maps/google-maps.page';
 import { FormGroup } from '@angular/forms';
 import { Question } from 'src/app/components/question.model';
 import { Storage } from '@ionic/storage';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
     selector: 'app-user-quest',
@@ -31,7 +32,6 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
         private route: ActivatedRoute,
         private navCtrl: NavController,
         private translate: TranslateService,
-        private router: Router,
         private storage: Storage,
         private validationService: ValidationService,
         private modalController: ModalController,

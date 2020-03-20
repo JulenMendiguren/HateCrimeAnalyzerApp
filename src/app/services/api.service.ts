@@ -31,14 +31,15 @@ export class ApiService {
         let url = 'http://' + ip + '/api/answer/one';
         console.log(url);
 
+        let statusObserve = { observe: 'request' };
+
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'
-            })
+            }),
+            statusObserve
         };
 
-        this.http.post(url, reportJSON, httpOptions).subscribe(res => {
-            console.log(res);
-        });
+        return this.http.post(url, reportJSON, httpOptions);
     }
 }

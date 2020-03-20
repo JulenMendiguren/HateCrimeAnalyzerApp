@@ -2,7 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Question } from 'src/app/components/question.model';
 import { FormGroup } from '@angular/forms';
 import { ValidationService } from 'src/app/services/validation.service';
-import { ModalController, AlertController, Platform } from '@ionic/angular';
+import {
+    ModalController,
+    AlertController,
+    Platform,
+    NavController,
+    ToastController
+} from '@ionic/angular';
 import { GoogleMapsPage } from '../google-maps/google-maps.page';
 import { CanComponentDeactivate } from 'src/app/services/confirm-exit.guard';
 import { TranslateService } from '@ngx-translate/core';
@@ -16,6 +22,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ReportPage implements OnInit, CanComponentDeactivate {
     public questions: Question[] = [];
+    public submitted = false;
     public reportQ;
     public userA;
     public jsonLoaded = false;
@@ -25,10 +32,12 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
     constructor(
         private validationService: ValidationService,
         private route: ActivatedRoute,
+        private navCtrl: NavController,
         private modalController: ModalController,
         private alertController: AlertController,
         private translate: TranslateService,
-        private api: ApiService
+        private api: ApiService,
+        private toastController: ToastController
     ) {}
 
     ngOnInit() {
@@ -39,11 +48,6 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
 
         this.setValidators();
     }
-    // ngOnInit() {
-    //     this.reportQ = this.route.snapshot.data['reportQ'];
-    //     console.log('testhttp:', this.reportQ);
-    //     this.loadJson('/assets/reportQ.json').then(() => this.setValidators());
-    // }
 
     // Carga el json con las preguntas, en un futuro llamará al service para hacer una petición http
     loadJson(url: string) {
@@ -94,7 +98,10 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
     }
 
     async canDeactivate() {
-        //TODO: Sólo con dirty
+        if (this.submitted) {
+            return true;
+        }
+
         const confirm = await this.confirmExitAlert();
 
         if (confirm) {
@@ -175,6 +182,7 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
 
     public submit() {
         console.log('-----> SUBMITTED');
+        this.submitted = true;
 
         let reportJSON = {};
 
@@ -201,6 +209,22 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
 
         console.log('FULL JSON ', reportJSON);
 
-        this.api.postReport(reportJSON);
+        this.api.postReport(reportJSON).subscribe(res => {
+            console.log(res);
+        });
+        this.presentToastReportSent();
+        this.navCtrl.navigateBack('home');
+    }
+
+    async presentToastReportSent() {
+        this.translate
+            .get('REPORT.toast_report_sent')
+            .subscribe(async (msg: string) => {
+                const toast = await this.toastController.create({
+                    message: msg,
+                    duration: 3000
+                });
+                toast.present();
+            });
     }
 }

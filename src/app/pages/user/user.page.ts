@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Question } from 'src/app/components/question.model';
 import { format } from 'date-fns';
 import { TranslateService } from '@ngx-translate/core';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
     selector: 'app-user',
@@ -13,8 +14,10 @@ import { TranslateService } from '@ngx-translate/core';
 export class UserPage implements OnInit {
     userQ;
     userA;
+    updateAvaliable: boolean = false;
     constructor(
         private storage: Storage,
+        private api: ApiService,
         private route: ActivatedRoute,
         private translate: TranslateService,
         private router: Router
@@ -23,11 +26,13 @@ export class UserPage implements OnInit {
     ngOnInit() {
         this.userQ = this.route.snapshot.data['userQ'];
         this.userA = this.route.snapshot.data['userA'];
+        this.checkIfUpdateAvaliable();
     }
 
     ionViewWillEnter() {
         this.userQ = this.route.snapshot.data['userQ'];
         this.userA = this.route.snapshot.data['userA'];
+        this.checkIfUpdateAvaliable();
     }
 
     getClass(q: Question) {
@@ -142,5 +147,17 @@ export class UserPage implements OnInit {
     }
     navigateEdit() {
         this.router.navigateByUrl('user/user-quest/');
+    }
+
+    checkIfUpdateAvaliable() {
+        this.api.getLastUserQ().subscribe(last => {
+            if (last[0]._id != this.userQ._id) {
+                console.log('update avaliable');
+                this.updateAvaliable = true;
+            } else {
+                console.log('update not avaliable');
+                this.updateAvaliable = false;
+            }
+        });
     }
 }
