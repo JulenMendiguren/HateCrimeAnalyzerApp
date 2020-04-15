@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content fullscreen class="ion-padding" scroll-y="false">
-    <ion-slides pager="true" [options]="slideOpts" style=" height: 100%;">
+    <ion-slides pager="true" [options]="slideOpts" style="height: 100%;">
         <ion-slide>
             <ion-grid>
                 <ion-row>
@@ -26,25 +26,32 @@
                 </ion-row>
             </ion-grid>
         </ion-slide>
+
         <ion-slide>
             <h1>Slide 2</h1>
         </ion-slide>
+
         <ion-slide>
-            <ion-grid>
-                <ion-row>
-                    <ion-col>
-                        <h1>Slide 3</h1>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col>
-                        <ion-button fill="none" (click)="onRegisterClick()"
-                            >Registrarse! (todo)
-                            <ion-icon slot="end" name="arrow-forward"></ion-icon
-                        ></ion-button>
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
+            <h1>Slide 3</h1>
+            <ion-item>
+                <ion-label>Language</ion-label>
+                <ion-select
+                    placeholder="Select One"
+                    (ionChange)="onLangChanged($event)"
+                >
+                    <ion-select-option value="eu">Euskara</ion-select-option>
+                    <ion-select-option value="es">Español</ion-select-option>
+                    <ion-select-option value="en">English</ion-select-option>
+                    <ion-select-option value="fr">Français</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-button
+                fill="none"
+                (click)="onRegisterClick()"
+                [disabled]="!langSelected"
+                >Registrarse!
+                <ion-icon slot="end" name="arrow-forward"></ion-icon
+            ></ion-button>
         </ion-slide>
     </ion-slides>
 </ion-content>

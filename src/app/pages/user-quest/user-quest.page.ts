@@ -6,7 +6,7 @@ import { ValidationService } from 'src/app/services/validation.service';
 import {
     ModalController,
     AlertController,
-    NavController
+    NavController,
 } from '@ionic/angular';
 import { GoogleMapsPage } from '../google-maps/google-maps.page';
 import { FormGroup } from '@angular/forms';
@@ -17,7 +17,7 @@ import { ApiService } from 'src/app/services/api.service';
 @Component({
     selector: 'app-user-quest',
     templateUrl: './user-quest.page.html',
-    styleUrls: ['./user-quest.page.scss']
+    styleUrls: ['./user-quest.page.scss'],
 })
 export class UserQuestPage implements OnInit, CanComponentDeactivate {
     userQ;
@@ -52,14 +52,14 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
         } else {
             this.userA = {};
         }
-        this.storage.get('registered').then(val => {
+        this.storage.get('registered').then((val) => {
             this.firstRegister = val ? false : true;
         });
     }
 
     // Fills the answers for the user to edit
     fillAnswers() {
-        this.userA.answers.forEach(obj => {
+        this.userA.answers.forEach((obj) => {
             if (this.parentForm.controls[obj._id]) {
                 this.parentForm.controls[obj._id].setValue(obj.answer);
             }
@@ -79,10 +79,10 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
         const modal = await this.modalController.create({
             component: GoogleMapsPage,
             componentProps: {
-                markerCoordsString: this.parentForm.controls[Q_ID].value
-            }
+                markerCoordsString: this.parentForm.controls[Q_ID].value,
+            },
         });
-        modal.onWillDismiss().then(dataReturned => {
+        modal.onWillDismiss().then((dataReturned) => {
             this.parentForm.controls[Q_ID].setValue(dataReturned.data);
         });
         return await modal.present();
@@ -105,7 +105,7 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
 
     private async confirmExitAlert(): Promise<boolean> {
         let resolveFunction: (confirm: boolean) => void;
-        const promise = new Promise<boolean>(resolve => {
+        const promise = new Promise<boolean>((resolve) => {
             resolveFunction = resolve;
         });
 
@@ -131,13 +131,13 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
                 {
                     role: 'cancel',
                     text: cancel,
-                    handler: () => resolveFunction(false)
+                    handler: () => resolveFunction(false),
                 },
                 {
                     text: yes,
-                    handler: () => resolveFunction(true)
-                }
-            ]
+                    handler: () => resolveFunction(true),
+                },
+            ],
         });
         await alert.present();
         return promise;
@@ -188,7 +188,8 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
                     this.parentForm.value[_id] instanceof String
                         ? this.parentForm.value[_id].trim()
                         : this.parentForm.value[_id],
-                questionType: this.userQ.questions.find(q => q._id == _id).type
+                questionType: this.userQ.questions.find((q) => q._id == _id)
+                    .type,
             });
         }
 
