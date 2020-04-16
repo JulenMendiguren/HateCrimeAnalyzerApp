@@ -73,7 +73,7 @@
                     [ngStyle]="showingSubquestion(question)"
                 >
                     <ion-label
-                        >{{question.text}}
+                        >{{question['text'+lang]}}
                         <span class="error-message"
                             >{{ question.options.required ? "*" : "" }}</span
                         ></ion-label

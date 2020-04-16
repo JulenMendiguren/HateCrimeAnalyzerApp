@@ -13,6 +13,7 @@ import { FormGroup } from '@angular/forms';
 import { Question } from 'src/app/components/question.model';
 import { Storage } from '@ionic/storage';
 import { ApiService } from 'src/app/services/api.service';
+import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
     selector: 'app-user-quest',
@@ -23,7 +24,7 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
     userQ;
     userA;
     firstRegister = true;
-
+    public lang: String;
     public parentForm: FormGroup;
     public errorMessages = {};
     submitted: boolean = false;
@@ -35,10 +36,13 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
         private storage: Storage,
         private validationService: ValidationService,
         private modalController: ModalController,
-        private alertController: AlertController
+        private alertController: AlertController,
+        private languageService: LanguageService
     ) {}
 
     ngOnInit() {
+        this.lang = this.languageService.selected;
+
         this.userQ = Array.isArray(this.route.snapshot.data['userQ'])
             ? this.route.snapshot.data['userQ'][0]
             : this.route.snapshot.data['userQ'];
@@ -159,7 +163,7 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
             mainValid &&
             q.options.requiredAnswer &&
             this.parentForm.controls[q.options.subquestionOf].value ==
-                q.options.requiredAnswer
+                q['possibleAnswers_' + this.lang][q.options.requiredAnswer]
         ) {
             return { display: 'block' };
         } // If main is valid and there is no required answer

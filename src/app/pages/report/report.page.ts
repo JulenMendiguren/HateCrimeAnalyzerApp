@@ -7,21 +7,23 @@ import {
     AlertController,
     Platform,
     NavController,
-    ToastController
+    ToastController,
 } from '@ionic/angular';
 import { GoogleMapsPage } from '../google-maps/google-maps.page';
 import { CanComponentDeactivate } from 'src/app/services/confirm-exit.guard';
 import { TranslateService } from '@ngx-translate/core';
 import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute } from '@angular/router';
+import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
     selector: 'app-report',
     templateUrl: './report.page.html',
-    styleUrls: ['./report.page.scss']
+    styleUrls: ['./report.page.scss'],
 })
 export class ReportPage implements OnInit, CanComponentDeactivate {
     public questions: Question[] = [];
+    public lang: String;
     public submitted = false;
     public reportQ;
     public userA;
@@ -37,10 +39,13 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
         private alertController: AlertController,
         private translate: TranslateService,
         private api: ApiService,
-        private toastController: ToastController
+        private toastController: ToastController,
+        private languageService: LanguageService
     ) {}
 
     ngOnInit() {
+        this.lang = this.languageService.selected;
+
         this.reportQ = this.route.snapshot.data['reportQ'][0];
         this.questions = this.reportQ.questions;
 
@@ -52,11 +57,11 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
     // Carga el json con las preguntas, en un futuro llamará al service para hacer una petición http
     loadJson(url: string) {
         return fetch(url)
-            .then(file => {
+            .then((file) => {
                 return file.json();
             })
-            .then(json => {
-                json.questions.forEach(element => {
+            .then((json) => {
+                json.questions.forEach((element) => {
                     this.questions.push(element);
                 });
                 this.jsonLoaded = true;
@@ -76,10 +81,10 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
         const modal = await this.modalController.create({
             component: GoogleMapsPage,
             componentProps: {
-                markerCoordsString: this.parentForm.controls[Q_ID].value
-            }
+                markerCoordsString: this.parentForm.controls[Q_ID].value,
+            },
         });
-        modal.onWillDismiss().then(dataReturned => {
+        modal.onWillDismiss().then((dataReturned) => {
             this.parentForm.controls[Q_ID].setValue(dataReturned.data);
         });
         return await modal.present();
@@ -113,7 +118,7 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
 
     private async confirmExitAlert(): Promise<boolean> {
         let resolveFunction: (confirm: boolean) => void;
-        const promise = new Promise<boolean>(resolve => {
+        const promise = new Promise<boolean>((resolve) => {
             resolveFunction = resolve;
         });
 
@@ -139,13 +144,13 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
                 {
                     role: 'cancel',
                     text: cancel,
-                    handler: () => resolveFunction(false)
+                    handler: () => resolveFunction(false),
                 },
                 {
                     text: yes,
-                    handler: () => resolveFunction(true)
-                }
-            ]
+                    handler: () => resolveFunction(true),
+                },
+            ],
         });
         await alert.present();
         return promise;
@@ -168,7 +173,7 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
             mainValid &&
             q.options.requiredAnswer &&
             this.parentForm.controls[q.options.subquestionOf].value ==
-                q.options.requiredAnswer
+                q['possibleAnswers_' + this.lang][q.options.requiredAnswer]
         ) {
             return { display: 'block' };
         } // If main is valid and there is no required answer
@@ -197,8 +202,8 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
                     this.parentForm.value[_id] instanceof String
                         ? this.parentForm.value[_id].trim()
                         : this.parentForm.value[_id],
-                questionType: this.reportQ.questions.find(q => q._id == _id)
-                    .type
+                questionType: this.reportQ.questions.find((q) => q._id == _id)
+                    .type,
             });
         }
 
@@ -209,7 +214,7 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
 
         console.log('FULL JSON ', reportJSON);
 
-        this.api.postReport(reportJSON).subscribe(res => {
+        this.api.postReport(reportJSON).subscribe((res) => {
             console.log(res);
         });
         this.presentToastReportSent();
@@ -222,7 +227,7 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
             .subscribe(async (msg: string) => {
                 const toast = await this.toastController.create({
                     message: msg,
-                    duration: 3000
+                    duration: 3000,
                 });
                 toast.present();
             });
