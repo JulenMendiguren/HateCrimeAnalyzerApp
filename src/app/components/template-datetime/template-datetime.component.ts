@@ -1,14 +1,15 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Question } from '../question.model';
 import { FormGroup } from '@angular/forms';
+import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
     selector: 'app-template-datetime',
     templateUrl: './template-datetime.component.html',
     styleUrls: [
         '../../pages/report/report.page.scss',
-        './template-datetime.component.scss'
-    ]
+        './template-datetime.component.scss',
+    ],
 })
 export class TemplateDatetimeComponent implements OnInit {
     @Input() question: Question;
@@ -16,10 +17,13 @@ export class TemplateDatetimeComponent implements OnInit {
     @Input() errorMessages;
 
     datetimeFormat;
+    lang: string;
 
-    constructor() {}
+    constructor(private languageService: LanguageService) {}
 
     ngOnInit() {
+        this.lang = this.languageService.selected;
+
         switch (this.question.options.datetimeFormat) {
             case 'date':
                 this.datetimeFormat = 'D MMM YYYY';

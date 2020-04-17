@@ -1,7 +1,7 @@
 <div [formGroup]="parentForm">
     <ng-container *ngIf="question.options.size == 'small'; else big">
         <ion-label
-            >{{ question.text }}
+            >{{ question['text_' + lang] }}
             <span class="error-message">{{
                 question.options.required ? '*' : ''
             }}</span></ion-label
@@ -13,7 +13,7 @@
 
     <ng-template #big>
         <ion-label
-            >{{ question.text }}
+            >{{ question['text_' + lang] }}
             <span class="error-message">{{
                 question.options.required ? '*' : ''
             }}</span></ion-label

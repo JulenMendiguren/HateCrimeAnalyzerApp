@@ -2,19 +2,23 @@
     <ion-card>
         <!-- <ion-card-title>Answer this question</ion-card-title> -->
         <ion-card-content>
-            {{ question.text }}
+            {{ question['text_' + lang] }}
             <span class="error-message">{{
                 question.options.required ? '*' : ''
             }}</span>
         </ion-card-content>
         <ion-radio-group formControlName="{{ question._id }}">
             <ion-item>
-                <ion-label>Yes</ion-label>
-                <ion-radio value="yes"></ion-radio>
+                <ion-label>{{
+                    question['possibleAnswers_' + lang][0]
+                }}</ion-label>
+                <ion-radio value="0"></ion-radio>
             </ion-item>
             <ion-item>
-                <ion-label>No</ion-label>
-                <ion-radio value="no"></ion-radio>
+                <ion-label>{{
+                    question['possibleAnswers_' + lang][1]
+                }}</ion-label>
+                <ion-radio value="1"></ion-radio>
             </ion-item>
         </ion-radio-group>
     </ion-card>

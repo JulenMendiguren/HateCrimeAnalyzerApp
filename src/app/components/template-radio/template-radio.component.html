@@ -2,16 +2,21 @@
     <ion-card>
         <!-- <ion-card-title>Answer this question</ion-card-title> -->
         <ion-card-content>
-            {{ question.text }}
+            {{ question['text_' + lang] }}
             <span class="error-message">{{
                 question.options.required ? '*' : ''
             }}</span>
         </ion-card-content>
         <ion-radio-group formControlName="{{ question._id }}">
-            <ng-container *ngFor="let answer of question.possibleAnswers">
+            <ng-container
+                *ngFor="
+                    let answer of question['possibleAnswers_' + lang];
+                    let i = index
+                "
+            >
                 <ion-item>
-                    <ion-label>{{ answer }}</ion-label>
-                    <ion-radio value="{{ answer }}"></ion-radio>
+                    <ion-label text-wrap>{{ answer }}</ion-label>
+                    <ion-radio value="{{ i }}"></ion-radio>
                 </ion-item>
             </ng-container>
         </ion-radio-group>

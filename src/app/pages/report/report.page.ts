@@ -171,13 +171,13 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
         // If main is valid and the required answer is correct
         if (
             mainValid &&
-            q.options.requiredAnswer &&
+            q.options.requiredAnswerIndex &&
             this.parentForm.controls[q.options.subquestionOf].value ==
-                q['possibleAnswers_' + this.lang][q.options.requiredAnswer]
+                q.options.requiredAnswerIndex
         ) {
             return { display: 'block' };
         } // If main is valid and there is no required answer
-        else if (mainValid && !q.options.requiredAnswer) {
+        else if (mainValid && !q.options.requiredAnswerIndex) {
             return { display: 'block' };
         } // Main is invalid  or the required answer is not correct
         else {

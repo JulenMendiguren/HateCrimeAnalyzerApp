@@ -1,6 +1,6 @@
 <div [formGroup]="parentForm">
     <ion-label
-        >{{ question.text }}
+        >{{ question['text_' + lang] }}
         <span class="error-message">{{
             question.options.required ? '*' : ''
         }}</span></ion-label

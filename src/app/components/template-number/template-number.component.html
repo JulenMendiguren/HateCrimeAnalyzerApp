@@ -1,7 +1,7 @@
 <div [formGroup]="parentForm">
     <ng-container *ngIf="question.options.slider">
         <ion-label
-            >{{ question.text }}
+            >{{ question['text_' + lang] }}
             <span class="error-message">{{
                 question.options.required ? '*' : ''
             }}</span></ion-label
@@ -27,7 +27,7 @@
     </ng-container>
     <ng-container *ngIf="!question.options.slider">
         <ion-label
-            >{{ question.text }}
+            >{{ question['text_' + lang] }}
             <span class="error-message">{{
                 question.options.required ? '*' : ''
             }}</span></ion-label

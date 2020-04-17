@@ -2,31 +2,41 @@
     <ion-card>
         <!-- <ion-card-title>Answer this question</ion-card-title> -->
         <ion-card-content>
-            {{ question.text }}
+            {{ question['text_' + lang] }}
             <span class="error-message">{{
                 question.options.required ? '*' : ''
             }}</span>
         </ion-card-content>
         <ion-radio-group formControlName="{{ question._id }}">
             <ion-item>
-                <ion-label>{{ 'likert.sd' | translate }}</ion-label>
-                <ion-radio value="sd"></ion-radio>
+                <ion-label text-wrap>{{
+                    question['possibleAnswers_' + lang][0]
+                }}</ion-label>
+                <ion-radio value="0"></ion-radio>
             </ion-item>
             <ion-item>
-                <ion-label>{{ 'likert.d' | translate }}</ion-label>
-                <ion-radio value="d"></ion-radio>
+                <ion-label text-wrap>{{
+                    question['possibleAnswers_' + lang][1]
+                }}</ion-label>
+                <ion-radio value="1"></ion-radio>
             </ion-item>
             <ion-item>
-                <ion-label>{{ 'likert.n' | translate }}</ion-label>
-                <ion-radio value="n"></ion-radio>
+                <ion-label text-wrap>{{
+                    question['possibleAnswers_' + lang][2]
+                }}</ion-label>
+                <ion-radio value="2"></ion-radio>
             </ion-item>
             <ion-item>
-                <ion-label>{{ 'likert.a' | translate }}</ion-label>
-                <ion-radio value="a"></ion-radio>
+                <ion-label text-wrap>{{
+                    question['possibleAnswers_' + lang][3]
+                }}</ion-label>
+                <ion-radio value="3"></ion-radio>
             </ion-item>
             <ion-item>
-                <ion-label>{{ 'likert.sa' | translate }}</ion-label>
-                <ion-radio value="sa"></ion-radio>
+                <ion-label text-wrap>{{
+                    question['possibleAnswers_' + lang][4]
+                }}</ion-label>
+                <ion-radio value="4"></ion-radio>
             </ion-item>
         </ion-radio-group>
     </ion-card>

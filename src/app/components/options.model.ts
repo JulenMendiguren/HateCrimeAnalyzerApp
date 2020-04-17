@@ -1,7 +1,7 @@
 export interface Options {
     required: boolean;
     subquestionOf?: string;
-    requiredAnswer?: string;
+    requiredAnswerIndex?: number;
     size?: string;
     minValue?: number;
     maxValue?: number;
