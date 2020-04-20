@@ -51,7 +51,8 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
             : this.route.snapshot.data['userQ'];
 
         this.colectives = this.route.snapshot.data['colectives'];
-        this.colectivesService.loadUserColectivesFromStorage();
+        this.colectivesService.setAllColectives(this.colectives);
+        this.colectivesService.loadColectivesFromStorage();
         this.setValidators();
 
         // Load answers (if avaliable)

@@ -6,6 +6,7 @@ import { Storage } from '@ionic/storage';
 })
 export class ColectivesService {
     public userColectives = ['all'];
+    public allColectives = [];
     constructor(private storage: Storage) {}
 
     setUserColectives(selectedColectives) {
@@ -16,11 +17,21 @@ export class ColectivesService {
         this.storage.set('userCol', userCol);
     }
 
-    loadUserColectivesFromStorage() {
+    loadColectivesFromStorage() {
         this.storage.get('userCol').then((c) => {
             if (c) {
                 this.userColectives = c;
             }
         });
+
+        this.storage.get('allColectives').then((c) => {
+            if (c) {
+                this.allColectives = c;
+            }
+        });
+    }
+    setAllColectives(col) {
+        this.allColectives = col;
+        this.storage.set('allColectives', col);
     }
 }

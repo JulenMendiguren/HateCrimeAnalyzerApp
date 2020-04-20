@@ -6,6 +6,7 @@ import { format } from 'date-fns';
 import { TranslateService } from '@ngx-translate/core';
 import { ApiService } from 'src/app/services/api.service';
 import { LanguageService } from 'src/app/services/language.service';
+import { ColectivesService } from 'src/app/services/colectives.service';
 
 @Component({
     selector: 'app-user',
@@ -23,13 +24,15 @@ export class UserPage implements OnInit {
         private route: ActivatedRoute,
         private translate: TranslateService,
         private router: Router,
-        private languageService: LanguageService
+        private languageService: LanguageService,
+        private colectivesService: ColectivesService
     ) {}
 
     ngOnInit() {
         this.userQ = this.route.snapshot.data['userQ'];
         this.userA = this.route.snapshot.data['userA'];
         this.lang = this.languageService.selected;
+        this.colectivesService.loadColectivesFromStorage();
         this.checkIfUpdateAvaliable();
     }
 
@@ -66,10 +69,19 @@ export class UserPage implements OnInit {
                 break;
 
             case 'likert':
-                answerString = this.getLikertAnswer(found);
+                answerString = this.getClosedQuestionAnswer(found);
                 break;
             case 'yesno':
-                answerString = this.getYesnoAnswer(found);
+                answerString = this.getClosedQuestionAnswer(found);
+                break;
+            case 'radio':
+                answerString = this.getClosedQuestionAnswer(found);
+                break;
+            case 'multiselect':
+                answerString = this.getMultiSelectAnswer(found);
+                break;
+            case 'colective':
+                answerString = this.getColectiveAnswer(found);
                 break;
             default:
                 answerString = found.answer;
@@ -83,56 +95,37 @@ export class UserPage implements OnInit {
         return found && found.answer ? true : false;
     }
 
-    getYesnoAnswer(ansObj): string {
-        let answerString = '';
-        switch (ansObj.answer) {
-            case 'yes':
-                this.translate.get('yesno.yes').subscribe((val: string) => {
-                    answerString = val;
-                });
-                break;
-            case 'no':
-                this.translate.get('yesno.no').subscribe((val: string) => {
-                    answerString = val;
-                });
-                break;
-            default:
-                break;
-        }
+    getClosedQuestionAnswer(ansObj) {
+        let q = this.userQ.questions.find((q) => q._id == ansObj._id);
+        return q['possibleAnswers_' + this.lang][ansObj.answer];
+    }
+
+    getMultiSelectAnswer(ansObj) {
+        let q = this.userQ.questions.find((q) => q._id == ansObj._id);
+        let answerString: string = '';
+
+        // For each answer index
+        ansObj.answer.forEach((index) => {
+            answerString =
+                answerString +
+                q['possibleAnswers_' + this.lang][index] +
+                '<br>';
+        });
         return answerString;
     }
 
-    getLikertAnswer(ansObj): string {
-        let answerString = '';
-        switch (ansObj.answer) {
-            case 'sd':
-                this.translate.get('likert.sd').subscribe((val: string) => {
-                    answerString = val;
-                });
-                break;
-            case 'd':
-                this.translate.get('likert.d').subscribe((val: string) => {
-                    answerString = val;
-                });
-                break;
-            case 'n':
-                this.translate.get('likert.n').subscribe((val: string) => {
-                    answerString = val;
-                });
-                break;
-            case 'a':
-                this.translate.get('likert.a').subscribe((val: string) => {
-                    answerString = val;
-                });
-                break;
-            case 'sa':
-                this.translate.get('likert.sa').subscribe((val: string) => {
-                    answerString = val;
-                });
-                break;
-            default:
-                break;
-        }
+    getColectiveAnswer(ansObj): string {
+        console.log('Entra en getColectiveAnswer');
+        let answerString: string = '';
+        ansObj.answer.forEach((colId) => {
+            const col = this.colectivesService.allColectives.find(
+                (col) => col._id == colId
+            );
+            console.log('col', colId, this.colectivesService.allColectives);
+            if (col) {
+                answerString = answerString + col['text_' + this.lang] + '<br>';
+            }
+        });
         return answerString;
     }
 
