@@ -14,6 +14,7 @@ import { Question } from 'src/app/components/question.model';
 import { Storage } from '@ionic/storage';
 import { ApiService } from 'src/app/services/api.service';
 import { LanguageService } from 'src/app/services/language.service';
+import { ColectivesService } from 'src/app/services/colectives.service';
 
 @Component({
     selector: 'app-user-quest',
@@ -23,6 +24,7 @@ import { LanguageService } from 'src/app/services/language.service';
 export class UserQuestPage implements OnInit, CanComponentDeactivate {
     userQ;
     userA;
+    colectives;
     firstRegister = true;
     public lang: string;
     public parentForm: FormGroup;
@@ -37,7 +39,8 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
         private validationService: ValidationService,
         private modalController: ModalController,
         private alertController: AlertController,
-        private languageService: LanguageService
+        private languageService: LanguageService,
+        private colectivesService: ColectivesService
     ) {}
 
     ngOnInit() {
@@ -47,6 +50,8 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
             ? this.route.snapshot.data['userQ'][0]
             : this.route.snapshot.data['userQ'];
 
+        this.colectives = this.route.snapshot.data['colectives'];
+        this.colectivesService.loadUserColectivesFromStorage();
         this.setValidators();
 
         // Load answers (if avaliable)
@@ -56,6 +61,7 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
         } else {
             this.userA = {};
         }
+
         this.storage.get('registered').then((val) => {
             this.firstRegister = val ? false : true;
         });
@@ -77,6 +83,7 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
         );
         this.parentForm = returnedValue[0];
         this.errorMessages = returnedValue[1];
+        console.log('Error messages: ', this.errorMessages);
     }
 
     async openMapModal(Q_ID: string) {
@@ -146,8 +153,13 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
         await alert.present();
         return promise;
     }
+    // Will be shown if it has a valid tag
     // If its a subquestion, it will be shown or not, depending on the parent question.
-    showingSubquestion(q: Question) {
+    showingQuestion(q: Question) {
+        if (!this.colectivesService.userColectives.includes(q.tag)) {
+            return { display: 'none' };
+        }
+
         if (!q.options.subquestionOf) {
             return;
         }
@@ -175,33 +187,56 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
         }
     }
 
+    // Returns true if all the must questions that the user sees are valid
+    public canSubmit() {
+        let mustBeValidQuestions = this.userQ.questions.filter((q) =>
+            this.colectivesService.userColectives.includes(q.tag)
+        );
+
+        let enabled = true;
+        mustBeValidQuestions.forEach((q) => {
+            if (!this.parentForm.controls[q._id].valid) {
+                enabled = false;
+            }
+        });
+        return enabled;
+    }
+
     public submit() {
         this.submitted = true;
 
-        console.log(this.userQ);
         this.userA['questionnaire_ID'] = this.userQ._id;
 
         let answers = [];
 
-        const keys = Object.keys(this.parentForm.value);
+        let mustBeValidQuestions = this.userQ.questions.filter((q) =>
+            this.colectivesService.userColectives.includes(q.tag)
+        );
+        let mustBeValidQuestionsIds = [];
+        mustBeValidQuestions.forEach((q) => {
+            mustBeValidQuestionsIds.push(q._id);
+        });
 
-        for (const _id of keys) {
+        mustBeValidQuestionsIds.forEach((_id) => {
             answers.push({
                 _id,
                 answer:
                     this.parentForm.value[_id] instanceof String
                         ? this.parentForm.value[_id].trim()
                         : this.parentForm.value[_id],
-                questionType: this.userQ.questions.find((q) => q._id == _id)
+                questionType: mustBeValidQuestions.find((q) => q._id == _id)
                     .type,
             });
-        }
+        });
 
         this.userA['questionnaire'] = this.userQ;
         this.userA['answers'] = answers;
 
         this.storage.set('userQ', this.userQ);
         this.storage.set('userA', this.userA);
+
+        console.log('Nuevo registro de usuario o editado:', this.userA);
+
         if (this.firstRegister) {
             this.storage.set('registered', true);
             this.navCtrl.navigateBack('home');

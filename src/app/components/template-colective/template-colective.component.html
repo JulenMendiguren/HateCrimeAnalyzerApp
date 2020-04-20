@@ -1,0 +1,32 @@
+<div [formGroup]="parentForm">
+    <ion-label
+        >{{ question['text_' + lang] }}
+        <span class="error-message">
+            *
+        </span></ion-label
+    >
+
+    <ion-item>
+        <ion-label> Select options</ion-label>
+        <ion-select
+            (ionChange)="colSelected($event)"
+            multiple="true"
+            formControlName="{{ question._id }}"
+        >
+            <ng-container *ngFor="let col of colectives">
+                <ion-select-option value="{{ col._id }}">{{
+                    col['text_' + lang]
+                }}</ion-select-option>
+            </ng-container>
+        </ion-select>
+    </ion-item>
+
+    <div *ngFor="let error of errorMessages[question._id]">
+        <ng-container *ngIf="showingErrors(error.type)">
+            <div class="error-message">
+                <ion-icon name="alert" size="small"></ion-icon
+                >{{ error.message }}
+            </div>
+        </ng-container>
+    </div>
+</div>

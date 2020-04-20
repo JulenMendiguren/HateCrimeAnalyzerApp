@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ip } from './ip.js';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class ApiService {
     constructor(private http: HttpClient) {}
@@ -11,8 +11,8 @@ export class ApiService {
     // Http Options
     httpOptions = {
         headers: new HttpHeaders({
-            'Content-Type': 'application/json'
-        })
+            'Content-Type': 'application/json',
+        }),
     };
 
     getLastUserQ() {
@@ -27,6 +27,12 @@ export class ApiService {
         return this.http.get(url);
     }
 
+    getAllColectives() {
+        let url = 'http://' + ip + '/api/colective/all';
+        console.log(url);
+        return this.http.get(url);
+    }
+
     postReport(reportJSON) {
         let url = 'http://' + ip + '/api/answer/one';
         console.log(url);
@@ -35,9 +41,9 @@ export class ApiService {
 
         const httpOptions = {
             headers: new HttpHeaders({
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             }),
-            statusObserve
+            statusObserve,
         };
 
         return this.http.post(url, reportJSON, httpOptions);

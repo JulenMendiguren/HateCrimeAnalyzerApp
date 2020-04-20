@@ -8,6 +8,7 @@ export interface Question {
     text_fr: string;
     category: string;
     type: string;
+    tag: string;
     possibleAnswers: string[];
     options: Options;
 }

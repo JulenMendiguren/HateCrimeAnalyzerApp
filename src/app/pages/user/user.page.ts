@@ -5,27 +5,31 @@ import { Question } from 'src/app/components/question.model';
 import { format } from 'date-fns';
 import { TranslateService } from '@ngx-translate/core';
 import { ApiService } from 'src/app/services/api.service';
+import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
     selector: 'app-user',
     templateUrl: './user.page.html',
-    styleUrls: ['./user.page.scss']
+    styleUrls: ['./user.page.scss'],
 })
 export class UserPage implements OnInit {
     userQ;
     userA;
+    lang: string;
     updateAvaliable: boolean = false;
     constructor(
         private storage: Storage,
         private api: ApiService,
         private route: ActivatedRoute,
         private translate: TranslateService,
-        private router: Router
+        private router: Router,
+        private languageService: LanguageService
     ) {}
 
     ngOnInit() {
         this.userQ = this.route.snapshot.data['userQ'];
         this.userA = this.route.snapshot.data['userA'];
+        this.lang = this.languageService.selected;
         this.checkIfUpdateAvaliable();
     }
 
@@ -46,7 +50,9 @@ export class UserPage implements OnInit {
     getAnswer(q: Question) {
         let answerString: string;
 
-        const found = this.userA.answers.find(element => element._id == q._id);
+        const found = this.userA.answers.find(
+            (element) => element._id == q._id
+        );
 
         if (!found) {
             return answerString;
@@ -73,7 +79,7 @@ export class UserPage implements OnInit {
     }
 
     hasAnswer(Q_ID: string) {
-        const found = this.userA.answers.find(element => element._id == Q_ID);
+        const found = this.userA.answers.find((element) => element._id == Q_ID);
         return found && found.answer ? true : false;
     }
 
@@ -150,7 +156,7 @@ export class UserPage implements OnInit {
     }
 
     checkIfUpdateAvaliable() {
-        this.api.getLastUserQ().subscribe(last => {
+        this.api.getLastUserQ().subscribe((last) => {
             if (last[0]._id != this.userQ._id) {
                 console.log('update avaliable');
                 this.updateAvaliable = true;

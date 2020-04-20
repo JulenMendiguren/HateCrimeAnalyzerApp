@@ -4,27 +4,30 @@ import { ConfirmExitGuard } from './services/confirm-exit.guard';
 import { UserQResolverService } from './services/resolvers/user-q-resolver.service';
 import { UserAResolverService } from './services/resolvers/user-a-resolver.service';
 import { ReportResolverService } from './services/resolvers/report-resolver.service';
+import { ColectivesResolverService } from './services/resolvers/colectives.service';
 
 const routes: Routes = [
     {
         path: '',
         redirectTo: 'home',
-        pathMatch: 'full'
+        pathMatch: 'full',
     },
     {
         path: 'home',
 
         loadChildren: () =>
-            import('./home/home.module').then(m => m.HomePageModule)
+            import('./home/home.module').then((m) => m.HomePageModule),
     },
     {
         path: 'report',
         resolve: {
             reportQ: ReportResolverService,
-            userA: UserAResolverService
+            userA: UserAResolverService,
         },
         loadChildren: () =>
-            import('./pages/report/report.module').then(m => m.ReportPageModule)
+            import('./pages/report/report.module').then(
+                (m) => m.ReportPageModule
+            ),
     },
     {
         path: 'user',
@@ -34,39 +37,41 @@ const routes: Routes = [
                 path: 'user-quest/:update',
                 resolve: {
                     userQ: UserQResolverService,
-                    userA: UserAResolverService
+                    userA: UserAResolverService,
+                    colectives: ColectivesResolverService,
                 },
                 loadChildren: () =>
                     import('./pages/user-quest/user-quest.module').then(
-                        m => m.UserQuestPageModule
-                    )
+                        (m) => m.UserQuestPageModule
+                    ),
             },
             {
                 path: '',
                 resolve: {
                     userQ: UserQResolverService,
-                    userA: UserAResolverService
+                    userA: UserAResolverService,
+                    colectives: ColectivesResolverService,
                 },
                 loadChildren: () =>
                     import('./pages/user/user.module').then(
-                        m => m.UserPageModule
-                    )
-            }
-        ]
+                        (m) => m.UserPageModule
+                    ),
+            },
+        ],
     },
     {
         path: 'welcome-slides',
         loadChildren: () =>
             import('./pages/welcome-slides/welcome-slides.module').then(
-                m => m.WelcomeSlidesPageModule
-            )
-    }
+                (m) => m.WelcomeSlidesPageModule
+            ),
+    },
 ];
 
 @NgModule({
     imports: [
-        RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+        RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
     ],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
 export class AppRoutingModule {}

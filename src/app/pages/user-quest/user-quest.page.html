@@ -15,7 +15,7 @@
         <ng-container *ngFor="let question of userQ.questions">
             <ng-container [ngSwitch]="question.type">
                 <app-template-textbox
-                    [ngStyle]="showingSubquestion(question)"
+                    [ngStyle]="showingQuestion(question)"
                     *ngSwitchCase="'textbox'"
                     [question]="question"
                     [parentForm]="parentForm"
@@ -23,7 +23,7 @@
                 ></app-template-textbox>
 
                 <app-template-number
-                    [ngStyle]="showingSubquestion(question)"
+                    [ngStyle]="showingQuestion(question)"
                     *ngSwitchCase="'number'"
                     [question]="question"
                     [parentForm]="parentForm"
@@ -32,14 +32,14 @@
                 </app-template-number>
 
                 <app-template-likert
-                    [ngStyle]="showingSubquestion(question)"
+                    [ngStyle]="showingQuestion(question)"
                     *ngSwitchCase="'likert'"
                     [question]="question"
                     [parentForm]="parentForm"
                 ></app-template-likert>
 
                 <app-template-datetime
-                    [ngStyle]="showingSubquestion(question)"
+                    [ngStyle]="showingQuestion(question)"
                     *ngSwitchCase="'datetime'"
                     [question]="question"
                     [parentForm]="parentForm"
@@ -47,30 +47,38 @@
                 ></app-template-datetime>
 
                 <app-template-yesno
-                    [ngStyle]="showingSubquestion(question)"
+                    [ngStyle]="showingQuestion(question)"
                     *ngSwitchCase="'yesno'"
                     [question]="question"
                     [parentForm]="parentForm"
                 ></app-template-yesno>
 
                 <app-template-radio
-                    [ngStyle]="showingSubquestion(question)"
+                    [ngStyle]="showingQuestion(question)"
                     *ngSwitchCase="'radio'"
                     [question]="question"
                     [parentForm]="parentForm"
                 ></app-template-radio>
 
                 <app-template-multiselect
-                    [ngStyle]="showingSubquestion(question)"
+                    [ngStyle]="showingQuestion(question)"
                     *ngSwitchCase="'multiselect'"
                     [question]="question"
                     [parentForm]="parentForm"
                     [errorMessages]="errorMessages"
                 ></app-template-multiselect>
 
+                <app-template-colective
+                    *ngSwitchCase="'colective'"
+                    [question]="question"
+                    [parentForm]="parentForm"
+                    [errorMessages]="errorMessages"
+                    [colectives]="colectives"
+                ></app-template-colective>
+
                 <ng-container
                     *ngSwitchCase="'geolocation'"
-                    [ngStyle]="showingSubquestion(question)"
+                    [ngStyle]="showingQuestion(question)"
                 >
                     <ion-label
                         >{{question['text'+lang]}}
@@ -92,7 +100,7 @@
             </ng-container>
         </ng-container>
         <ion-button
-            [disabled]="!parentForm.valid"
+            [disabled]="!canSubmit()"
             type="submit"
             expand="block"
             shape="round"

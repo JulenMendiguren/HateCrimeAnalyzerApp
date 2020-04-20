@@ -11,6 +11,7 @@ import { TemplateYesnoComponent } from './template-yesno/template-yesno.componen
 import { TemplateMultiselectComponent } from './template-multiselect/template-multiselect.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { GoogleMapsPage } from '../pages/google-maps/google-maps.page';
+import { TemplateColectiveComponent } from './template-colective/template-colective.component';
 
 @NgModule({
     imports: [CommonModule, IonicModule, ReactiveFormsModule, TranslateModule],
@@ -22,7 +23,8 @@ import { GoogleMapsPage } from '../pages/google-maps/google-maps.page';
         TemplateRadioComponent,
         TemplateYesnoComponent,
         TemplateMultiselectComponent,
-        GoogleMapsPage
+        TemplateColectiveComponent,
+        GoogleMapsPage,
     ],
     exports: [
         TemplateTextboxComponent,
@@ -31,8 +33,9 @@ import { GoogleMapsPage } from '../pages/google-maps/google-maps.page';
         TemplateDatetimeComponent,
         TemplateRadioComponent,
         TemplateYesnoComponent,
-        TemplateMultiselectComponent
+        TemplateMultiselectComponent,
+        TemplateColectiveComponent,
     ],
-    entryComponents: [GoogleMapsPage]
+    entryComponents: [GoogleMapsPage],
 })
 export class MyComponentsModule {}
