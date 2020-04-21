@@ -221,10 +221,8 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
         mustBeValidQuestionsIds.forEach((_id) => {
             answers.push({
                 _id,
-                answer:
-                    this.parentForm.value[_id] instanceof String
-                        ? this.parentForm.value[_id].trim()
-                        : this.parentForm.value[_id],
+                answer: this.parentForm.value[_id],
+
                 questionType: mustBeValidQuestions.find((q) => q._id == _id)
                     .type,
             });

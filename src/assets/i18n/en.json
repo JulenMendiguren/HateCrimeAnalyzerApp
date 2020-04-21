@@ -1,6 +1,6 @@
 {
-    "test": "this is a test msg",
     "REPORT": {
+        "title": "Fill in a report",
         "toast_report_sent": "Your report has been sent"
     },
     "USER": {

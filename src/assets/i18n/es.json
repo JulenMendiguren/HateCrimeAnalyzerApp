@@ -1,6 +1,6 @@
 {
-    "test": "este es un mensaje de prueba",
     "REPORT": {
+        "title": "Crear un reporte",
         "toast_report_sent": "Tu reporte ha sido enviado"
     },
     "USER": {

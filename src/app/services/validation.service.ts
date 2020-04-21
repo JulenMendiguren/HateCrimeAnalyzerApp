@@ -3,13 +3,13 @@ import {
     FormGroup,
     FormBuilder,
     Validators,
-    FormControl
+    FormControl,
 } from '@angular/forms';
 import { Question } from '../components/question.model';
 import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class ValidationService {
     constructor(private fb: FormBuilder, private translate: TranslateService) {}
@@ -19,7 +19,7 @@ export class ValidationService {
         let parentForm;
         let errorMessages = {};
 
-        questions.forEach(question => {
+        questions.forEach((question) => {
             let questionValidators = [];
             let questionErrors = [];
             let defaultValue = null;
@@ -31,7 +31,7 @@ export class ValidationService {
                     .subscribe((msg: string) => {
                         questionErrors.push({
                             type: 'required',
-                            message: msg
+                            message: msg,
                         });
                     });
             }
@@ -49,7 +49,7 @@ export class ValidationService {
                         .subscribe((msg: string) => {
                             questionErrors.push({
                                 type: 'pattern',
-                                message: msg
+                                message: msg,
                             });
                         });
                 }
@@ -61,12 +61,12 @@ export class ValidationService {
                 );
                 this.translate
                     .get('error_messages.minLength', {
-                        value: question.options.minLength
+                        value: question.options.minLength,
                     })
                     .subscribe((msg: string) => {
                         questionErrors.push({
                             type: 'minlength',
-                            message: msg
+                            message: msg,
                         });
                     });
             }
@@ -76,12 +76,12 @@ export class ValidationService {
                 );
                 this.translate
                     .get('error_messages.maxLength', {
-                        value: question.options.maxLength
+                        value: question.options.maxLength,
                     })
                     .subscribe((msg: string) => {
                         questionErrors.push({
                             type: 'maxlength',
-                            message: msg
+                            message: msg,
                         });
                     });
             }
@@ -93,12 +93,12 @@ export class ValidationService {
                 );
                 this.translate
                     .get('error_messages.min', {
-                        value: question.options.minValue
+                        value: question.options.minValue,
                     })
                     .subscribe((msg: string) => {
                         questionErrors.push({
                             type: 'min',
-                            message: msg
+                            message: msg,
                         });
                     });
             }
@@ -108,12 +108,12 @@ export class ValidationService {
                 );
                 this.translate
                     .get('error_messages.max', {
-                        value: question.options.maxValue
+                        value: question.options.maxValue,
                     })
                     .subscribe((msg: string) => {
                         questionErrors.push({
                             type: 'max',
-                            message: msg
+                            message: msg,
                         });
                     });
             }
@@ -126,8 +126,7 @@ export class ValidationService {
         parentForm = this.fb.group(formGroupData);
         console.log(parentForm.value);
 
-        parentForm.valueChanges.subscribe(newVal => console.log(newVal));
-        parentForm.statusChanges.subscribe(newStatus => console.log(newStatus));
+        parentForm.valueChanges.subscribe((newVal) => console.log(newVal));
 
         return [parentForm, errorMessages];
     }

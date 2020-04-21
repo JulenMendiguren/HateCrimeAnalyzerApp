@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Question } from 'src/app/components/question.model';
 import { FormGroup } from '@angular/forms';
 import { ValidationService } from 'src/app/services/validation.service';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 import {
     ModalController,
     AlertController,
@@ -13,8 +14,9 @@ import { GoogleMapsPage } from '../google-maps/google-maps.page';
 import { CanComponentDeactivate } from 'src/app/services/confirm-exit.guard';
 import { TranslateService } from '@ngx-translate/core';
 import { ApiService } from 'src/app/services/api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LanguageService } from 'src/app/services/language.service';
+import { ColectivesService } from 'src/app/services/colectives.service';
 
 @Component({
     selector: 'app-report',
@@ -25,6 +27,8 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
     public questions: Question[] = [];
     public lang: String;
     public submitted = false;
+    autoPlaceAndDate: boolean;
+    colectives;
     public reportQ;
     public userA;
     public jsonLoaded = false;
@@ -37,21 +41,57 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
         private navCtrl: NavController,
         private modalController: ModalController,
         private alertController: AlertController,
+        private geolocation: Geolocation,
         private translate: TranslateService,
         private api: ApiService,
         private toastController: ToastController,
-        private languageService: LanguageService
+        private languageService: LanguageService,
+        private colectivesService: ColectivesService
     ) {}
 
     ngOnInit() {
         this.lang = this.languageService.selected;
+
+        this.autoPlaceAndDate =
+            this.route.snapshot.paramMap.get('auto') == 'auto' ? true : false;
 
         this.reportQ = this.route.snapshot.data['reportQ'][0];
         this.questions = this.reportQ.questions;
 
         this.userA = this.route.snapshot.data['userA'];
 
+        this.colectives = this.route.snapshot.data['colectives'];
+        this.colectivesService.setAllColectives(this.colectives);
+        this.colectivesService.loadColectivesFromStorage();
+
         this.setValidators();
+
+        if (this.autoPlaceAndDate) {
+            this.setAutoPlaceAndDate();
+        }
+    }
+
+    // Sets current pos and date to the respective question validator
+    setAutoPlaceAndDate() {
+        let now = new Date();
+        let nowString = now.toISOString();
+
+        // q._id are hardcoded, find better solution, maybe??
+        this.parentForm.controls['5e9dc31893a510057385e772'].setValue(
+            nowString
+        );
+
+        this.geolocation
+            .getCurrentPosition()
+            .then((resp) => {
+                let pos = resp.coords.latitude + ',' + resp.coords.longitude;
+                this.parentForm.controls['5e9dc343b6022105820960de'].setValue(
+                    pos
+                );
+            })
+            .catch((error) => {
+                console.log('Error getting location', error);
+            });
     }
 
     // Carga el json con las preguntas, en un futuro llamará al service para hacer una petición http
@@ -156,8 +196,26 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
         return promise;
     }
 
+    // Will be shown if it has a valid tag
     // If its a subquestion, it will be shown or not, depending on the parent question.
-    showingSubquestion(q: Question) {
+    showingQuestion(q: Question) {
+        if (!this.colectivesService.userColectives.includes(q.tag)) {
+            return { display: 'none' };
+        }
+        if (
+            this.autoPlaceAndDate &&
+            q._id == '5e9dc31893a510057385e772' &&
+            this.parentForm.controls['5e9dc31893a510057385e772'].valid
+        ) {
+            return { display: 'none' };
+        }
+        if (
+            this.autoPlaceAndDate &&
+            q._id == '5e9dc343b6022105820960de' &&
+            this.parentForm.controls['5e9dc343b6022105820960de'].valid
+        ) {
+            return { display: 'none' };
+        }
         if (!q.options.subquestionOf) {
             return;
         }
@@ -185,6 +243,21 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
         }
     }
 
+    // Returns true if all the must questions that the user sees are valid
+    public canSubmit() {
+        let mustBeValidQuestions = this.reportQ.questions.filter((q) =>
+            this.colectivesService.userColectives.includes(q.tag)
+        );
+
+        let enabled = true;
+        mustBeValidQuestions.forEach((q) => {
+            if (!this.parentForm.controls[q._id].valid) {
+                enabled = false;
+            }
+        });
+        return enabled;
+    }
+
     public submit() {
         console.log('-----> SUBMITTED');
         this.submitted = true;
@@ -193,24 +266,29 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
 
         let answers = [];
 
-        const keys = Object.keys(this.parentForm.value);
+        let mustBeValidQuestions = this.reportQ.questions.filter((q) =>
+            this.colectivesService.userColectives.includes(q.tag)
+        );
+        let mustBeValidQuestionsIds = [];
+        mustBeValidQuestions.forEach((q) => {
+            mustBeValidQuestionsIds.push(q._id);
+        });
 
-        for (const _id of keys) {
+        mustBeValidQuestionsIds.forEach((_id) => {
             answers.push({
                 _id,
-                answer:
-                    this.parentForm.value[_id] instanceof String
-                        ? this.parentForm.value[_id].trim()
-                        : this.parentForm.value[_id],
-                questionType: this.reportQ.questions.find((q) => q._id == _id)
+                answer: this.parentForm.value[_id],
+
+                questionType: mustBeValidQuestions.find((q) => q._id == _id)
                     .type,
             });
-        }
+        });
 
         reportJSON['questionnaire'] = this.reportQ;
         reportJSON['answers'] = answers;
         reportJSON['userQuestionnaire'] = this.userA.questionnaire;
         reportJSON['userAnswers'] = this.userA.answers;
+        reportJSON['userCol'] = this.colectivesService.userColectives;
 
         console.log('FULL JSON ', reportJSON);
 

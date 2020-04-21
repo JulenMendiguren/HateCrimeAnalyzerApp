@@ -19,10 +19,11 @@ const routes: Routes = [
             import('./home/home.module').then((m) => m.HomePageModule),
     },
     {
-        path: 'report',
+        path: 'report/:auto',
         resolve: {
             reportQ: ReportResolverService,
             userA: UserAResolverService,
+            colectives: ColectivesResolverService,
         },
         loadChildren: () =>
             import('./pages/report/report.module').then(

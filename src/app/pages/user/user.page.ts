@@ -115,13 +115,11 @@ export class UserPage implements OnInit {
     }
 
     getColectiveAnswer(ansObj): string {
-        console.log('Entra en getColectiveAnswer');
         let answerString: string = '';
         ansObj.answer.forEach((colId) => {
             const col = this.colectivesService.allColectives.find(
                 (col) => col._id == colId
             );
-            console.log('col', colId, this.colectivesService.allColectives);
             if (col) {
                 answerString = answerString + col['text_' + this.lang] + '<br>';
             }

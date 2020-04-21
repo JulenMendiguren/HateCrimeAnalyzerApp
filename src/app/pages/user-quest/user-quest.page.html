@@ -76,7 +76,7 @@
                     [colectives]="colectives"
                 ></app-template-colective>
 
-                <ng-container
+                <div
                     *ngSwitchCase="'geolocation'"
                     [ngStyle]="showingQuestion(question)"
                 >
@@ -94,7 +94,7 @@
                             [className]="parentForm.controls[question._id].valid ? 'tick-showing': 'tick-hidden'"
                         ></ion-icon>
                     </ion-item>
-                </ng-container>
+                </div>
 
                 <div *ngSwitchDefault>ELSE: {{question.text}}</div>
             </ng-container>
