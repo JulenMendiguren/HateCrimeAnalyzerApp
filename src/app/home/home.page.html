@@ -7,22 +7,24 @@
 </ion-header>
 
 <ion-content>
-    <div class="ion-padding">
+    <div class="ion-padding" style="margin-top: 7em;">
         <h1 align="center">Hate Crime Analyzer</h1>
     </div>
 
-    <ion-button style="margin-top: 15em;" expand="block" (click)="goToReport()"
-        >Report</ion-button
+    <ion-button style="margin-top: 7em;" expand="block" (click)="goToReport()"
+        >Reportar incidente anterior</ion-button
     >
     <br />
     <ion-button expand="block" (click)="goToReportAutoPlaceAndDate()"
-        >Report here and now</ion-button
+        >Reportar incidente que acaba de ocurrir aquí</ion-button
     >
     <br />
-    <ion-button expand="block" routerLink="/user">User</ion-button><br />
+    <ion-button expand="block" routerLink="/user"
+        >Información del usuario</ion-button
+    ><br />
     <ion-button expand="block" routerLink="/welcome-slides"
-        >Welcome slides</ion-button
+        >Welcome slides (debug)</ion-button
     >
     <br />
-    <ion-button expand="block">Settings</ion-button>
+    <ion-button expand="block">Ajustes (WIP)</ion-button>
 </ion-content>

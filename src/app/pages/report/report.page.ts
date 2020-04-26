@@ -295,8 +295,11 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
         this.api.postReport(reportJSON).subscribe((res) => {
             console.log(res);
         });
-        this.presentToastReportSent();
-        this.navCtrl.navigateBack('home');
+
+        this.presentAlertThankyou(() => {
+            this.presentToastReportSent();
+            this.navCtrl.navigateBack('home');
+        });
     }
 
     async presentToastReportSent() {
@@ -309,5 +312,32 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
                 });
                 toast.present();
             });
+    }
+
+    async presentAlertThankyou(callback) {
+        let header, message;
+        this.translate
+            .get('dialog.thankyou.header')
+            .subscribe((val: string) => {
+                header = val;
+            });
+        this.translate
+            .get('dialog.thankyou.message')
+            .subscribe((val: string) => {
+                message = val;
+            });
+
+        const alert = await this.alertController.create({
+            header,
+            message,
+            buttons: [
+                {
+                    text: 'OK',
+                    handler: () => callback(),
+                },
+            ],
+        });
+
+        await alert.present();
     }
 }

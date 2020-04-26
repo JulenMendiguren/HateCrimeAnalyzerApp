@@ -238,7 +238,7 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
 
         if (this.firstRegister) {
             this.storage.set('registered', true);
-            this.navCtrl.navigateBack('home');
+            this.navCtrl.navigateForward('home');
         } else {
             this.navCtrl.navigateBack('user');
         }

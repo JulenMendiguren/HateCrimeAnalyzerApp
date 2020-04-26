@@ -41,6 +41,14 @@
             "message": "De verdad quieres salir?",
             "cancel": "Cancelar",
             "yes": "Sí"
+        },
+        "warning": {
+            "header": "Recuerde",
+            "message": "Esta no es una app de ayuda o emergencia, sino de recopilación de datos sobre delitos de odio. Si está en peligro o quiere denunciar un delito llame al 112, o póngase en contacto con la comisaría de policía más cercana."
+        },
+        "thankyou": {
+            "header": "¡Gracias!",
+            "message": "¡Gracias por confiar en nosotros y reportar un incidente con Hate Crime Analyzer!"
         }
     }
 }
