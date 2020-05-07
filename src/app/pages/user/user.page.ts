@@ -148,7 +148,7 @@ export class UserPage implements OnInit {
 
     checkIfUpdateAvaliable() {
         this.api.getLastUserQ().subscribe((last) => {
-            if (last[0]._id != this.userQ._id) {
+            if (last['_id'] != this.userQ._id) {
                 console.log('update avaliable');
                 this.updateAvaliable = true;
             } else {

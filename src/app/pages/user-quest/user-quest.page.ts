@@ -46,9 +46,7 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
     ngOnInit() {
         this.lang = this.languageService.selected;
 
-        this.userQ = Array.isArray(this.route.snapshot.data['userQ'])
-            ? this.route.snapshot.data['userQ'][0]
-            : this.route.snapshot.data['userQ'];
+        this.userQ = this.route.snapshot.data['userQ'];
 
         this.colectives = this.route.snapshot.data['colectives'];
         this.colectivesService.setAllColectives(this.colectives);

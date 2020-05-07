@@ -55,7 +55,7 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
         this.autoPlaceAndDate =
             this.route.snapshot.paramMap.get('auto') == 'auto' ? true : false;
 
-        this.reportQ = this.route.snapshot.data['reportQ'][0];
+        this.reportQ = this.route.snapshot.data['reportQ'];
         this.questions = this.reportQ.questions;
 
         this.userA = this.route.snapshot.data['userA'];
