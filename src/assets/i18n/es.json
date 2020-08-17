@@ -50,5 +50,8 @@
             "header": "¡Gracias!",
             "message": "¡Gracias por confiar en nosotros y reportar un incidente con Hate Crime Analyzer!"
         }
+    },
+    "SETTINGS": {
+        "title": "Ajustes"
     }
 }

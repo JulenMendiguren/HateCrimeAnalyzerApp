@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ 'SETTINGS.title' |translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <div class="delete-info">
+      <h4>Borrar toda la información de usuario y reestablecer ajustes por defecto</h4>
+      <ion-button color="danger" (click)="deleteUserData()">OK</ion-button>
+    </div>
+    <div class="lang-select">
+      <h4>Seleccionar el lenguaje de la aplicación</h4>
+      <ion-item>
+        <ion-select placeholder="Select One" (ionChange)="onLangChanged($event)">
+          <ion-select-option value="eu">Euskara</ion-select-option>
+          <ion-select-option value="es">Español</ion-select-option>
+          <ion-select-option value="en">English</ion-select-option>
+          <ion-select-option value="fr">Français</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+
+  </div>
+</ion-content>

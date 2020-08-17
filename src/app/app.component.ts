@@ -10,7 +10,7 @@ import { Storage } from '@ionic/storage';
 @Component({
     selector: 'app-root',
     templateUrl: 'app.component.html',
-    styleUrls: ['app.component.scss']
+    styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
     constructor(
@@ -30,7 +30,7 @@ export class AppComponent {
             this.splashScreen.hide();
             this.languageService.setInitialAppLanguage();
 
-            this.storage.get('registered').then(val => {
+            this.storage.get('registered').then((val) => {
                 if (!val) {
                     this.router.navigateByUrl('welcome-slides');
                 }
