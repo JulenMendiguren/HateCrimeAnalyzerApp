@@ -30,10 +30,19 @@ export class AppComponent {
             this.splashScreen.hide();
             this.languageService.setInitialAppLanguage();
 
-            this.storage.get('registered').then((val) => {
-                if (!val) {
-                    this.router.navigateByUrl('welcome-slides');
+            this.storage.get('password').then((pw) => {
+                if (pw) {
+                    this.router.navigateByUrl('login');
                 }
+                this.storage.get('registered').then((val) => {
+                    if (!val) {
+                        this.router.navigateByUrl('welcome-slides');
+                    }
+                });
+            });
+
+            this.platform.pause.subscribe(() => {
+                this.router.navigateByUrl('login');
             });
         });
     }

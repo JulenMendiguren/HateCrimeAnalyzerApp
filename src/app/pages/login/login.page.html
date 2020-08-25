@@ -1,0 +1,15 @@
+<ion-content>
+  <h2 *ngIf="!settingPassword">Log in</h2>
+
+  <ion-text *ngIf="settingPassword">Set a password to unlock the app (leave blank to disable this feature)</ion-text>
+  <ion-item>
+    <ion-label position="floating">Password</ion-label>
+    <ion-input [(ngModel)]="inputValue" type="password"></ion-input>
+  </ion-item>
+  <ion-button *ngIf="!settingPassword" (click)="onLoginClick()">Login</ion-button>
+  <ion-button *ngIf="settingPassword" (click)="onSetPassword()">Set password</ion-button>
+</ion-content>
+
+<ion-footer>
+  <ion-button *ngIf="!settingPassword" color="danger" (click)="deleteUserData()">Delete info</ion-button>
+</ion-footer>

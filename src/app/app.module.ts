@@ -15,6 +15,8 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
+import { LoginPageModule } from './pages/login/login.module';
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -43,6 +45,7 @@ export function createTranslateLoader(http: HttpClient) {
         StatusBar,
         SplashScreen,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+        FingerprintAIO,
     ],
     bootstrap: [AppComponent],
 })

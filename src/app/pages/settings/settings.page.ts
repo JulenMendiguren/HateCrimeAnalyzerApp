@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LanguageService } from 'src/app/services/language.service';
 import { Storage } from '@ionic/storage';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
     selector: 'app-settings',
@@ -25,5 +25,14 @@ export class SettingsPage implements OnInit {
         this.storage.clear().then(() => {
             this.router.navigateByUrl('welcome-slides');
         });
+    }
+
+    setPassword() {
+        const navigationExtras: NavigationExtras = {
+            state: {
+                settingPassword: true,
+            },
+        };
+        this.router.navigate(['login'], navigationExtras);
     }
 }
