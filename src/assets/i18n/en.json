@@ -53,5 +53,8 @@
     },
     "SETTINGS": {
         "title": "Settings"
+    },
+    "LOGIN": {
+        "incorrect_pw": "Incorrect password"
     }
 }

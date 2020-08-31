@@ -53,5 +53,8 @@
     },
     "SETTINGS": {
         "title": "Ajustes"
+    },
+    "LOGIN": {
+        "incorrect_pw": "Contraseña Incorrecta"
     }
 }

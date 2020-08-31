@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
-import { NavController } from '@ionic/angular';
+import { NavController, Platform, ToastController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-login',
@@ -13,11 +14,17 @@ export class LoginPage implements OnInit {
     constructor(
         private faio: FingerprintAIO,
         private router: Router,
+        private platform: Platform,
         private navCtrl: NavController,
-        private storage: Storage
+        private storage: Storage,
+        private toastController: ToastController,
+        private translate: TranslateService
     ) {
         if (this.router.getCurrentNavigation().extras.state) {
             this.settingPassword = this.router.getCurrentNavigation().extras.state.settingPassword;
+        }
+        if (!this.settingPassword) {
+            this.platform.backButton.subscribeWithPriority(10, () => {});
         }
     }
 
@@ -35,9 +42,17 @@ export class LoginPage implements OnInit {
             if (this.inputValue === storedPw) {
                 this.login();
             } else {
-                console.log('Incorrect password!');
+                this.presentToast();
             }
         });
+    }
+
+    async presentToast() {
+        const toast = await this.toastController.create({
+            message: this.translate.instant('LOGIN.incorrect_pw'),
+            duration: 2000,
+        });
+        toast.present();
     }
 
     onSetPassword() {

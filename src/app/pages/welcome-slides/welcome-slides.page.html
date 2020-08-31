@@ -6,10 +6,7 @@
             <h2 style="margin-top: 11em;">Por favor, elige un idioma:</h2>
             <ion-item>
                 <ion-label>Language</ion-label>
-                <ion-select
-                    placeholder="Select One"
-                    (ionChange)="onLangChanged($event)"
-                >
+                <ion-select placeholder="Select One" (ionChange)="onLangChanged($event)">
                     <ion-select-option value="eu">Euskara</ion-select-option>
                     <ion-select-option value="es">Español</ion-select-option>
                     <ion-select-option value="en">English</ion-select-option>
@@ -56,14 +53,10 @@
                 odio.
             </p>
 
-            <ion-button
-                style="margin-top: 10em;"
-                fill="none"
-                (click)="onRegisterClick()"
-                [disabled]="!langSelected"
-                >Registrarse!
-                <ion-icon slot="end" name="arrow-forward"></ion-icon
-            ></ion-button>
+            <ion-button style="margin-top: 10em;" fill="none" (click)="onRegisterClick()" [disabled]="!langSelected">
+                Registrarse!
+                <ion-icon slot="end" name="arrow-forward"></ion-icon>
+            </ion-button>
         </ion-slide>
     </ion-slides>
 </ion-content>

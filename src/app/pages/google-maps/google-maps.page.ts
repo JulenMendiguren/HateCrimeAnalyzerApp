@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import {
     ModalController,
     LoadingController,
-    ToastController
+    ToastController,
 } from '@ionic/angular';
 import {
     GoogleMaps,
@@ -14,14 +14,14 @@ import {
     Marker,
     Environment,
     LocationService,
-    LatLng
+    LatLng,
 } from '@ionic-native/google-maps';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-google-maps',
     templateUrl: './google-maps.page.html',
-    styleUrls: ['./google-maps.page.scss']
+    styleUrls: ['./google-maps.page.scss'],
 })
 export class GoogleMapsPage implements OnInit {
     @Input() markerCoordsString: string;
@@ -64,7 +64,7 @@ export class GoogleMapsPage implements OnInit {
                 });
             } else {
                 console.log('No hay old pos');
-                LocationService.getMyLocation().then(loc => {
+                LocationService.getMyLocation().then((loc) => {
                     this.mapCoords = loc.latLng;
                     this.loadMap().then(() => {
                         console.log('LoadCoordinates terminado');
@@ -82,20 +82,20 @@ export class GoogleMapsPage implements OnInit {
                 API_KEY_FOR_BROWSER_RELEASE:
                     'AIzaSyDXrqgEtyMJVBaBuxInwZXR4CQDraSK1ZA',
                 API_KEY_FOR_BROWSER_DEBUG:
-                    'AIzaSyDXrqgEtyMJVBaBuxInwZXR4CQDraSK1ZA'
+                    'AIzaSyDXrqgEtyMJVBaBuxInwZXR4CQDraSK1ZA',
             });
 
             const mapOptions: GoogleMapOptions = {
                 camera: {
                     target: this.mapCoords,
                     zoom: 18,
-                    tilt: 30
-                }
+                    tilt: 30,
+                },
             };
 
             this.map = GoogleMaps.create('map_canvas', mapOptions);
 
-            this.map.on(GoogleMapsEvent.MAP_CLICK).subscribe(latlng => {
+            this.map.on(GoogleMapsEvent.MAP_CLICK).subscribe((latlng) => {
                 this.markerCoords = latlng[0];
                 if (this.marker) {
                     console.log('Hay marker, lo mueve.');
@@ -114,7 +114,7 @@ export class GoogleMapsPage implements OnInit {
         this.marker = this.map.addMarkerSync({
             title: 'Chosen place',
             icon: 'red',
-            position: this.markerCoords
+            position: this.markerCoords,
         });
     }
 
@@ -130,7 +130,7 @@ export class GoogleMapsPage implements OnInit {
 
     async presentLoading() {
         const loading = await this.loadingController.create({
-            message: 'Loading map...'
+            message: 'Loading map...',
         });
         await loading.present();
         await this.loadCoordinates();
@@ -144,7 +144,7 @@ export class GoogleMapsPage implements OnInit {
             .subscribe(async (msg: string) => {
                 const toast = await this.toastController.create({
                     message: msg,
-                    duration: 3000
+                    duration: 3000,
                 });
                 toast.present();
             });
