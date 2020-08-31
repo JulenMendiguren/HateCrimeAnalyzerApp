@@ -42,7 +42,11 @@ export class AppComponent {
             });
 
             this.platform.pause.subscribe(() => {
-                this.router.navigateByUrl('login');
+                this.storage.get('password').then((pw) => {
+                    if (pw) {
+                        this.router.navigateByUrl('login');
+                    }
+                });
             });
         });
     }
