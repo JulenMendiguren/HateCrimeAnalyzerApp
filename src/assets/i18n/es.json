@@ -17,7 +17,8 @@
         "max": "El máximo valor de este campo es {{value}}"
     },
     "geolocation": {
-        "saved_position": "La posición seleccionada se ha guardado."
+        "saved_position": "La posición seleccionada se ha guardado.",
+        "loading": "Loading..."
     },
     "likert": {
         "sd": "Muy en desacuerdo",
@@ -55,6 +56,12 @@
         "title": "Ajustes"
     },
     "LOGIN": {
-        "incorrect_pw": "Contraseña Incorrecta"
+        "incorrect_pw": "Contraseña Incorrecta",
+        "forgotten_pw": "¿Has olvidado la contraseña?",
+        "restore": "Reestablecer App",
+        "title": "Iniciar Sesión",
+        "password": "Contraseña",
+        "set_pw_desc": "Establece una contraseña para desbloquear la aplicación (En blanco para deshabilitar esta función)",
+        "set_pw": "Establecer contraseña"
     }
 }

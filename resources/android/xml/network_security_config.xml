@@ -2,6 +2,6 @@
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">localhost</domain>
-        <domain includeSubdomains="true">85.86.236.77</domain>
+        <domain includeSubdomains="true">85.87.20.196</domain>
     </domain-config>
 </network-security-config>

@@ -1,20 +1,24 @@
 <ion-content>
-  <div class="container">
-    <h2 *ngIf="!settingPassword" style="text-align: center;">Log in</h2>
-    <ion-text *ngIf="settingPassword" style="text-align: center;">Set a password to unlock the app (leave blank to
-      disable this feature)</ion-text>
-    <br>
-    <ion-item>
-      <ion-label position="floating">Password</ion-label>
-      <ion-input [(ngModel)]="inputValue" type="password"></ion-input>
-    </ion-item>
-    <ion-button *ngIf="!settingPassword" (click)="onLoginClick()">Login</ion-button>
-    <ion-button *ngIf="settingPassword" (click)="onSetPassword()">Set password</ion-button>
+  <div class="wrapper">
+    <div class="container">
+      <h2 *ngIf="!settingPassword" style="text-align: center;">{{'LOGIN.title' | translate}}</h2>
+      <ion-text *ngIf="settingPassword" style="text-align: center;">{{'LOGIN.set_pw_desc' | translate}}
+      </ion-text>
+      <br>
+      <ion-item>
+        <ion-label position="floating">{{'LOGIN.password' | translate}}</ion-label>
+        <ion-input [(ngModel)]="inputValue" type="password"></ion-input>
+      </ion-item>
+      <ion-button *ngIf="!settingPassword" (click)="onLoginClick()">{{'LOGIN.title' | translate}}</ion-button>
+      <ion-button *ngIf="settingPassword" (click)="onSetPassword()">{{'LOGIN.set_pw' | translate}}</ion-button>
+    </div>
   </div>
-
 </ion-content>
 
-<ion-footer>
-  <ion-button *ngIf="!settingPassword" color="danger" (click)="deleteUserData()">Delete info
-  </ion-button>
+<ion-footer *ngIf="!settingPassword">
+  <div class="footer">
+    <ion-text>{{'LOGIN.forgotten_pw' | translate}}</ion-text>
+    <ion-button color="danger" (click)="deleteUserData()">{{'LOGIN.restore' | translate}}
+    </ion-button>
+  </div>
 </ion-footer>

@@ -30,3 +30,8 @@
 .alert-checkbox-label.sc-ion-alert-md {
     white-space: normal;
 }
+
+// Allows interacting with the Google map in Android. Otherwise the ion-backdrop of the modal blocks it
+ion-backdrop {
+    visibility: hidden !important;
+}

@@ -126,7 +126,7 @@ export class ValidationService {
         parentForm = this.fb.group(formGroupData);
         console.log(parentForm.value);
 
-        parentForm.valueChanges.subscribe((newVal) => console.log(newVal));
+        // parentForm.valueChanges.subscribe((newVal) => console.log(newVal));
 
         return [parentForm, errorMessages];
     }

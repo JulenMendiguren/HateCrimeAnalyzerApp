@@ -3,6 +3,7 @@ import {
     ModalController,
     LoadingController,
     ToastController,
+    Platform,
 } from '@ionic/angular';
 import {
     GoogleMaps,
@@ -34,10 +35,12 @@ export class GoogleMapsPage implements OnInit {
         private modalController: ModalController,
         private loadingController: LoadingController,
         private toastController: ToastController,
-        private translate: TranslateService
+        private translate: TranslateService,
+        private platform: Platform
     ) {}
 
-    ngOnInit() {
+    async ngOnInit() {
+        await this.platform.ready();
         this.presentLoading();
     }
 
@@ -80,14 +83,17 @@ export class GoogleMapsPage implements OnInit {
             // This code is necessary for browser
             Environment.setEnv({
                 API_KEY_FOR_BROWSER_RELEASE:
-                    'AIzaSyDXrqgEtyMJVBaBuxInwZXR4CQDraSK1ZA',
+                    'AIzaSyDIX2vGHejj97MjhQHR4djCY3GlFI-4fTg',
                 API_KEY_FOR_BROWSER_DEBUG:
-                    'AIzaSyDXrqgEtyMJVBaBuxInwZXR4CQDraSK1ZA',
+                    'AIzaSyDIX2vGHejj97MjhQHR4djCY3GlFI-4fTg',
             });
 
             const mapOptions: GoogleMapOptions = {
                 camera: {
-                    target: this.mapCoords,
+                    target: {
+                        lat: -2.1537488,
+                        lng: -79.8883037,
+                    },
                     zoom: 18,
                     tilt: 30,
                 },

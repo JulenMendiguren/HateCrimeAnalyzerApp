@@ -4,7 +4,7 @@
         <ion-buttons slot="start">
             <ion-back-button defaultHref="home"></ion-back-button>
         </ion-buttons>
-        <ion-title>{{ 'USER.title' |translate}}</ion-title>
+        <ion-title>{{ 'USER.title' | translate}}</ion-title>
     </ion-toolbar>
 </ion-header>
 
@@ -19,10 +19,7 @@
         <ion-card-content>
             <ion-list>
                 <ng-container *ngFor="let question of userQ.questions">
-                    <ion-item
-                        [ngClass]="getClass(question)"
-                        *ngIf="hasAnswer(question._id)"
-                    >
+                    <ion-item [ngClass]="getClass(question)" *ngIf="hasAnswer(question._id)">
                         <ion-label>
                             <ion-label class="ion-text-wrap">
                                 <ion-text style="font-weight: bold;">
@@ -39,10 +36,6 @@
             </ion-list>
         </ion-card-content>
     </ion-card>
-    <ion-button (click)="navigateEdit()"
-        >{{'USER.edit_information' | translate}}</ion-button
-    >
-    <ion-button *ngIf="updateAvaliable" (click)="navigateUpdate()"
-        >{{'USER.update_survey' | translate}}</ion-button
-    >
+    <ion-button (click)="navigateEdit()">{{'USER.edit_information' | translate}}</ion-button>
+    <ion-button *ngIf="updateAvaliable" (click)="navigateUpdate()">{{'USER.update_survey' | translate}}</ion-button>
 </ion-content>

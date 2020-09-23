@@ -25,7 +25,7 @@ import { ColectivesService } from 'src/app/services/colectives.service';
 })
 export class ReportPage implements OnInit, CanComponentDeactivate {
     public questions: Question[] = [];
-    public lang: String;
+    public lang: string;
     public submitted = false;
     autoPlaceAndDate: boolean;
     colectives;
@@ -34,6 +34,7 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
     public jsonLoaded = false;
     public parentForm: FormGroup;
     public errorMessages = {};
+    public onMap = false;
 
     constructor(
         private validationService: ValidationService,
@@ -123,11 +124,18 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
             componentProps: {
                 markerCoordsString: this.parentForm.controls[Q_ID].value,
             },
+            cssClass: 'modal-class',
         });
         modal.onWillDismiss().then((dataReturned) => {
             this.parentForm.controls[Q_ID].setValue(dataReturned.data);
+            this.onMap = false;
         });
+        this.onMap = true;
         return await modal.present();
+    }
+
+    onModal() {
+        return this.onMap ? { display: 'none' } : { display: 'block' };
     }
 
     public findInvalidControls() {

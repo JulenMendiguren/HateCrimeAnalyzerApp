@@ -10,3 +10,8 @@
 .tick-hidden {
     visibility: hidden;
 }
+.modal-class {
+    ion-backdrop {
+        --backdrop-opacity: 0.33;
+    }
+}

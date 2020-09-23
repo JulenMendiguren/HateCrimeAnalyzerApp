@@ -1,5 +1,6 @@
 <!-- Back button with a default href -->
-<ion-header>
+
+<ion-header [ngStyle]="onModal()">
     <ion-toolbar>
         <ion-buttons slot="start">
             <ion-back-button defaultHref="home"></ion-back-button>
@@ -8,96 +9,53 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-padding" [ngStyle]="onModal()">
     <form [formGroup]="parentForm" (ngSubmit)="submit()">
         <ng-container *ngFor="let question of questions">
             <ng-container [ngSwitch]="question.type">
-                <app-template-textbox
-                    [ngStyle]="showingQuestion(question)"
-                    *ngSwitchCase="'textbox'"
-                    [question]="question"
-                    [parentForm]="parentForm"
-                    [errorMessages]="errorMessages"
-                ></app-template-textbox>
+                <app-template-textbox [ngStyle]="showingQuestion(question)" *ngSwitchCase="'textbox'"
+                    [question]="question" [parentForm]="parentForm" [errorMessages]="errorMessages">
+                </app-template-textbox>
 
-                <app-template-number
-                    [ngStyle]="showingQuestion(question)"
-                    *ngSwitchCase="'number'"
-                    [question]="question"
-                    [parentForm]="parentForm"
-                    [errorMessages]="errorMessages"
-                >
+                <app-template-number [ngStyle]="showingQuestion(question)" *ngSwitchCase="'number'"
+                    [question]="question" [parentForm]="parentForm" [errorMessages]="errorMessages">
                 </app-template-number>
 
-                <app-template-likert
-                    [ngStyle]="showingQuestion(question)"
-                    *ngSwitchCase="'likert'"
-                    [question]="question"
-                    [parentForm]="parentForm"
-                ></app-template-likert>
+                <app-template-likert [ngStyle]="showingQuestion(question)" *ngSwitchCase="'likert'"
+                    [question]="question" [parentForm]="parentForm"></app-template-likert>
 
-                <app-template-datetime
-                    [ngStyle]="showingQuestion(question)"
-                    *ngSwitchCase="'datetime'"
-                    [question]="question"
-                    [parentForm]="parentForm"
-                    [errorMessages]="errorMessages"
-                ></app-template-datetime>
+                <app-template-datetime [ngStyle]="showingQuestion(question)" *ngSwitchCase="'datetime'"
+                    [question]="question" [parentForm]="parentForm" [errorMessages]="errorMessages">
+                </app-template-datetime>
 
-                <app-template-yesno
-                    [ngStyle]="showingQuestion(question)"
-                    *ngSwitchCase="'yesno'"
-                    [question]="question"
-                    [parentForm]="parentForm"
-                ></app-template-yesno>
+                <app-template-yesno [ngStyle]="showingQuestion(question)" *ngSwitchCase="'yesno'" [question]="question"
+                    [parentForm]="parentForm"></app-template-yesno>
 
-                <app-template-radio
-                    [ngStyle]="showingQuestion(question)"
-                    *ngSwitchCase="'radio'"
-                    [question]="question"
-                    [parentForm]="parentForm"
-                ></app-template-radio>
+                <app-template-radio [ngStyle]="showingQuestion(question)" *ngSwitchCase="'radio'" [question]="question"
+                    [parentForm]="parentForm"></app-template-radio>
 
-                <app-template-multiselect
-                    [ngStyle]="showingQuestion(question)"
-                    *ngSwitchCase="'multiselect'"
-                    [question]="question"
-                    [parentForm]="parentForm"
-                    [errorMessages]="errorMessages"
-                ></app-template-multiselect>
+                <app-template-multiselect [ngStyle]="showingQuestion(question)" *ngSwitchCase="'multiselect'"
+                    [question]="question" [parentForm]="parentForm" [errorMessages]="errorMessages">
+                </app-template-multiselect>
 
-                <div
-                    *ngSwitchCase="'geolocation'"
-                    [ngStyle]="showingQuestion(question)"
-                >
-                    <ion-label
-                        >{{question['text_'+lang]}}
-                        <span class="error-message"
-                            >{{ question.options.required ? "*" : "" }}</span
-                        ></ion-label
-                    >
-                    <ion-item (click)="openMapModal(question._id)"
-                        ><ion-label>Choose the location</ion-label>
-                        <ion-icon
-                            slot="end"
-                            name="checkmark"
-                            [className]="parentForm.controls[question._id].valid ? 'tick-showing': 'tick-hidden'"
-                        ></ion-icon>
+                <div *ngSwitchCase="'geolocation'" [ngStyle]="showingQuestion(question)">
+                    <ion-label>{{question['text_'+lang]}}
+                        <span class="error-message">{{ question.options.required ? "*" : "" }}</span></ion-label>
+                    <ion-item (click)="openMapModal(question._id)">
+                        <ion-label>Choose the location</ion-label>
+                        <ion-icon slot="end" name="checkmark"
+                            [className]="parentForm.controls[question._id].valid ? 'tick-showing': 'tick-hidden'">
+                        </ion-icon>
                     </ion-item>
                 </div>
 
                 <div *ngSwitchDefault>ELSE: {{question['text_'+lang]}}</div>
             </ng-container>
         </ng-container>
-        <ion-button
-            [disabled]="!canSubmit()"
-            type="submit"
-            expand="block"
-            shape="round"
-            >Submit <ion-icon slot="end" name="create"> </ion-icon>
+        <ion-button [disabled]="!canSubmit()" type="submit" expand="block" shape="round">Submit <ion-icon slot="end"
+                name="create"> </ion-icon>
         </ion-button>
     </form>
     <ion-button (click)="findInvalidControls()">
-        Invalid questions (debug)</ion-button
-    >
+        Invalid questions (debug)</ion-button>
 </ion-content>

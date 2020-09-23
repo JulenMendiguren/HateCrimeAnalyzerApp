@@ -17,7 +17,8 @@
         "max": "The maximum value of this field is {{value}}"
     },
     "geolocation": {
-        "saved_position": "The chosen position has been saved."
+        "saved_position": "The chosen position has been saved.",
+        "loading": "Loading..."
     },
     "likert": {
         "sd": "Strongly Disagree",
@@ -55,6 +56,12 @@
         "title": "Settings"
     },
     "LOGIN": {
-        "incorrect_pw": "Incorrect password"
+        "incorrect_pw": "Incorrect password",
+        "forgotten_pw": "Have you forgotten the password?",
+        "restore": "Restore App",
+        "title": "Log in",
+        "password": "Password",
+        "set_pw_desc": "Set a password to unlock the app (leave blank to disable this feature)",
+        "set_pw": "Set Password"
     }
 }
