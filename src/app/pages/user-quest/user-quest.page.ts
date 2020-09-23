@@ -30,6 +30,7 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
     public parentForm: FormGroup;
     public errorMessages = {};
     submitted = false;
+    public onMap = false;
 
     constructor(
         private route: ActivatedRoute,
@@ -94,8 +95,14 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
         });
         modal.onWillDismiss().then((dataReturned) => {
             this.parentForm.controls[Q_ID].setValue(dataReturned.data);
+            this.onMap = false;
         });
+        this.onMap = true;
         return await modal.present();
+    }
+
+    onModal() {
+        return this.onMap ? { display: 'none' } : { display: 'block' };
     }
 
     async canDeactivate() {

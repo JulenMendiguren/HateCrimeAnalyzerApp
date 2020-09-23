@@ -1,12 +1,16 @@
 {
     "REPORT": {
         "title": "Crear un reporte",
-        "toast_report_sent": "Tu reporte ha sido enviado"
+        "toast_report_sent": "Tu reporte ha sido enviado",
+        "submit": "ENVIAR"
     },
     "USER": {
         "title": "Información de Usuario",
         "edit_information": "Editar usuario",
         "update_survey": "Actualizar versión de cuestionario"
+    },
+    "USER_QUEST": {
+        "title": "Información de Usuario"
     },
     "error_messages": {
         "required": "Este campo es obligatorio",
@@ -18,7 +22,10 @@
     },
     "geolocation": {
         "saved_position": "La posición seleccionada se ha guardado.",
-        "loading": "Loading..."
+        "loading": "Loading...",
+        "header": "Selecciona el lugar en el mapa",
+        "close": "Cerrar el mapa",
+        "select": "Selecciona el lugar"
     },
     "likert": {
         "sd": "Muy en desacuerdo",

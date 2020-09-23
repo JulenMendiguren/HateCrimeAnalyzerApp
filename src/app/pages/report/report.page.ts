@@ -124,7 +124,6 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
             componentProps: {
                 markerCoordsString: this.parentForm.controls[Q_ID].value,
             },
-            cssClass: 'modal-class',
         });
         modal.onWillDismiss().then((dataReturned) => {
             this.parentForm.controls[Q_ID].setValue(dataReturned.data);
@@ -136,18 +135,6 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
 
     onModal() {
         return this.onMap ? { display: 'none' } : { display: 'block' };
-    }
-
-    public findInvalidControls() {
-        const invalid = [];
-        const controls = this.parentForm.controls;
-        for (const name in controls) {
-            if (controls[name].invalid) {
-                invalid.push(name);
-                invalid.push(controls[name].errors);
-            }
-        }
-        console.log(invalid);
     }
 
     async canDeactivate() {

@@ -30,6 +30,7 @@ export class GoogleMapsPage implements OnInit {
     mapCoords: LatLng;
     markerCoords: LatLng;
     marker: Marker;
+    loading: any;
 
     constructor(
         private modalController: ModalController,
@@ -41,7 +42,9 @@ export class GoogleMapsPage implements OnInit {
 
     async ngOnInit() {
         await this.platform.ready();
-        this.presentLoading();
+        await this.presentLoading();
+        await this.loadCoordinates();
+        this.loading.dismiss();
     }
 
     loadCoordinates() {
@@ -90,10 +93,7 @@ export class GoogleMapsPage implements OnInit {
 
             const mapOptions: GoogleMapOptions = {
                 camera: {
-                    target: {
-                        lat: -2.1537488,
-                        lng: -79.8883037,
-                    },
+                    target: this.mapCoords,
                     zoom: 18,
                     tilt: 30,
                 },
@@ -104,21 +104,17 @@ export class GoogleMapsPage implements OnInit {
             this.map.on(GoogleMapsEvent.MAP_CLICK).subscribe((latlng) => {
                 this.markerCoords = latlng[0];
                 if (this.marker) {
-                    console.log('Hay marker, lo mueve.');
                     this.marker.setPosition(this.markerCoords);
                 } else {
-                    console.log('No hay marker, crea uno');
                     this.createMarker();
                 }
             });
-            console.log('LoadMap terminado');
             resolve('LoadMap terminado');
         });
     }
 
     createMarker() {
         this.marker = this.map.addMarkerSync({
-            title: 'Chosen place',
             icon: 'red',
             position: this.markerCoords,
         });
@@ -135,13 +131,11 @@ export class GoogleMapsPage implements OnInit {
     }
 
     async presentLoading() {
-        const loading = await this.loadingController.create({
-            message: 'Loading map...',
+        const message = this.translate.instant('geolocation.loading');
+        this.loading = await this.loadingController.create({
+            message,
         });
-        await loading.present();
-        await this.loadCoordinates();
-        console.log('loading quitado');
-        loading.dismiss();
+        await this.loading.present();
     }
 
     async presentToastPositionSaved() {

@@ -1,5 +1,3 @@
-<!-- Back button with a default href -->
-
 <ion-header [ngStyle]="onModal()">
     <ion-toolbar>
         <ion-buttons slot="start">
@@ -42,7 +40,7 @@
                     <ion-label>{{question['text_'+lang]}}
                         <span class="error-message">{{ question.options.required ? "*" : "" }}</span></ion-label>
                     <ion-item (click)="openMapModal(question._id)">
-                        <ion-label>Choose the location</ion-label>
+                        <ion-label>{{'geolocation.select'|translate}}</ion-label>
                         <ion-icon slot="end" name="checkmark"
                             [className]="parentForm.controls[question._id].valid ? 'tick-showing': 'tick-hidden'">
                         </ion-icon>
@@ -52,10 +50,9 @@
                 <div *ngSwitchDefault>ELSE: {{question['text_'+lang]}}</div>
             </ng-container>
         </ng-container>
-        <ion-button [disabled]="!canSubmit()" type="submit" expand="block" shape="round">Submit <ion-icon slot="end"
-                name="create"> </ion-icon>
+        <ion-button [disabled]="!canSubmit()" type="submit" expand="block" shape="round">{{'REPORT.submit'|translate}}
+            <ion-icon slot="end" name="create"> </ion-icon>
         </ion-button>
     </form>
-    <ion-button (click)="findInvalidControls()">
-        Invalid questions (debug)</ion-button>
+
 </ion-content>

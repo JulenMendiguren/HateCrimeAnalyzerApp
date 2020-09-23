@@ -1,62 +1,77 @@
 <ion-content fullscreen class="ion-padding" scroll-y="false">
-    <ion-slides pager="true" [options]="slideOpts" style="height: 100%;">
+    <ion-slides pager="true" [options]="slideOpts">
         <ion-slide>
             <h1>Gracias por descargar Hate Crime Analyzer!</h1>
+            <div class="slide" style="justify-content: center;">
+                <div class="content">
+                    <h2>Por favor, elige un idioma:</h2>
+                    <ion-item>
+                        <ion-label>Language</ion-label>
+                        <ion-select placeholder="Select One" (ionChange)="onLangChanged($event)">
+                            <ion-select-option value="eu">Euskara</ion-select-option>
+                            <ion-select-option value="es">Español</ion-select-option>
+                            <ion-select-option value="en">English</ion-select-option>
+                            <ion-select-option value="fr">Français</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </div>
 
-            <h2 style="margin-top: 11em;">Por favor, elige un idioma:</h2>
-            <ion-item>
-                <ion-label>Language</ion-label>
-                <ion-select placeholder="Select One" (ionChange)="onLangChanged($event)">
-                    <ion-select-option value="eu">Euskara</ion-select-option>
-                    <ion-select-option value="es">Español</ion-select-option>
-                    <ion-select-option value="en">English</ion-select-option>
-                    <ion-select-option value="fr">Français</ion-select-option>
-                </ion-select>
-            </ion-item>
+            </div>
         </ion-slide>
         <ion-slide>
-            <h1>Información de la aplicación</h1>
+            <div class="slide">
+                <div class="content">
+                    <h1>Información de la aplicación</h1>
 
-            <p align="justify">
-                Como sociedad, tenemos cada vez una mayor conciencia de la
-                creciente diversidad que resulta enriquecedora, pero
-                lamentablemente, sabemos también que muchos colectivos son
-                víctimas de delitos de odio. Desde la Cátedra de Derechos
-                Humanos y Poderes Públicos de la Universidad del País impulsamos
-                esta app con el objetivo de conocer mejor los delitos de odio,
-                así como su impacto en las víctimas. Pretendemos mejorar el
-                conocimiento científico actualmente disponible sobre ese tema.
-                Este trabajo es posible gracias a la colaboración de diversas
-                asociaciones como…. (pendiente).
-                <br />
-                Esta no es una app de ayuda o emergencia, sino de recopilación
-                de datos sobre delitos de odio. Si está en peligro o quiere
-                denunciar un delito llame al 112, o póngase en contacto con la
-                comisaría de policía más cercana.
-            </p>
+                    <p align="justify">
+                        Como sociedad, tenemos cada vez una mayor conciencia de la
+                        creciente diversidad que resulta enriquecedora, pero
+                        lamentablemente, sabemos también que muchos colectivos son
+                        víctimas de delitos de odio. Desde la Cátedra de Derechos
+                        Humanos y Poderes Públicos de la Universidad del País impulsamos
+                        esta app con el objetivo de conocer mejor los delitos de odio,
+                        así como su impacto en las víctimas. Pretendemos mejorar el
+                        conocimiento científico actualmente disponible sobre ese tema.
+                        Este trabajo es posible gracias a la colaboración de diversas
+                        asociaciones como…. (pendiente).
+                        <br />
+                        Esta no es una app de ayuda o emergencia, sino de recopilación
+                        de datos sobre delitos de odio. Si está en peligro o quiere
+                        denunciar un delito llame al 112, o póngase en contacto con la
+                        comisaría de policía más cercana.
+                    </p>
+                </div>
+            </div>
         </ion-slide>
 
         <ion-slide>
-            <h1>Información de la aplicación</h1>
-            <p align="justify">
-                Si usted quiere ser parte de esta iniciativa, a continuación, le
-                pediremos una única vez algunos datos (asociación de
-                procedencia, colectivo, municipio, etc.). La participación es
-                anónima, y ninguno de estos datos permite identificar a personas
-                concretas. Una vez que los envíe, podrá usar la app cuando lo
-                desee, para enviar información sobre incidentes o posibles
-                delitos de odio, respondiendo a un breve cuestionario. Si no
-                desea utilizar la app, no se le enviarán notificaciones ni
-                recordatorios, ni se recogerá o enviará ninguna otra
-                información. Agradecemos muchísimo su disposición a participar,
-                ayudándonos a avanzar en la investigación de los delitos de
-                odio.
-            </p>
-            <!-- TO-DO: EL BOTÓN NO SE VE EN TELÉFONOS PEQUEÑOS -->
-            <ion-button style="margin-top: 10em;" fill="none" (click)="onRegisterClick()" [disabled]="!langSelected">
-                Registrarse!
-                <ion-icon slot="end" name="arrow-forward"></ion-icon>
-            </ion-button>
+            <div class="slide">
+                <div class="content">
+
+
+                    <h1>Información de la aplicación</h1>
+                    <p align="justify">
+                        Si usted quiere ser parte de esta iniciativa, a continuación, le
+                        pediremos una única vez algunos datos (asociación de
+                        procedencia, colectivo, municipio, etc.). La participación es
+                        anónima, y ninguno de estos datos permite identificar a personas
+                        concretas. Una vez que los envíe, podrá usar la app cuando lo
+                        desee, para enviar información sobre incidentes o posibles
+                        delitos de odio, respondiendo a un breve cuestionario. Si no
+                        desea utilizar la app, no se le enviarán notificaciones ni
+                        recordatorios, ni se recogerá o enviará ninguna otra
+                        información. Agradecemos muchísimo su disposición a participar,
+                        ayudándonos a avanzar en la investigación de los delitos de
+                        odio.
+                    </p>
+                </div>
+                <ion-button fill="none" (click)="onRegisterClick()" [disabled]="!langSelected">
+                    Registrarse!
+                    <ion-icon slot="end" name="arrow-forward"></ion-icon>
+                </ion-button>
+            </div>
         </ion-slide>
     </ion-slides>
 </ion-content>
+
+<!-- TODO: Traducción -->
