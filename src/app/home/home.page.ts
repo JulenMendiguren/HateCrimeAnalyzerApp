@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -10,43 +10,41 @@ import { TranslateService } from '@ngx-translate/core';
     styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
+    loading: any;
     constructor(
         private storage: Storage,
         private router: Router,
         private alertController: AlertController,
-        private translate: TranslateService
+        private translate: TranslateService,
+        private loadingController: LoadingController
     ) {}
 
-    ngOnInit() {
-        //this.setTestUserQ();
-    }
-    setTestUserQ() {
-        this.loadJson('/assets/userQ.json')
-            .then((json) => {
-                this.storage.set('userQ', json);
-            })
-            .then(() =>
-                this.loadJson('/assets/userA.json').then((json) => {
-                    this.storage.set('userA', json);
-                })
-            );
-    }
+    ngOnInit() {}
 
-    loadJson(url: string) {
-        return fetch(url).then((file) => {
-            return file.json();
+    goToReportAutoPlaceAndDate() {
+        this.presentAlertWarning(() => {
+            this.presentLoading();
+            this.router.navigate(['/report/auto']);
+        });
+    }
+    goToReport() {
+        this.presentAlertWarning(() => {
+            this.presentLoading();
+            this.router.navigate(['/report/default']);
         });
     }
 
-    goToReportAutoPlaceAndDate() {
-        this.presentAlertWarning(() => this.router.navigate(['/report/auto']));
+    ionViewWillLeave() {
+        this.loading.dismiss();
     }
-    goToReport() {
-        this.presentAlertWarning(() =>
-            this.router.navigate(['/report/default'])
-        );
+    // Sets up Loading for later use
+    async presentLoading() {
+        const message = this.translate.instant('geolocation.loading');
+        this.loading = await this.loadingController.create({
+            message,
+        });
+        await this.loading.present();
     }
-
     async presentAlertWarning(callback) {
         let header, message;
         this.translate.get('dialog.warning.header').subscribe((val: string) => {

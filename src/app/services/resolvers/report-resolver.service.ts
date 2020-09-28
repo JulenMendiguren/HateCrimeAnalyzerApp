@@ -3,7 +3,7 @@ import { Resolve } from '@angular/router';
 import { ApiService } from '../api.service';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class ReportResolverService implements Resolve<any> {
     constructor(private api: ApiService) {}

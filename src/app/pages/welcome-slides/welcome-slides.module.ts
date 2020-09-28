@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { WelcomeSlidesPageRoutingModule } from './welcome-slides-routing.module';
 
 import { WelcomeSlidesPage } from './welcome-slides.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    WelcomeSlidesPageRoutingModule
-  ],
-  declarations: [WelcomeSlidesPage]
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        TranslateModule,
+        WelcomeSlidesPageRoutingModule,
+    ],
+    declarations: [WelcomeSlidesPage],
 })
 export class WelcomeSlidesPageModule {}

@@ -10,14 +10,14 @@
 <ion-content>
   <div class="container">
     <div class="delete-info">
-      <h4>Borrar toda la información de usuario y reestablecer ajustes por defecto</h4>
+      <h4>{{ 'SETTINGS.delete_info' |translate}}</h4>
       <ion-button color="danger" (click)="deleteUserData()">OK</ion-button>
     </div>
 
     <div class="lang-select">
-      <h4>Seleccionar el lenguaje de la aplicación</h4>
+      <h4>{{ 'SETTINGS.select_language' |translate}}</h4>
       <ion-item>
-        <ion-select placeholder="Select One" (ionChange)="onLangChanged($event)">
+        <ion-select placeholder="{{ 'SETTINGS.select_one' |translate}}" (ionChange)="onLangChanged($event)">
           <ion-select-option value="eu">Euskara</ion-select-option>
           <ion-select-option value="es">Español</ion-select-option>
           <ion-select-option value="en">English</ion-select-option>
@@ -27,8 +27,8 @@
     </div>
 
     <div>
-      <h4>Establecer una contraseña para desbloquear la aplicación</h4>
-      <ion-button (click)="setPassword()">set password</ion-button>
+      <h4>{{ 'SETTINGS.set_password' |translate}}</h4>
+      <ion-button (click)="setPassword()">{{ 'SETTINGS.btn_set_pw' |translate}}</ion-button>
     </div>
   </div>
 </ion-content>
