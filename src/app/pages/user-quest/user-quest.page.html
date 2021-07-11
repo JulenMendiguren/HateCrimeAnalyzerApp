@@ -1,5 +1,5 @@
 <ion-header [ngStyle]="onModal()">
-    <ion-toolbar>
+    <ion-toolbar color="primary">
         <ion-buttons slot="start" [ngStyle]="firstRegister ? {display: 'none'}: {display: 'block'} ">
             <ion-back-button defaultHref="user"></ion-back-button>
         </ion-buttons>
@@ -41,7 +41,8 @@
 
                 <div *ngSwitchCase="'geolocation'" [ngStyle]="showingQuestion(question)">
                     <ion-label>{{question['text'+lang]}}
-                        <span class="error-message">{{ question.options.required ? "*" : "" }}</span></ion-label>
+                        <span class="error-message">{{ question.options.required ? "*" : "" }}</span>
+                    </ion-label>
                     <ion-item (click)="openMapModal(question._id)">
                         <ion-label>{{'geolocation.select'|translate}}</ion-label>
                         <ion-icon slot="end" name="checkmark"

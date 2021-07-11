@@ -1,18 +1,42 @@
 .container {
-    height: 90%;
+    height: 60%;
     display: flex;
     flex-direction: column;
     padding: 15px;
-    justify-content: center;
+    justify-content: space-evenly;
+    margin-top: 30%;
+    margin-bottom: 20%;
     //justify-content: space-evenly;
+}
+
+ion-content{
+    --overflow: hidden;    
 }
 
 .delete-info {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    ion-text{
+        text-align: justify;
+        width: 70%;
+    }
 }
 
 .lang-select {
     display: flex;
     flex-direction: column;
+   
 }
+
+.set-password {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    ion-text{
+        text-align: justify;
+        width: 70%;
+    }
+  
+}
+

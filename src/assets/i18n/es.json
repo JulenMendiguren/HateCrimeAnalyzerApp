@@ -92,5 +92,15 @@
         "select_one": "Selecciona uno",
         "set_password": "Establecer una contraseña para desbloquear la aplicación",
         "btn_set_pw": "Establecer contraseña"
+    },
+    "HOME": {
+        "title": "Inicio",
+        "report_an_incident": "Reporta un incidente",
+        "button": {
+            "report": "Ocurrió hace tiempo",
+            "report_auto": "Acaba de ocurrir aquí",
+            "profile": "Perfil",
+            "settings": "Ajustes"
+        }
     }
 }

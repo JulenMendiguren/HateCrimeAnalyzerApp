@@ -1,10 +1,14 @@
-<ion-content fullscreen class="ion-padding" scroll-y="false">
-    <ion-slides pager="true" [options]="slideOpts">
+<ion-content fullscreen scroll-y="false">
+    <ion-slides class="bg-color" pager="true" [options]="slideOpts">
         <ion-slide>
-            <h1>{{'WELCOME.thanks'|translate}}</h1>
-            <div class="slide" style="justify-content: center;">
-                <div class="content">
-                    <h2>{{'WELCOME.please_language'|translate}}</h2>
+
+            <div class="one">
+                <div class="thanks">
+                    <h1>{{'WELCOME.thanks'|translate}}</h1>
+                    <img src="../../../assets/img/celebration.svg">
+                </div>
+                <div class="select-language">
+                    <h3>{{'WELCOME.please_language'|translate}}</h3>
                     <ion-item>
                         <ion-label>{{'WELCOME.select.label'|translate}}</ion-label>
                         <ion-select placeholder="{{'WELCOME.select.placeholder'|translate}}"
@@ -20,27 +24,32 @@
             </div>
         </ion-slide>
         <ion-slide>
-            <div class="slide">
-                <div class="content">
-                    <h1>{{'WELCOME.title.information'|translate}}</h1>
-                    <p align="justify">
-                        {{'WELCOME.info.p1'|translate}}
-                        <br />
-                        {{'WELCOME.info.p2'|translate}}
-                    </p>
-                </div>
+            <div class="two">
+                <h1 style="text-align: center;">{{'WELCOME.title.information'|translate}}</h1>
+
+
+                <ion-text>
+                    {{'WELCOME.info.p1'|translate}}
+                </ion-text>
+
+                <img src="../../../assets/img/question.svg" style="height: 200px;">
+
+                <ion-text style="margin-top: 5px;">
+                    {{'WELCOME.info.p2'|translate}}
+                </ion-text>
+
             </div>
         </ion-slide>
 
         <ion-slide>
-            <div class="slide">
-                <div class="content">
-                    <h1>{{'WELCOME.title.information'|translate}}</h1>
-                    <p align="justify">
-                        {{'WELCOME.info.p3'|translate}}
-                    </p>
-                </div>
-                <ion-button fill="none" (click)="onRegisterClick()" [disabled]="!langSelected">
+            <div class="three">
+
+
+                <ion-text>
+                    {{'WELCOME.info.p3'|translate}}
+                </ion-text>
+
+                <ion-button (click)="onRegisterClick()" [disabled]="!langSelected">
                     {{'WELCOME.register'|translate}}
                     <ion-icon slot="end" name="arrow-forward"></ion-icon>
                 </ion-button>

@@ -1,6 +1,6 @@
 <!-- Back button with a default href -->
 <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color="primary">
         <ion-buttons slot="start">
             <ion-back-button defaultHref="home"></ion-back-button>
         </ion-buttons>
@@ -36,6 +36,11 @@
             </ion-list>
         </ion-card-content>
     </ion-card>
-    <ion-button (click)="navigateEdit()">{{'USER.edit_information' | translate}}</ion-button>
-    <ion-button *ngIf="updateAvaliable" (click)="navigateUpdate()">{{'USER.update_survey' | translate}}</ion-button>
+    <div class="buttons">
+        <ion-button (click)="navigateEdit()">{{'USER.edit_information' | translate}}</ion-button>
+        <ion-button *ngIf="updateAvaliable" (click)="navigateUpdate()">{{'USER.update_survey' | translate}} <ion-badge
+                color="warning">!</ion-badge>
+        </ion-button>
+    </div>
+
 </ion-content>

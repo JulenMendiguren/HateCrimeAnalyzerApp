@@ -3,6 +3,7 @@ import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
+import { ApiService } from '../services/api.service';
 
 @Component({
     selector: 'app-home',
@@ -11,15 +12,23 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HomePage implements OnInit {
     loading: any;
+    userQUpdateAvaliable: boolean = false;
     constructor(
         private storage: Storage,
+        private api: ApiService,
         private router: Router,
         private alertController: AlertController,
         private translate: TranslateService,
         private loadingController: LoadingController
     ) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+      
+    }
+
+    ionViewWillEnter() {
+        this.checkIfUpdateAvaliable();
+    }
 
     goToReportAutoPlaceAndDate() {
         this.presentAlertWarning(() => {
@@ -35,7 +44,9 @@ export class HomePage implements OnInit {
     }
 
     ionViewWillLeave() {
-        this.loading.dismiss();
+        if(this.loading){
+            this.loading.dismiss();
+        }       
     }
     // Sets up Loading for later use
     async presentLoading() {
@@ -69,4 +80,19 @@ export class HomePage implements OnInit {
 
         await alert.present();
     }
+
+    checkIfUpdateAvaliable() {
+        this.storage.get('userQ').then((userQ)=>{
+            this.api.getLastUserQ().subscribe((last) => {
+                if (last['_id'] != userQ['_id']) {
+                    console.log('update avaliable');
+                    this.userQUpdateAvaliable = true;
+                } else {
+                    console.log('update not avaliable');
+                    this.userQUpdateAvaliable = false;
+                }
+            });
+        })     
+    }
+    
 }

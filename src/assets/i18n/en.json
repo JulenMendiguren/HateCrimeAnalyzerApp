@@ -92,5 +92,15 @@
         "select_one": "Select one",
         "set_password": "Set a password for unlocking the App",
         "btn_set_pw": "Set Password"
+    },
+    "HOME": {
+        "title": "Home",
+        "report_an_incident": "Report an incident",
+        "button": {
+            "report": "Happened sometime ago",
+            "report_auto": "Just happened here",
+            "profile": "Profile",
+            "settings": "Settings"
+        }
     }
 }

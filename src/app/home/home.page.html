@@ -1,7 +1,7 @@
 <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color="primary">
         <ion-title>
-            Home
+            {{'HOME.title' | translate}}
         </ion-title>
     </ion-toolbar>
 </ion-header>
@@ -12,18 +12,27 @@
             <h1 align="center">Hate Crime Analyzer</h1>
         </div>
         <div class="svg">
-            <img src="../../assets/img/undraw_Notify_re_65on.svg">
+            <img src="../../assets/img/notify.svg">
         </div>
         <div class="home-buttons">
-            <ion-button (click)="goToReport()">Reportar incidente anterior</ion-button>
 
-            <ion-button (click)="goToReportAutoPlaceAndDate()">Reportar incidente que acaba de ocurrir aquí
-            </ion-button>
+            <div class="report-buttons">
+                <ion-text text-center>
+                    <h3 style="margin-bottom: 20px;"> {{'HOME.report_an_incident' | translate}}</h3>
+                </ion-text>
+                <ion-button (click)="goToReport()">{{'HOME.button.report' | translate}}</ion-button>
+                <ion-button (click)="goToReportAutoPlaceAndDate()">{{'HOME.button.report_auto' | translate}}
+                </ion-button>
+            </div>
 
-            <ion-button routerLink="/user">Información del usuario</ion-button>
+            <div class="options-buttons">
+                <ion-button routerLink="/user">
+                    {{'HOME.button.profile' | translate}}<ion-badge *ngIf="userQUpdateAvaliable" color="warning">!
+                    </ion-badge>
+                </ion-button>
+                <ion-button routerLink="/settings">{{'HOME.button.settings' | translate}}</ion-button>
+            </div>
 
-
-            <ion-button routerLink="/settings">Ajustes</ion-button>
         </div>
     </div>
 </ion-content>
