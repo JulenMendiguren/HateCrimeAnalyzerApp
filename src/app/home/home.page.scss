@@ -1,1 +1,23 @@
+.content{
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+
+ion-content{
+    --overflow: hidden;
+    background-color: brown;
+}
+.title{
+   
+    
+}
+
+.home-buttons{
+    //height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex: 1 1 auto;
+}
 
