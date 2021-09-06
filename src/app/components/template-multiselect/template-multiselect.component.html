@@ -5,7 +5,7 @@
             }}</span>
     </ion-label>
     <ion-item>
-        <ion-label> Select options</ion-label>
+        <ion-label> {{'multiselect.select_options'| translate}}</ion-label>
         <ion-select multiple="true" formControlName="{{ question._id }}">
             <ng-container *ngFor="
                     let answer of question['possibleAnswers_' + lang];

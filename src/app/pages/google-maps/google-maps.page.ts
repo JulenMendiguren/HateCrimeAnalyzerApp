@@ -51,7 +51,6 @@ export class GoogleMapsPage implements OnInit {
         return new Promise((resolve, reject) => {
             // Si existe una última posición del marker.
             if (this.markerCoordsString) {
-                console.log('Hay old pos');
                 const splitCoords = this.markerCoordsString.split(',');
                 this.mapCoords = new LatLng(
                     Number(splitCoords[0]),
@@ -65,7 +64,6 @@ export class GoogleMapsPage implements OnInit {
                     } else {
                         this.createMarker();
                     }
-                    console.log('LoadCoordinates terminado');
                     resolve('LoadCoordinates terminado');
                 });
             } else {
@@ -73,7 +71,6 @@ export class GoogleMapsPage implements OnInit {
                 LocationService.getMyLocation().then((loc) => {
                     this.mapCoords = loc.latLng;
                     this.loadMap().then(() => {
-                        console.log('LoadCoordinates terminado');
                         resolve('LoadCoordinates terminado');
                     });
                 });

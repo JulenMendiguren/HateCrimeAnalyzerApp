@@ -1,0 +1,109 @@
+{
+    "REPORT": {
+        "title": "Crear un reporte EU",
+        "toast_report_sent": "Tu reporte ha sido enviado EU",
+        "submit": "ENVIAR EU"
+    },
+    "USER": {
+        "title": "Información de Usuario EU",
+        "edit_information": "Editar usuario EU",
+        "update_survey": "Actualizar versión de cuestionario EU"
+    },
+    "USER_QUEST": {
+        "title": "Información de Usuario EU"
+    },
+    "error_messages": {
+        "required": "Este campo es obligatorio EU",
+        "pattern_number": "Introduce un número válido EU",
+        "minLength": "Este campo puede tener un mínimo de {{value}} caracteres EU",
+        "maxLength": "Este campo puede tener un máximo de {{value}} caracteres EU",
+        "min": "El mínimo valor de este campo es {{value}} EU",
+        "max": "El máximo valor de este campo es {{value}} EU"
+    },
+    "geolocation": {
+        "saved_position": "La posición seleccionada se ha guardado. EU",
+        "loading": "Cargando... EU",
+        "header": "Selecciona el lugar en el mapa EU",
+        "close": "Cerrar el mapa EU",
+        "select": "Selecciona el lugar EU"
+    },
+    "likert": {
+        "sd": "Muy en desacuerdo EU",
+        "d": "En desacuerdo EU",
+        "n": "Neutral EU",
+        "a": "De acuerdo EU",
+        "sa": "Muy de acuerdo EU"
+    },
+    "datetime": {
+        "date": "Fecha EU",
+        "time": "Hora EU",
+        "datetime": "Fecha y hora EU"
+    },
+    "yesno": {
+        "yes": "Sí EU",
+        "no": "No EU"
+    },
+    "multiselect": {
+        "select_options": "Seleccionar EU"
+    },
+    "dialog": {
+        "exit": {
+            "header": "Confirmación EU",
+            "message": "De verdad quieres salir? EU",
+            "cancel": "Cancelar EU",
+            "yes": "Sí EU"
+        },
+        "warning": {
+            "header": "Recuerde EU",
+            "message": "Esta no es una app de ayuda o emergencia, sino de recopilación de datos sobre delitos de odio. Si está en peligro o quiere denunciar un delito llame al 112, o póngase en contacto con la comisaría de policía más cercana. EU"
+        },
+        "thankyou": {
+            "header": "¡Gracias! EU",
+            "message": "¡Gracias por confiar en nosotros y reportar un incidente con Hate Crime Analyzer! EU"
+        }
+    },
+    "LOGIN": {
+        "incorrect_pw": "Contraseña Incorrecta EU",
+        "forgotten_pw": "¿Has olvidado la contraseña? EU",
+        "restore": "Reestablecer App EU",
+        "title": "Iniciar Sesión EU",
+        "password": "Contraseña EU",
+        "set_pw_desc": "Establece una contraseña para desbloquear la aplicación (En blanco para deshabilitar esta función) EU",
+        "set_pw": "Establecer contraseña EU"
+    },
+    "WELCOME": {
+        "thanks": "¡Gracias por descargar Hate Crime Analyzer! EU",
+        "please_language": "Por favor seleccione un idioma EU",
+        "select": {
+            "label": "Idioma EU",
+            "placeholder": "Selecciona uno EU"
+        },
+        "title": {
+            "information": "Información Importante EU"
+        },
+        "register": "Registrarse! EU",
+        "info": {
+            "p1": "Como sociedad, tenemos cada vez una mayor conciencia de la creciente diversidad que resulta enriquecedora, pero lamentablemente, sabemos también que muchos colectivos son víctimas de delitos de odio. Desde la Cátedra de Derechos Humanos y Poderes Públicos de la Universidad del País impulsamos esta app con el objetivo de conocer mejor los delitos de odio, así como su impacto en las víctimas. Pretendemos mejorar el conocimiento científico actualmente disponible sobre ese tema. Este trabajo es posible gracias a la colaboración de diversas asociaciones como... (pendiente). EU",
+            "p2": "Esta no es una app de ayuda o emergencia, sino de recopilación de datos sobre delitos de odio. Si está en peligro o quiere denunciar un delito llame al 112, o póngase en contacto con la comisaría de policía más cercana. EU",
+            "p3": "Si usted quiere ser parte de esta iniciativa, a continuación, le pediremos una única vez algunos datos (asociación de procedencia, colectivo, municipio, etc.). La participación es anónima, y ninguno de estos datos permite identificar a personas concretas. Una vez que los envíe, podrá usar la app cuando lo desee, para enviar información sobre incidentes o posibles delitos de odio, respondiendo a un breve cuestionario. Si no desea utilizar la app, no se le enviarán notificaciones ni recordatorios, ni se recogerá o enviará ninguna otra información. Agradecemos muchísimo su disposición a participar, ayudándonos a avanzar en la investigación de los delitos de odio. EU"
+        }
+    },
+    "SETTINGS": {
+        "title": "Ajustes EU",
+        "delete_info": "Borrar toda la información de usuario y reestablecer ajustes por defecto EU",
+        "select_language": "Seleccionar el idioma de la aplicación EU",
+        "select_one": "Selecciona uno EU",
+        "set_password": "Establecer una contraseña para desbloquear la aplicación EU",
+        "btn_set_pw": "Establecer contraseña EU"
+    },
+    "HOME": {
+        "title": "Inicio EU",
+        "report_an_incident": "Reporta un incidente EU",
+        "button": {
+            "report": "Ocurrió hace tiempo EU",
+            "report_auto": "Acaba de ocurrir aquí EU",
+            "profile": "Perfil EU",
+            "settings": "Ajustes EU"
+        }
+    }
+}

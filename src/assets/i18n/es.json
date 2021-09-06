@@ -43,6 +43,9 @@
         "yes": "Sí",
         "no": "No"
     },
+    "multiselect": {
+        "select_options": "Seleccionar"
+    },
     "dialog": {
         "exit": {
             "header": "Confirmación",

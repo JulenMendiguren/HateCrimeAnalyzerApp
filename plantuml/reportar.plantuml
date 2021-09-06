@@ -1,0 +1,37 @@
+@startuml reportar
+!theme materia 
+
+skinparam sequenceMessageAlign center
+actor Usuario
+
+Usuario -> HomePage: goToReport()
+create ReportPage
+HomePage -[#green]>> ReportPage: Redirige a la página
+
+database LocalStorage order 10
+activate UserAResolverService
+UserAResolverService -> LocalStorage: get('UserA')
+note left: Se inicia \nautomáticamente
+LocalStorage --> UserAResolverService: Respuestas Cuest. Usuario JSON
+UserAResolverService --> ReportPage: Respuestas Cuest. Usuario JSON
+deactivate UserAResolverService
+
+activate ReportQResolverService
+ReportQResolverService -> ApiService: getLastReportQ()
+activate ApiService
+note left: Se inicia \nautomáticamente
+entity "API REST" as api order 11
+ApiService -> api: GET /api/questionnaire/last/report
+api --> ApiService: Cuestionario JSON
+ApiService --> ReportQResolverService: Cuestionario JSON
+deactivate ApiService
+ReportQResolverService --> ReportPage: Cuestionario JSON
+deactivate ReportQResolverService
+
+Usuario -[#green]>> ReportPage: Rellena el cuestionario
+Usuario->ReportPage: submit()
+
+ReportPage -> ApiService: postReport(reportJSON)
+ApiService -> api: POST /api/answer/one
+
+@enduml

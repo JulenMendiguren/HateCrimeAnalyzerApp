@@ -22,9 +22,7 @@ export class HomePage implements OnInit {
         private loadingController: LoadingController
     ) {}
 
-    ngOnInit() {
-      
-    }
+    ngOnInit() {}
 
     ionViewWillEnter() {
         this.checkIfUpdateAvaliable();
@@ -44,9 +42,9 @@ export class HomePage implements OnInit {
     }
 
     ionViewWillLeave() {
-        if(this.loading){
+        if (this.loading) {
             this.loading.dismiss();
-        }       
+        }
     }
     // Sets up Loading for later use
     async presentLoading() {
@@ -82,17 +80,14 @@ export class HomePage implements OnInit {
     }
 
     checkIfUpdateAvaliable() {
-        this.storage.get('userQ').then((userQ)=>{
+        this.storage.get('userQ').then((userQ) => {
             this.api.getLastUserQ().subscribe((last) => {
                 if (last['_id'] != userQ['_id']) {
-                    console.log('update avaliable');
                     this.userQUpdateAvaliable = true;
                 } else {
-                    console.log('update not avaliable');
                     this.userQUpdateAvaliable = false;
                 }
             });
-        })     
+        });
     }
-    
 }

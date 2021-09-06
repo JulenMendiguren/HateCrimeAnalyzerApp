@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { NavController, Platform, ToastController } from '@ionic/angular';
@@ -12,7 +11,6 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class LoginPage implements OnInit {
     constructor(
-        private faio: FingerprintAIO,
         private router: Router,
         private platform: Platform,
         private navCtrl: NavController,
@@ -21,7 +19,8 @@ export class LoginPage implements OnInit {
         private translate: TranslateService
     ) {
         if (this.router.getCurrentNavigation().extras.state) {
-            this.settingPassword = this.router.getCurrentNavigation().extras.state.settingPassword;
+            this.settingPassword =
+                this.router.getCurrentNavigation().extras.state.settingPassword;
         }
         if (!this.settingPassword) {
             this.platform.backButton.subscribeWithPriority(10, () => {});

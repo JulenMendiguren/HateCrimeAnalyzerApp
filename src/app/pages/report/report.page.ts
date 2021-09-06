@@ -218,8 +218,8 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
         if (!this.parentForm.controls[q._id].valid) {
             return { display: 'block' };
         }
-        const mainValid = this.parentForm.controls[q.options.subquestionOf]
-            .valid;
+        const mainValid =
+            this.parentForm.controls[q.options.subquestionOf].valid;
 
         // If main is valid and the required answer is correct
         if (
@@ -254,7 +254,6 @@ export class ReportPage implements OnInit, CanComponentDeactivate {
     }
 
     public submit() {
-        console.log('-----> SUBMITTED');
         this.submitted = true;
 
         let reportJSON = {};

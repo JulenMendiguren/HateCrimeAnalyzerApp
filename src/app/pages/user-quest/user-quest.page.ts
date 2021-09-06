@@ -82,8 +82,7 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
             this.userQ.questions
         );
         this.parentForm = returnedValue[0];
-        this.errorMessages = returnedValue[1];
-        console.log('Error messages: ', this.errorMessages);
+        this.errorMessages = returnedValue[1];    
     }
 
     async openMapModal(Q_ID: string) {
@@ -237,9 +236,7 @@ export class UserQuestPage implements OnInit, CanComponentDeactivate {
         this.userA['answers'] = answers;
 
         this.storage.set('userQ', this.userQ);
-        this.storage.set('userA', this.userA);
-
-        console.log('Nuevo registro de usuario o editado:', this.userA);
+        this.storage.set('userA', this.userA);     
 
         if (this.firstRegister) {
             this.storage.set('registered', true);
