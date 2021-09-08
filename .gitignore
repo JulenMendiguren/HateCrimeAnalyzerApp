@@ -29,5 +29,4 @@ npm-debug.log*
 /platforms
 /plugins
 /www
-src/app/services/ip.js
-resources/android/xml/network_security_config.xml
+
